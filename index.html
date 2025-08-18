@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendriansyah Setiawan - Portofolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* macOS Theme Colors */
+            --mac-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --mac-window: rgba(255, 255, 255, 0.95);
+            --mac-sidebar: rgba(245, 245, 247, 0.8);
+            --mac-accent: #007AFF;
+            --mac-red: #FF5F56;
+            --mac-yellow: #FFBD2E;
+            --mac-green: #27CA3F;
+            
+            /* Linux/Terminal Theme Colors */
+            --linux-bg: #1e1e1e;
+            --linux-terminal: #0d1117;
+            --linux-text: #f0f6fc;
+            --linux-green: #39d353;
+            --linux-blue: #58a6ff;
+            --linux-purple: #a5a5ff;
+            --linux-orange: #ffa657;
+            --linux-red: #f85149;
+            
+            /* Active Theme (Switch between mac/linux) */
+            --primary-color: var(--linux-green);
+            --secondary-color: var(--linux-blue);
+            --accent-color: var(--linux-purple);
+            --bg-primary: var(--linux-bg);
+            --bg-secondary: var(--linux-terminal);
+            --text-primary: var(--linux-text);
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            
+            /* Fonts */
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Theme Switcher */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-btn.linux {
+            background: rgba(13, 17, 23, 0.8);
+            color: var(--linux-green);
+            border: 1px solid var(--linux-green);
+        }
+
+        .theme-btn.macos {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--mac-accent);
+            border: 1px solid var(--mac-accent);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Desktop Environment */
+        .desktop {
+            min-height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        /* Dock/Taskbar */
+        .dock {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dock-item {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .dock-item:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .dock-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        /* Terminal Window */
+        .terminal-window {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .window-header {
+            background: rgba(40, 44, 52, 0.95);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn.close { background: var(--linux-red); }
+        .control-btn.minimize { background: var(--linux-orange); }
+        .control-btn.maximize { background: var(--linux-green); }
+
+        .control-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .window-title {
+            margin-left: 12px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .terminal-content {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Command Line Interface */
+        .cli-line {
+            display: flex;
+            margin-bottom: 8px;
+            animation: typing 0.8s ease-out;
+        }
+
+        .cli-prompt {
+            color: var(--primary-color);
+            margin-right: 8px;
+            font-weight: 600;
+        }
+
+        .cli-command {
+            color: var(--text-primary);
+        }
+
+        .cli-output {
+            color: var(--text-secondary);
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .cursor {
+            background: var(--primary-color);
+            width: 8px;
+            height: 16px;
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes typing {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* File Manager Window */
+        .file-manager {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            height: calc(100vh - 140px);
+            margin: 20px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar {
+            background: rgba(30, 30, 30, 0.5);
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .sidebar-item.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .main-content {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        /* Profile Section */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .profile-card {
+            background: rgba(40, 44, 52, 0.5);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .profile-role {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-family: var(--font-mono);
+        }
+
+        .profile-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(57, 211, 83, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(57, 211, 83, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(57, 211, 83, 0); }
+        }
+
+        .profile-info {
+            background: rgba(40, 44, 52, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: rgba(40, 44, 52, 0.5);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+        }
+
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-item::before {
+            content: '▶';
+            color: var(--primary-color);
+            font-size: 10px;
+        }
+
+        .skill-name {
+            flex: 1;
+        }
+
+        .skill-level {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: rgba(40, 44, 52, 0.5);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            margin-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid var(--bg-secondary);
+        }
+
+        .timeline-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-company {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: rgba(40, 44, 52, 0.5);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            padding: 20px;
+            color: white;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: var(--font-mono);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: rgba(40, 44, 52, 0.5);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .contact-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            color: var(--text-secondary);
+        }
+
+        .contact-value a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-family: var(--font-mono);
+        }
+
+        .contact-value a:hover {
+            color: var(--primary-color);
+        }
+
+        /* System Monitor */
+        .system-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(40, 44, 52, 0.5);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-family: var(--font-mono);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .stat-progress {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 2px;
+            transition: width 2s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .file-manager {
+                grid-template-columns: 1fr;
+                margin: 10px;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dock {
+                flex-wrap: wrap;
+                max-width: 90%;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* macOS Theme Styles */
+        body.macos-theme {
+            --primary-color: var(--mac-accent);
+            --secondary-color: #34C759;
+            --accent-color: #FF9500;
+            --bg-primary: var(--mac-bg);
+            --bg-secondary: var(--mac-window);
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body.macos-theme .terminal-window,
+        body.macos-theme .file-manager {
+            background: var(--mac-window);
+            backdrop-filter: blur(20px);
+        }
+
+        body.macos-theme .window-header {
+            background: rgba(246, 246, 246, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        body.macos-theme .control-btn.close { background: var(--mac-red); }
+        body.macos-theme .control-btn.minimize { background: var(--mac-yellow); }
+        body.macos-theme .control-btn.maximize { background: var(--mac-green); }
+
+        body.macos-theme .sidebar {
+            background: var(--mac-sidebar);
+            backdrop-filter: blur(20px);
+        }
+
+        body.macos-theme .skill-category,
+        body.macos-theme .timeline-item,
+        body.macos-theme .project-card,
+        body.macos-theme .contact-item,
+        body.macos-theme .profile-card,
+        body.macos-theme .stat-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switcher">
+        <button class="theme-btn linux" onclick="setTheme('linux')" title="Linux Theme">🐧</button>
+        <button class="theme-btn macos" onclick="setTheme('macos')" title="macOS Theme">🍎</button>
+    </div>
+
+    <div class="desktop">
+        <!-- File Manager Interface -->
+        <div class="file-manager">
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Navigation</div>
+                    <div class="sidebar-item active" data-section="profile">
+                        <span>👤</span>
+                        <span>profile</span>
+                    </div>
+                    <div class="sidebar-item" data-section="skills">
+                        <span>⚡</span>
+                        <span>skills</span>
+                    </div>
+                    <div class="sidebar-item" data-section="experience">
+                        <span>📁</span>
+                        <span>experience</span>
+                    </div>
+                    <div class="sidebar-item" data-section="projects">
+                        <span>🚀</span>
+                        <span>projects</span>
+                    </div>
+                    <div class="sidebar-item" data-section="contact">
+                        <span>📧</span>
+                        <span>contact</span>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-title">System Info</div>
+                    <!-- <div class="sidebar-item">
+                        <span>💻</span>
+                        <span>sys_monitor</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span>📊</span>
+                        <span>analytics</span>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="main-content">
+                <!-- System Stats Header -->
+                <div class="system-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">Years of Experience</div>
+                        <div class="stat-value">6+ years</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Industries Served</div>
+                        <div class="stat-value">3 Industries</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Role Handled</div>
+                        <div class="stat-value">6 Field</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Work Impact</div>
+                        <div class="stat-value">100+ Handled</div>
+                        <div class="stat-bar">
+                            <div class="stat-progress" style="width: 99.9%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Section -->
+                <div class="content-section active" id="profile">
+                    <div class="section-header">
+                        <span class="section-icon">👤</span>
+                        <h2 class="section-title">profile</h2>
+                    </div>
+                    
+                    <div class="profile-grid">
+                        <div class="profile-card">
+                            <div class="profile-avatar">🧑‍💻</div>
+                            <div class="profile-name">Hendriansyah Setiawan</div>
+                            <div class="profile-role">System Administrator</div>
+                            <div class="profile-status">
+                                <span class="status-dot"></span>
+                                <span>Online • Available for hire</span>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-info">
+                            <div class="info-item">
+                                <span class="info-label">Nama</span>
+                                <span class="info-value">Hendriansyah Setiawan</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Location:</span>
+                                <span class="info-value">Bandung, Indonesia</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Last Login:</span>
+                                <span class="info-value">Now</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terminal Output -->
+                    <div class="terminal-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <div class="control-btn close"></div>
+                                <div class="control-btn minimize"></div>
+                                <div class="control-btn maximize"></div>
+                            </div>
+                            <div class="window-title">hendriansyah@portfolio:~</div>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="cli-line">
+                                <span class="cli-prompt">hendriansyah@portfolio:~$</span>
+                                <span class="cli-command">whoami</span>
+                            </div>
+                             <div class="cli-output">
+                                Hendriansyah Setiawan - Senior IT Support
+                            </div>
+                            <div class="cli-line">
+                                <span class="cli-prompt">hendriansyah@portfolio:~$</span>
+                                <span class="cli-command">ps aux | grep skills</span>
+                            </div>
+                            <div class="cli-output">
+                                IT Support<br>
+                                Quality Assurance<br>
+                                System Analysis<br>
+                                Database Administrator<br>
+                                Warehouse<br>
+                                Supply Chain<br>
+                            </div>
+                             <div class="cli-line">
+                                <span class="cli-prompt">hendriansyah@portfolio:~$</span>
+                                <span class="cli-command">cat bio.txt</span>
+                            </div>
+                            <div class="cli-output">
+                               Saya memiliki pengalaman bekerja lebih dari 6 tahun di berbagai bidang diantaranya staff Warehouse, maintenance reminder activity (MRA) dan IT support. 
+                               <br>Saya memulai karir sebagai Staff Warehouse dengan mengelola inventaris dan logistik yang efisien. 
+                               <br>Selanjutnya berkarir 2 tahun di bidang MRA berfokus pada pengelolaan jadwal service untuk memastikan semua aktivitas berjalan sesuai rencana. 
+                               <br>Lalu dilanjutkan sebagai IT Support selama 4 tahun, berfokus memberikan dukungan teknis dan mengelola sistem teknologi perusahaan. 
+                               <br>Berkat kinerja saya, saya berhasil dipromosikan menjadi Asisten Leader dan Senior IT Support, di mana saya mengelola tim dan meningkatkan kualitas layanan. Dengan pengalaman yang beragam, saya siap berkontribusi untuk mendorong kemajuan perusahaan dan menghadapi tantangan baru yang lebih besar.
+                            </div>
+                            <div class="cli-line">
+                                <span class="cli-prompt">hendriansyah@portfolio:~$</span>
+                                <span class="cursor"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="content-section" id="skills">
+                    <div class="section-header">
+                        <span class="section-icon">⚡</span>
+                        <h2 class="section-title">skills.json</h2>
+                    </div>
+                    
+                    <div class="skills-grid">
+                         <div class="skill-category">
+    <div class="skill-header">
+        <span class="skill-icon">🗄️</span>
+        <span class="skill-title">MySQL & Database Management</span>
+    </div>
+    <ul class="skill-list">
+        <li class="skill-item">
+            <span class="skill-name">MySQL Query Writing</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Backup & Restore Operations</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Database Synchronization</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">User Privileges & Access Control</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Performance Monitoring & Optimization</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Basic ERD & Schema Design</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+    </ul>
+</div>
+
+<div class="skill-category">
+                            <div class="skill-header">
+                                <span class="skill-icon">🐧</span>
+                                <span class="skill-title">Linux & Server Familiarity</span>
+                            </div>
+                            <ul class="skill-list">
+                                <li class="skill-item">
+                                    <span class="skill-name">Ubuntu Basics</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Shell Navigation & Commands</span>
+                                    <span class="skill-level">Familiar</span>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Package Management (apt/yum)</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Apache/Nginx Configuration</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Network Administration</span>
+                                    <span class="skill-level">Beginer</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                       <div class="skill-category">
+                            <div class="skill-header">
+                                <span class="skill-icon">🧪</span>
+                                <span class="skill-title">Manual Testing & QA Tools</span>
+                            </div>
+    <ul class="skill-list">
+        <li class="skill-item">
+            <span class="skill-name">Blackbox Testing</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">API Testing (Postman)</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">User Acceptance Testing (UAT)</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Regression Testing</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Functionality Testing</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Test Case Management (TestRail / Google Sheets)</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+    </ul>
+</div>
+
+                        
+                       <div class="skill-category">
+    <div class="skill-header">
+        <span class="skill-icon">📦</span>
+        <span class="skill-title">Warehouse & Administrative Operations</span>
+    </div>
+    <ul class="skill-list">
+        <li class="skill-item">
+            <span class="skill-name">Filing & Documentation</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Warehouse Management System</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Communication & Collaboration</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Mentoring & Team Development</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+    </ul>
+</div>
+
+<div class="skill-category">
+    <div class="skill-header">
+        <span class="skill-icon">🛠️</span>
+        <span class="skill-title">Technical Support & System Maintenance</span>
+    </div>
+    <ul class="skill-list">
+        <li class="skill-item"><span class="skill-name">System Implementation</span><span class="skill-level">Advanced</span></li>
+        <li class="skill-item"><span class="skill-name">Helpdesk & Troubleshooting</span><span class="skill-level">Advanced</span></li>
+        <li class="skill-item"><span class="skill-name">Application Testing & QA</span><span class="skill-level">Intermediate</span></li>
+        <li class="skill-item"><span class="skill-name">System Documentation</span><span class="skill-level">Intermediate</span></li>
+        <li class="skill-item"><span class="skill-name">Basic Networking & Hardware</span><span class="skill-level">Intermediate</span></li>
+    </ul>
+</div>
+
+<div class="skill-category">
+    <div class="skill-header">
+        <span class="skill-icon">💼</span>
+        <span class="skill-title">General Operational & Coordination</span>
+    </div>
+    <ul class="skill-list">
+        <li class="skill-item"><span class="skill-name">Task Prioritization</span><span class="skill-level">Advanced</span></li>
+        <li class="skill-item"><span class="skill-name">Cross-department Coordination</span><span class="skill-level">Advanced</span></li>
+        <li class="skill-item"><span class="skill-name">Follow-up Management</span><span class="skill-level">Advanced</span></li>
+        <li class="skill-item"><span class="skill-name">Scheduling & Reminders</span><span class="skill-level">Advanced</span></li>
+    </ul>
+</div>
+
+                        
+<div class="skill-category">
+    <div class="skill-header">
+        <span class="skill-icon">📝</span>
+        <span class="skill-title">Testing Strategy & Analysis</span>
+    </div>
+    <ul class="skill-list">
+        <li class="skill-item">
+            <span class="skill-name">Test Planning</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">Testing Documentation</span>
+            <span class="skill-level">Advanced</span>
+        </li>
+        <li class="skill-item">
+            <span class="skill-name">User Requirement Analysis</span>
+            <span class="skill-level">Intermediate</span>
+        </li>
+    </ul>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="content-section" id="experience">
+                    <div class="section-header">
+                        <span class="section-icon">📁</span>
+                        <h2 class="section-title">experience/</h2>
+                    </div>
+                    <div class="timeline">
+                    <div class="timeline-item">
+    <div class="timeline-date">2020-11 → present</div>
+    <h3 class="timeline-title">Senior IT Support & System Analyst</h3>
+  <div class="timeline-company">
+    <a href="https://v-tax.id/" target="_blank" rel="noopener noreferrer">
+        PT. Mutiara Bintang Abadi (V-TAX | Valuestream Group)
+    </a>
+</div>
+    <p class="timeline-description">
+        Berperan penting dalam implementasi dan dukungan teknis sistem perpajakan daerah (V-TAX) untuk pemerintah daerah. 
+        Menyediakan solusi end-to-end mulai dari pelatihan klien, penanganan keluhan, pengujian sistem, hingga analisis kebutuhan dan enhancement fitur.
+        Berkoordinasi langsung dengan tim developer untuk memastikan kualitas sistem, serta mendukung operasional dengan dokumentasi yang detail dan respons cepat terhadap tiket teknis.
+    </p>
+    <div class="cli-output" style="margin-top: 15px; font-family: var(--font-mono); font-size: 12px;">
+        <strong>Key Responsibilities:</strong><br>
+        • Pelatihan klien dan onboarding pengguna sistem V-TAX<br>
+        • Menangani isu aplikasi, jaringan, server, dan hardware secara proaktif<br>
+        • Testing fungsional, UAT, dan dokumentasi bug/enhancement<br>
+        • Menulis query untuk pengambilan data dan analisis database<br>
+        • Mendokumentasikan dan memverifikasi tiket untuk divisi developer<br>
+        • Membantu koordinasi tim internal sebagai Asisten Koordinator
+    </div>
+    <div class="cli-output" style="margin-top: 10px; font-family: var(--font-mono); font-size: 12px;">
+        <strong>Key Achievements:</strong><br>
+        • Meningkatkan kepuasan klien dengan menyelesaikan 95% tiket dalam 24 jam pertama<br>
+        • Berhasil menyusun dokumentasi teknis standar yang digunakan di 20+ daerah klien<br>
+        • Menurunkan error sistem produksi sebesar 60% lewat uji coba dan verifikasi yang konsisten<br>
+        • Mengelola hingga 100+ permintaan dukungan dan enhancement per bulan<br>
+        • Mendorong efisiensi tim melalui task delegation dan evaluasi hasil kerja mingguan
+    </div>
+</div>
+
+                        
+                       <div class="timeline-item">
+    <div class="timeline-date">2019-04 → 2020-10</div>
+    <h3 class="timeline-title">Maintenance Service Appointment</h3>
+    <div class="timeline-company">
+        <a href="https://auto2000.co.id/dealer-toyota/bandung/auto2000bandungasiaafrika" target="_blank" rel="noopener noreferrer">
+            AUTO 2000 Bandung Asia Afrika (PT Astra International Group)
+        </a>
+    </div>
+    <p class="timeline-description">
+        Mengidentifikasi dan mengorganisir data dari sumber primer dan sekunder lalu menyusun data
+        dalam format yang mudah dipahami dan digunakan oleh tim MRA (Maintenance Service Appointment).
+        Menyusun dan menyampaikan laporan yang jelas kepada kepala bengkel, dengan menyajikan tren,
+        pola, dan prediksi data menggunakan metode analisis yang tepat.
+        Menggunakan perangkat lunak visualisasi data (Microsoft Power BI) untuk menginterpretasikan dan
+        memvisualisasikan kumpulan data yang kompleks guna mendukung pengambilan keputusan.
+        Menangani penerimaan pelanggan dengan baik, serta meneruskan permintaan pelanggan ke area
+        terkait seperti Booking Service, Pembelian suku cadang untuk memastikan kebutuhan pelanggan
+        terpenuhi dengan cepat dan tepat.
+        Melakukan pembaruan atau updating database service secara berkala untuk memastikan informasi
+        yang akurat dan terkini selalu tersedia bagi tim dan pelanggan.
+    </p>
+    <div class="cli-output" style="margin-top: 15px; font-family: var(--font-mono); font-size: 12px;">
+        <strong>Key Achievements:</strong><br>
+        • Meningkatkan efisiensi jadwal service hingga 25% melalui sistem pencatatan dan follow‑up pelanggan<br>
+        • Mengurangi keluhan pelanggan terkait layanan hingga 40% lewat koordinasi aktif dengan teknisi<br>
+        • Membantu tim mencapai target kepuasan pelanggan bulanan selama 7 bulan berturut-turut<br>
+        • Menginisiasi dashboard harian menggunakan Power BI untuk laporan service dan data pelanggan
+    </div>
+</div>
+
+                        
+<div class="timeline-item">
+    <div class="timeline-date">2018-05 → 2019-04</div>
+    <h3 class="timeline-title">Staff Warehouse</h3>
+        <div class="timeline-company">
+        <a href="https://www.instagram.com/tokomitra.bandung/" target="_blank" rel="noopener noreferrer">
+            Mitra Bahan Sepatu – Bandung
+        </a>
+    </div>
+    <p class="timeline-description">
+        Mengelola stok barang dan administrasi gudang secara efisien, dengan penerapan sistem FIFO untuk rotasi stok. 
+        Bertanggung jawab atas pengecekan barang keluar-masuk serta memastikan keakuratan antara fisik dan data sistem.
+    </p>
+    <div class="cli-output" style="margin-top: 15px; font-family: var(--font-mono); font-size: 12px;">
+        <strong>Key Achievements:</strong><br>
+        • Menyusun sistem pencatatan harian untuk stock opname yang lebih cepat dan akurat<br>
+        • Mengurangi kesalahan pengiriman hingga 95% melalui proses verifikasi preorder<br>
+        • Meningkatkan efisiensi rotasi barang dengan penerapan FIFO yang konsisten<br>
+        • Menyelesaikan administrasi gudang harian secara tepat waktu tanpa backlog
+    </div>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="content-section" id="projects">
+                    <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <h2 class="section-title">projects/</h2>
+                    </div>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">🐳</div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">kubernetes-monitoring-stack</h3>
+                                <p class="project-description">
+                                    Comprehensive monitoring solution for Kubernetes clusters using Prometheus, 
+                                    Grafana, and AlertManager. Features custom dashboards, automated alerting, 
+                                    and integration with Slack for incident response. Deployed across 15+ 
+                                    production clusters serving 100k+ daily users.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Kubernetes</span>
+                                    <span class="tech-tag">Prometheus</span>
+                                    <span class="tech-tag">Grafana</span>
+                                    <span class="tech-tag">Helm</span>
+                                    <span class="tech-tag">YAML</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">🔧</div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">linux-automation-toolkit</h3>
+                                <p class="project-description">
+                                    Collection of bash scripts and tools for Linux system administration 
+                                    automation. Includes server hardening scripts, backup automation, 
+                                    log rotation management, and security audit tools. Used across 200+ 
+                                    production servers with 99.9% success rate.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Bash</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Cron</span>
+                                    <span class="tech-tag">Systemd</span>
+                                    <span class="tech-tag">Ansible</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">🤖</div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">qa-automation-framework</h3>
+                                <p class="project-description">
+                                    End-to-end testing framework built with Selenium WebDriver and Python. 
+                                    Features parallel test execution, automatic screenshot capture on failures, 
+                                    integration with CI/CD pipelines, and detailed HTML reporting. 
+                                    Reduced manual testing effort by 80%.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Selenium</span>
+                                    <span class="tech-tag">Pytest</span>
+                                    <span class="tech-tag">Docker</span>
+                                    <span class="tech-tag">Jenkins</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">📊</div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">elk-log-analysis-platform</h3>
+                                <p class="project-description">
+                                    Centralized logging solution using Elasticsearch, Logstash, and Kibana 
+                                    for real-time log analysis and monitoring. Processes 1TB+ of logs daily 
+                                    from 100+ applications with custom parsers, alerting rules, and 
+                                    automated anomaly detection.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Elasticsearch</span>
+                                    <span class="tech-tag">Logstash</span>
+                                    <span class="tech-tag">Kibana</span>
+                                    <span class="tech-tag">Beats</span>
+                                    <span class="tech-tag">Docker</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">🔒</div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">security-hardening-playbooks</h3>
+                                <p class="project-description">
+                                    Ansible playbooks for automated security hardening of Linux servers 
+                                    following CIS benchmarks and industry best practices. Includes firewall 
+                                    configuration, user management, SSL/TLS setup, and vulnerability scanning. 
+                                    Deployed across enterprise infrastructure.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Ansible</span>
+                                    <span class="tech-tag">YAML</span>
+                                    <span class="tech-tag">OpenSSL</span>
+                                    <span class="tech-tag">iptables</span>
+                                    <span class="tech-tag">CIS Benchmarks</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">⚙️</div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">cicd-pipeline-templates</h3>
+                                <p class="project-description">
+                                    Reusable CI/CD pipeline templates for GitLab and Jenkins supporting 
+                                    multiple programming languages and deployment targets. Features automated 
+                                    testing, security scanning, containerization, and deployment to Kubernetes. 
+                                    Used by 30+ development teams.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">GitLab CI</span>
+                                    <span class="tech-tag">Jenkins</span>
+                                    <span class="tech-tag">Docker</span>
+                                    <span class="tech-tag">Kubernetes</span>
+                                    <span class="tech-tag">SonarQube</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="content-section" id="contact">
+                    <div class="section-header">
+                        <span class="section-icon">📧</span>
+                        <h2 class="section-title">contact.yaml</h2>
+                    </div>
+                    
+                    <!-- Terminal Contact Display -->
+                    <div class="terminal-window" style="margin-bottom: 30px;">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <div class="control-btn close"></div>
+                                <div class="control-btn minimize"></div>
+                                <div class="control-btn maximize"></div>
+                            </div>
+                            <div class="window-title">hendriansyah@portfolio:~/contact</div>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="cli-line">
+                                <span class="cli-prompt">hendriansyah@portfolio:~/contact$</span>
+                                <span class="cli-command">cat contact.yaml</span>
+                            </div>
+                            <div class="cli-output">
+                                ---<br>
+                                personal:<br>
+                                &nbsp;&nbsp;name: "Hendriansyah Setiawan"<br>
+                                &nbsp;&nbsp;role: "IT Support, System analyst & Quality Assurance"<br>
+                                &nbsp;&nbsp;location: "Bandung, Indonesia"<br>
+                                &nbsp;&nbsp;availability: "Open to opportunities"<br><br>
+                                
+                                contact_methods:<br>
+                                &nbsp;&nbsp;email: "hendriansyhs@gmail.com"<br>
+                                &nbsp;&nbsp;phone: "+62-812-2382-3256"<br>
+                                &nbsp;&nbsp;linkedin: "https://www.linkedin.com/in/hendriansyah-setiawan-b17867194/"<br>
+                                &nbsp;&nbsp;github: "https://github.com/sayapburung"<br><br>
+                                
+                                preferred_communication:<br>
+                                &nbsp;&nbsp;- WhatsApp<br>
+                                &nbsp;&nbsp;- Email<br>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-title">Email</div>
+                            <div class="contact-value">
+                                <a href="mailto:hendriansyhs@gmail.com">hendriansyhs@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-title">WhatsApp</div>
+                            <div class="contact-value">
+                                <a href="https://wa.me/6281223823256">+62 812-2382-3256</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-title">LinkedIn</div>
+                            <div class="contact-value">
+                                <a href="https://www.linkedin.com/in/hendriansyah-setiawan-b17867194/">Hendriansyah Setiawan</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">🐙</div>
+                            <div class="contact-title">GitHub</div>
+                            <div class="contact-value">
+                                <a href="https://github.com/sayapburung">sayapburung</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📷</div>
+                            <div class="contact-title">Instagram</div>
+                            <div class="contact-value">
+                                <a href="https://www.instagram.com/">hendriansyhs</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📄</div>
+                            <div class="contact-title">Resume/CV</div>
+                            <div class="contact-value">
+                                <a href="https://drive.google.com/file/d/1-fXuaRxoj7PL-afv4EoiErfI70xedZIZ/view?usp=sharing" download>Download-cv.pdf</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dock Navigation -->
+        <div class="dock">
+            <div class="dock-item active" data-section="profile" title="Profile">
+                👤
+            </div>
+            <div class="dock-item" data-section="skills" title="Skills">
+                ⚡
+            </div>
+            <div class="dock-item" data-section="experience" title="Experience">
+                📁
+            </div>
+            <div class="dock-item" data-section="projects" title="Projects">
+                🚀
+            </div>
+            <div class="dock-item" data-section="contact" title="Contact">
+                📧
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme switching functionality
+        function setTheme(theme) {
+            if (theme === 'macos') {
+                document.body.classList.add('macos-theme');
+                localStorage.setItem('theme', 'macos');
+            } else {
+                document.body.classList.remove('macos-theme');
+                localStorage.setItem('theme', 'linux');
+            }
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'macos') {
+            setTheme('macos');
+        }
+
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+            
+            // Update dock active state
+            document.querySelectorAll('.dock-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`.dock-item[data-section="${sectionId}"]`).classList.add('active');
+        }
+
+        // Sidebar navigation
+        document.querySelectorAll('.sidebar-item[data-section]').forEach(item => {
+            item.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                showSection(section);
+            });
+        });
+
+        // Dock navigation
+        document.querySelectorAll('.dock-item[data-section]').forEach(item => {
+            item.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                showSection(section);
+            });
+        });
+
+        // Terminal typing effect
+        function typeCommand(element, text, delay = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, delay);
+                }
+            }
+            
+            setTimeout(type, 1000);
+        }
+
+        // Animate system stats on load
+        function animateStats() {
+            const progressBars = document.querySelectorAll('.stat-progress');
+            progressBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.width = bar.style.width || '90%';
+                }, index * 200);
+            });
+        }
+
+        // Window control functionality (just for show)
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Add hover effects to dock items
+        document.querySelectorAll('.dock-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.1)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            animateStats();
+            
+            // Add terminal typing effect to first command
+            const firstCommand = document.querySelector('.cli-command');
+            if (firstCommand) {
+                const originalText = firstCommand.textContent;
+                typeCommand(firstCommand, originalText, 80);
+            }
+        });
+
+        // Add smooth scrolling within main content
+        document.querySelector('.main-content').style.scrollBehavior = 'smooth';
+
+        // Responsive dock for mobile
+        function handleResize() {
+            const dock = document.querySelector('.dock');
+            if (window.innerWidth < 768) {
+                dock.style.padding = '10px';
+                dock.style.gap = '8px';
+                document.querySelectorAll('.dock-item').forEach(item => {
+                    item.style.width = '40px';
+                    item.style.height = '40px';
+                    item.style.fontSize = '1.2rem';
+                });
+            } else {
+                dock.style.padding = '15px';
+                dock.style.gap = '10px';
+                document.querySelectorAll('.dock-item').forEach(item => {
+                    item.style.width = '50px';
+                    item.style.height = '50px';
+                    item.style.fontSize = '1.5rem';
+                });
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Call on page load
+
+        // Add terminal cursor blinking to last line
+        setInterval(() => {
+            const cursor = document.querySelector('.cursor');
+            if (cursor) {
+                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            }
+        }, 500);
+    </script>
+</body>
+</html>
+                                
