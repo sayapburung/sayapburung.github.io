@@ -4,1067 +4,2018 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hendriansyah Setiawan — Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,600;1,300&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --c-bg: #0a0a0f;
-  --c-surface: #111118;
-  --c-surface2: #1a1a24;
-  --c-border: rgba(255,255,255,0.07);
-  --c-border2: rgba(255,255,255,0.13);
-  --c-text: #e8e8f0;
-  --c-muted: #7a7a94;
-  --c-dim: #3a3a52;
-  --c-accent: #7c6fff;
-  --c-accent2: #ff6b9d;
-  --c-green: #3effa0;
-  --c-amber: #ffb347;
-  --font: 'Space Grotesk', sans-serif;
-  --mono: 'Space Mono', monospace;
-}
-body.hr-mode {
-  --c-bg: #f0ede8;
-  --c-surface: #faf9f7;
-  --c-surface2: #fff;
-  --c-border: rgba(0,0,0,0.07);
-  --c-border2: rgba(0,0,0,0.13);
-  --c-text: #1a1a2e;
-  --c-muted: #7a7080;
-  --c-dim: #c8c0d0;
-  --c-accent: #5b4fff;
-  --c-accent2: #e0406b;
-  --c-green: #1a9e5c;
-  --c-amber: #d4800a;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:var(--font);
-  background:var(--c-bg);
-  color:var(--c-text);
-  min-height:100vh;
-  transition:background .4s,color .4s;
-  overflow-x:hidden;
+  /* HR Palette */
+  --hr-bg: #F5F3EE;
+  --hr-surface: #FFFFFF;
+  --hr-surface2: #F9F8F5;
+  --hr-accent: #1A56DB;
+  --hr-accent2: #E8620A;
+  --hr-text: #1C1917;
+  --hr-text2: #57534E;
+  --hr-text3: #A8A29E;
+  --hr-border: #E7E5E0;
+  --hr-tag-bg: #EFF6FF;
+  --hr-tag-text: #1D4ED8;
+  --hr-timeline: #1A56DB;
+
+  /* Tech Palette */
+  --tech-bg: #080C14;
+  --tech-panel: #0D1421;
+  --tech-panel2: #111827;
+  --tech-border: #1E2D45;
+  --tech-green: #00FF87;
+  --tech-blue: #38BDF8;
+  --tech-amber: #FBBF24;
+  --tech-red: #F87171;
+  --tech-text: #CBD5E1;
+  --tech-text2: #64748B;
+  --tech-text3: #334155;
+  --tech-glow: rgba(0,255,135,0.15);
+  --tech-glow2: rgba(56,189,248,0.1);
+
+  /* Active */
+  --bg: var(--hr-bg);
+  --surface: var(--hr-surface);
+  --surface2: var(--hr-surface2);
+  --accent: var(--hr-accent);
+  --accent2: var(--hr-accent2);
+  --text: var(--hr-text);
+  --text2: var(--hr-text2);
+  --text3: var(--hr-text3);
+  --border: var(--hr-border);
 }
 
-/* ─── SCANLINE OVERLAY (tech only) ─── */
-body:not(.hr-mode)::before{
-  content:'';
-  position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
-  pointer-events:none;z-index:9999;
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
 }
 
-/* ─── LAYOUT ─── */
-.shell{
-  display:grid;
-  grid-template-columns:220px 1fr;
-  grid-template-rows:56px 1fr;
-  grid-template-areas:"topbar topbar" "rail main";
-  height:100vh;
+/* ===== MODE TOGGLE ===== */
+.mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--hr-surface);
+  border: 1.5px solid var(--hr-border);
+  border-radius: 50px;
+  padding: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.4s;
 }
 
-/* ─── TOPBAR ─── */
-.topbar{
-  grid-area:topbar;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;
-  border-bottom:1px solid var(--c-border);
-  background:var(--c-surface);
-  position:sticky;top:0;z-index:100;
-}
-.topbar-left{display:flex;align-items:center;gap:16px;}
-.wm-dots{display:flex;gap:6px;}
-.wm-dot{width:12px;height:12px;border-radius:50%;}
-.wm-dot.r{background:#ff5f56;}
-.wm-dot.y{background:#ffbd2e;}
-.wm-dot.g{background:#27ca3f;}
-.topbar-title{
-  font-family:var(--mono);font-size:13px;
-  color:var(--c-muted);letter-spacing:.02em;
-}
-.topbar-title span{color:var(--c-accent);}
-
-/* MODE TOGGLE */
-.mode-toggle{
-  display:flex;align-items:center;
-  background:var(--c-surface2);
-  border:1px solid var(--c-border2);
-  border-radius:100px;
-  padding:3px;
-  gap:2px;
-}
-.mode-btn{
-  padding:6px 16px;border-radius:100px;border:none;cursor:pointer;
-  font-family:var(--font);font-size:12px;font-weight:600;letter-spacing:.04em;
-  transition:all .25s;
-  background:transparent;color:var(--c-muted);
-  display:flex;align-items:center;gap:6px;
-}
-.mode-btn.active{
-  background:var(--c-accent);color:#fff;
-}
-body.hr-mode .mode-btn.hr-btn.active{background:var(--c-accent);}
-
-/* ─── RAIL (SIDEBAR) ─── */
-.rail{
-  grid-area:rail;
-  border-right:1px solid var(--c-border);
-  background:var(--c-surface);
-  padding:24px 12px;
-  display:flex;flex-direction:column;gap:4px;
-  overflow-y:auto;
-}
-.rail-label{
-  font-size:10px;font-weight:600;letter-spacing:.1em;
-  color:var(--c-dim);text-transform:uppercase;
-  padding:0 12px;margin:16px 0 6px;
-}
-.rail-label:first-child{margin-top:0;}
-.nav-item{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 12px;border-radius:8px;cursor:pointer;
-  font-size:13px;font-weight:500;color:var(--c-muted);
-  transition:all .2s;border:1px solid transparent;
-  user-select:none;
-}
-.nav-item:hover{background:var(--c-surface2);color:var(--c-text);}
-.nav-item.active{
-  background:var(--c-surface2);
-  border-color:var(--c-border2);
-  color:var(--c-accent);
-}
-.nav-item .nav-icon{
-  width:28px;height:28px;border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;background:var(--c-surface2);
-  flex-shrink:0;
-  transition:background .2s;
-}
-.nav-item.active .nav-icon{background:var(--c-accent);filter:none;}
-.nav-badge{
-  margin-left:auto;font-size:10px;font-family:var(--mono);
-  background:var(--c-dim);color:var(--c-bg);padding:2px 6px;border-radius:4px;
-}
-.nav-item.active .nav-badge{background:var(--c-accent);}
-
-/* PROFILE MINI */
-.rail-profile{
-  margin-top:auto;padding:12px;
-  border-top:1px solid var(--c-border);
-  display:flex;align-items:center;gap:10px;
-}
-.rail-avatar{
-  width:36px;height:36px;border-radius:10px;
-  background:linear-gradient(135deg,var(--c-accent),var(--c-accent2));
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;font-weight:700;color:#fff;flex-shrink:0;
-}
-.rail-name{font-size:12px;font-weight:600;color:var(--c-text);}
-.rail-status{
-  font-size:10px;color:var(--c-green);font-family:var(--mono);
-  display:flex;align-items:center;gap:4px;
-}
-.rail-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c-green);display:inline-block;}
-
-/* ─── MAIN ─── */
-.main{
-  grid-area:main;
-  overflow-y:auto;
-  padding:32px 36px;
+body.tech-mode .mode-toggle {
+  background: #0D1421;
+  border-color: #1E2D45;
+  box-shadow: 0 4px 20px rgba(0,255,135,0.1);
 }
 
-/* ─── SECTIONS ─── */
-.section{display:none;animation:sectionIn .3s ease;}
-.section.active{display:block;}
-@keyframes sectionIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-
-/* PAGE HEADER */
-.page-hdr{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  margin-bottom:32px;
-  padding-bottom:20px;
-  border-bottom:1px solid var(--c-border);
-}
-.page-hdr-left{}
-.page-tag{
-  font-family:var(--mono);font-size:11px;color:var(--c-accent);
-  letter-spacing:.1em;text-transform:uppercase;
-  margin-bottom:6px;
-}
-.page-h1{font-size:26px;font-weight:700;line-height:1.2;}
-.page-sub{font-size:13px;color:var(--c-muted);margin-top:4px;font-family:var(--mono);}
-
-/* ─── PROFILE SECTION ─── */
-.hero-grid{
-  display:grid;grid-template-columns:1fr 340px;gap:24px;margin-bottom:24px;
-}
-.hero-card{
-  background:var(--c-surface);border:1px solid var(--c-border);
-  border-radius:16px;padding:28px;
-  position:relative;overflow:hidden;
-}
-.hero-card::after{
-  content:'';position:absolute;top:-40px;right:-40px;
-  width:180px;height:180px;border-radius:50%;
-  background:radial-gradient(circle,var(--c-accent) 0%,transparent 70%);
-  opacity:.08;pointer-events:none;
-}
-.hero-name{font-size:28px;font-weight:700;margin-bottom:6px;}
-.hero-role{
-  font-family:var(--mono);font-size:13px;
-  color:var(--c-accent);margin-bottom:16px;
-}
-.hero-desc{
-  font-size:14px;color:var(--c-muted);line-height:1.8;
-  border-left:2px solid var(--c-accent);padding-left:14px;
-}
-.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-.htag{
-  font-size:11px;font-family:var(--mono);
-  border:1px solid var(--c-border2);border-radius:6px;
-  padding:4px 10px;color:var(--c-muted);background:var(--c-surface2);
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: all 0.3s;
+  background: transparent;
+  color: #9CA3AF;
 }
 
-.stat-panel{
-  background:var(--c-surface);border:1px solid var(--c-border);
-  border-radius:16px;padding:20px;
-  display:flex;flex-direction:column;gap:12px;
+.toggle-btn.active.hr-btn {
+  background: var(--hr-accent);
+  color: white;
+  box-shadow: 0 2px 10px rgba(26,86,219,0.3);
 }
-.stat-row{
-  background:var(--c-surface2);border-radius:10px;padding:14px 16px;
-  border:1px solid var(--c-border);
-}
-.stat-label{font-size:10px;font-family:var(--mono);color:var(--c-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
-.stat-val{font-size:18px;font-weight:700;color:var(--c-text);}
-.stat-sub{font-size:11px;color:var(--c-muted);margin-top:2px;}
 
-/* TERMINAL BLOCK */
-.terminal{
-  background:var(--c-surface);border:1px solid var(--c-border);
-  border-radius:12px;overflow:hidden;margin-bottom:24px;
+.toggle-btn.active.tech-btn {
+  background: linear-gradient(135deg, #00FF87, #38BDF8);
+  color: #080C14;
+  box-shadow: 0 2px 12px rgba(0,255,135,0.4);
 }
-.term-bar{
-  background:var(--c-surface2);padding:10px 16px;
-  display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid var(--c-border);
-}
-.term-dots{display:flex;gap:6px;}
-.term-dot{width:10px;height:10px;border-radius:50%;}
-.term-dot.r{background:#ff5f56;}
-.term-dot.y{background:#ffbd2e;}
-.term-dot.g{background:#27ca3f;}
-.term-path{font-family:var(--mono);font-size:12px;color:var(--c-muted);margin-left:8px;}
-.term-path em{color:var(--c-accent);font-style:normal;}
-.term-body{padding:20px 24px;font-family:var(--mono);font-size:13px;line-height:1.9;}
-.tc-prompt{color:var(--c-green);}
-.tc-cmd{color:var(--c-text);}
-.tc-out{color:var(--c-muted);padding-left:18px;display:block;}
-.tc-hi{color:var(--c-accent);}
-.tc-hi2{color:var(--c-accent2);}
-.tc-line{margin-bottom:4px;}
 
-/* ─── SKILLS ─── */
-.skills-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;
-}
-.skill-card{
-  background:var(--c-surface);border:1px solid var(--c-border);
-  border-radius:12px;padding:20px;transition:border-color .2s,transform .2s;
-}
-.skill-card:hover{border-color:var(--c-border2);transform:translateY(-3px);}
-.skill-card-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.skill-ico{
-  width:36px;height:36px;border-radius:8px;background:var(--c-surface2);
-  display:flex;align-items:center;justify-content:center;font-size:16px;
-  border:1px solid var(--c-border);
-}
-.skill-cat{font-size:13px;font-weight:600;color:var(--c-text);}
-.skill-cat-sub{font-size:11px;font-family:var(--mono);color:var(--c-muted);}
-.skill-items{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.skill-item{
-  display:flex;align-items:center;gap:8px;
-  font-size:12px;color:var(--c-muted);
-  padding:7px 10px;border-radius:6px;
-  background:var(--c-surface2);border:1px solid var(--c-border);
-}
-.skill-item::before{
-  content:'';width:4px;height:4px;border-radius:50%;
-  background:var(--c-accent);flex-shrink:0;
-}
-.skill-name{flex:1;}
+.toggle-icon { font-size: 15px; }
 
-/* ─── EXPERIENCE ─── */
-.exp-list{display:flex;flex-direction:column;gap:16px;}
-.exp-card{
-  background:var(--c-surface);border:1px solid var(--c-border);
-  border-radius:12px;padding:24px;
-  border-left:3px solid var(--c-accent);
-  transition:border-color .2s;
+/* ===== LAYOUT ===== */
+.app-container {
+  display: flex;
+  min-height: 100vh;
 }
-.exp-card:nth-child(2){border-left-color:var(--c-accent2);}
-.exp-card:nth-child(3){border-left-color:var(--c-amber);}
-.exp-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
-.exp-title{font-size:16px;font-weight:700;margin-bottom:4px;}
-.exp-company a{font-size:13px;color:var(--c-accent);text-decoration:none;font-family:var(--mono);}
-.exp-company a:hover{text-decoration:underline;}
-.exp-date{
-  font-size:11px;font-family:var(--mono);color:var(--c-muted);
-  background:var(--c-surface2);border:1px solid var(--c-border);
-  padding:4px 10px;border-radius:6px;white-space:nowrap;
-}
-.exp-body{font-size:13px;color:var(--c-muted);line-height:1.8;margin-bottom:14px;}
-.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:5px;}
-.exp-bullets li{
-  font-size:12px;font-family:var(--mono);color:var(--c-muted);
-  display:flex;align-items:flex-start;gap:8px;
-}
-.exp-bullets li::before{content:'→';color:var(--c-accent);flex-shrink:0;}
 
-/* ─── PROJECTS ─── */
-.projects-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px;
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  position: fixed;
+  left: 0; top: 0;
+  background: var(--hr-surface);
+  border-right: 1px solid var(--hr-border);
+  padding: 40px 0 30px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: all 0.4s;
 }
-.project-card{
-  background:var(--c-surface);border:1px solid var(--c-border);
-  border-radius:14px;overflow:hidden;
-  transition:border-color .25s,transform .25s;
-}
-.project-card:hover{border-color:var(--c-accent);transform:translateY(-6px);}
-.proj-vid{
-  position:relative;width:100%;padding-bottom:56.25%;
-  background:var(--c-surface2);
-}
-.proj-vid iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
-.proj-body{padding:20px;}
-.proj-title{font-size:15px;font-weight:700;margin-bottom:8px;}
-.proj-desc{font-size:12px;color:var(--c-muted);line-height:1.7;margin-bottom:14px;}
-.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
-.ptag{
-  font-size:10px;font-family:var(--mono);
-  background:var(--c-surface2);border:1px solid var(--c-border);
-  color:var(--c-accent);padding:3px 8px;border-radius:4px;
-}
-.proj-links{
-  display:flex;gap:8px;padding-top:14px;
-  border-top:1px solid var(--c-border);
-}
-.plink{
-  flex:1;padding:8px;border-radius:8px;text-align:center;
-  font-size:12px;font-weight:600;text-decoration:none;
-  border:1px solid var(--c-border2);color:var(--c-muted);
-  transition:all .2s;background:var(--c-surface2);
-  display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.plink:hover{border-color:var(--c-accent);color:var(--c-accent);}
-.plink.primary{background:var(--c-accent);border-color:var(--c-accent);color:#fff;}
-.plink.primary:hover{opacity:.85;}
 
-/* ─── CONTACT ─── */
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.contact-info-card{
-  background:var(--c-surface);border:1px solid var(--c-border);
-  border-radius:14px;padding:24px;
-  grid-column:span 2;
+body.tech-mode .sidebar {
+  background: var(--tech-panel);
+  border-right: 1px solid var(--tech-border);
 }
-.contact-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-}
-.citem{
-  background:var(--c-surface2);border:1px solid var(--c-border);
-  border-radius:10px;padding:16px;text-align:center;
-  transition:border-color .2s,transform .2s;
-  text-decoration:none;color:inherit;display:block;
-}
-.citem:hover{border-color:var(--c-accent);transform:translateY(-3px);}
-.citem-icon{font-size:20px;margin-bottom:8px;}
-.citem-label{font-size:10px;font-family:var(--mono);color:var(--c-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
-.citem-val{font-size:12px;font-weight:600;color:var(--c-accent);}
 
-/* ─── HR MODE overrides ─── */
-body.hr-mode .term-body .tc-out{color:#5a5068;}
-body.hr-mode .hero-card::after{opacity:.05;}
-body.hr-mode .skill-item{color:#4a4060;}
-body.hr-mode .exp-body{color:#5a5068;}
-body.hr-mode .proj-desc{color:#5a5068;}
-body.hr-mode .exp-bullets li{color:#6a6080;}
-body.hr-mode .nav-item{color:#8a8098;}
-body.hr-mode .tc-out{color:#6a6078 !important;}
-body.hr-mode .stat-sub{color:#8a8098;}
-body.hr-mode .rail-status{color:var(--c-green);}
-body.hr-mode .rail-status::before{background:var(--c-green);}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:860px){
-  .shell{grid-template-columns:1fr;grid-template-areas:"topbar" "main";}
-  .rail{display:none;}
-  .main{padding:20px 16px;}
-  .hero-grid{grid-template-columns:1fr;}
-  .projects-grid{grid-template-columns:1fr;}
-  .contact-grid{grid-template-columns:repeat(2,1fr);}
-  .contact-info-card{grid-column:span 1;}
-  .contact-layout{grid-template-columns:1fr;}
-  .page-hdr{flex-direction:column;gap:8px;}
-  /* Mobile bottom nav */
-  .mobile-nav{
-    display:flex;position:fixed;bottom:0;left:0;right:0;
-    background:var(--c-surface);border-top:1px solid var(--c-border);
-    padding:8px 4px env(safe-area-inset-bottom);justify-content:space-around;
-    z-index:200;
-  }
-  .mobile-nav-item{
-    display:flex;flex-direction:column;align-items:center;gap:3px;
-    cursor:pointer;padding:4px 8px;border-radius:8px;
-    font-size:9px;font-family:var(--mono);color:var(--c-muted);
-    transition:color .2s;
-  }
-  .mobile-nav-item.active{color:var(--c-accent);}
-  .mobile-nav-icon{font-size:18px;}
-  .main{padding-bottom:80px;}
+.sidebar-brand {
+  padding: 0 24px 32px;
+  border-bottom: 1px solid var(--hr-border);
+  margin-bottom: 28px;
 }
-@media(min-width:861px){.mobile-nav{display:none;}}
 
-.show-hr{display:block;}
-.show-tech{display:block;}
-body.hr-mode .only-tech{display:none!important;}
-body:not(.hr-mode) .only-hr{display:none!important;}
+body.tech-mode .sidebar-brand {
+  border-bottom-color: var(--tech-border);
+}
+
+.brand-initials {
+  width: 48px; height: 48px;
+  background: var(--hr-accent);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: white;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  font-family: 'Fraunces', serif;
+  transition: all 0.4s;
+}
+
+body.tech-mode .brand-initials {
+  background: transparent;
+  border: 1.5px solid var(--tech-green);
+  color: var(--tech-green);
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,255,135,0.2);
+}
+
+.brand-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hr-text);
+  line-height: 1.2;
+  transition: color 0.4s;
+}
+
+body.tech-mode .brand-name {
+  color: var(--tech-text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.brand-role {
+  font-size: 11.5px;
+  color: var(--hr-text3);
+  margin-top: 2px;
+  transition: color 0.4s;
+}
+
+body.tech-mode .brand-role {
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--hr-text3);
+  padding: 0 24px;
+  margin-bottom: 8px;
+  transition: color 0.4s;
+}
+
+body.tech-mode .nav-section-label {
+  color: var(--tech-text3);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 24px;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hr-text2);
+  border-left: 3px solid transparent;
+  margin: 1px 0;
+}
+
+.nav-item:hover {
+  background: var(--hr-surface2);
+  color: var(--hr-accent);
+  border-left-color: var(--hr-accent);
+}
+
+.nav-item.active {
+  background: var(--hr-tag-bg);
+  color: var(--hr-accent);
+  border-left-color: var(--hr-accent);
+  font-weight: 600;
+}
+
+body.tech-mode .nav-item {
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+body.tech-mode .nav-item:hover {
+  background: rgba(0,255,135,0.05);
+  color: var(--tech-green);
+  border-left-color: var(--tech-green);
+}
+
+body.tech-mode .nav-item.active {
+  background: rgba(0,255,135,0.08);
+  color: var(--tech-green);
+  border-left-color: var(--tech-green);
+}
+
+.nav-icon { font-size: 16px; width: 20px; text-align: center; }
+
+.nav-tech-prefix {
+  display: none;
+  color: var(--tech-green);
+  font-size: 10px;
+  margin-right: -4px;
+}
+
+body.tech-mode .nav-tech-prefix { display: inline; }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 20px 24px 0;
+  border-top: 1px solid var(--hr-border);
+  transition: border-color 0.4s;
+}
+
+body.tech-mode .sidebar-footer {
+  border-top-color: var(--tech-border);
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--hr-text3);
+  transition: color 0.4s;
+}
+
+body.tech-mode .status-pill {
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  margin-left: 260px;
+  flex: 1;
+  min-height: 100vh;
+  transition: margin 0.4s;
+}
+
+.section {
+  display: none;
+  padding: 48px 48px 80px;
+  min-height: 100vh;
+  animation: sectionIn 0.4s ease-out;
+}
+
+.section.active { display: block; }
+
+@keyframes sectionIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--hr-accent);
+  margin-bottom: 8px;
+  transition: color 0.4s;
+}
+
+body.tech-mode .section-eyebrow {
+  color: var(--tech-green);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.section-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--hr-text);
+  margin-bottom: 6px;
+  line-height: 1.15;
+  transition: color 0.4s;
+}
+
+body.tech-mode .section-heading {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.6rem;
+  color: var(--tech-text);
+}
+
+.section-sub {
+  font-size: 15px;
+  color: var(--hr-text2);
+  margin-bottom: 40px;
+  transition: color 0.4s;
+}
+
+body.tech-mode .section-sub {
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+/* ===== HR MODE — PROFILE ===== */
+.profile-hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+  background: var(--hr-surface);
+  border-radius: 20px;
+  padding: 36px;
+  border: 1px solid var(--hr-border);
+  margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.avatar-wrap {
+  position: relative;
+}
+
+.avatar {
+  width: 88px; height: 88px;
+  background: linear-gradient(135deg, var(--hr-accent), #7C3AED);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: -4px; right: -4px;
+  width: 22px; height: 22px;
+  background: #22C55E;
+  border-radius: 50%;
+  border: 3px solid var(--hr-surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+}
+
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--hr-text);
+  margin-bottom: 4px;
+}
+
+.hero-title {
+  font-size: 14px;
+  color: var(--hr-accent);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 16px;
+}
+
+.hero-tag {
+  background: var(--hr-tag-bg);
+  color: var(--hr-tag-text);
+  border: 1px solid #BFDBFE;
+  border-radius: 50px;
+  font-size: 12px;
+  padding: 4px 12px;
+  font-weight: 500;
+}
+
+.hero-tag.green { background: #F0FDF4; color: #166534; border-color: #BBF7D0; }
+.hero-tag.orange { background: #FFF7ED; color: #9A3412; border-color: #FED7AA; }
+
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 16px;
+  font-size: 13px;
+  color: var(--hr-text2);
+}
+
+.hero-meta-item { display: flex; align-items: center; gap: 6px; }
+
+/* Stats Row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--hr-surface);
+  border: 1px solid var(--hr-border);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.stat-card:hover {
+  border-color: var(--hr-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,86,219,0.08);
+}
+
+.stat-number {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--hr-accent);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label-text {
+  font-size: 12px;
+  color: var(--hr-text2);
+  font-weight: 500;
+}
+
+/* Info Cards Row */
+.info-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.info-card {
+  background: var(--hr-surface);
+  border: 1px solid var(--hr-border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.info-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--hr-text3);
+  margin-bottom: 16px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hr-border);
+  font-size: 13.5px;
+}
+
+.info-row:last-child { border-bottom: none; }
+.info-row-key { color: var(--hr-text2); font-weight: 500; }
+.info-row-val { color: var(--hr-text); font-weight: 600; }
+
+/* ===== HR MODE — SKILLS ===== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: var(--hr-surface);
+  border: 1px solid var(--hr-border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s;
+}
+
+.skill-card:hover {
+  border-color: var(--hr-accent);
+  box-shadow: 0 8px 24px rgba(26,86,219,0.06);
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.skill-card-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--hr-tag-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  border: 1px solid #BFDBFE;
+}
+
+.skill-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--hr-text);
+}
+
+.skill-items { list-style: none; }
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 13.5px;
+  color: var(--hr-text2);
+  border-bottom: 1px solid var(--hr-border);
+}
+.skill-item:last-child { border-bottom: none; }
+.skill-bullet {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--hr-accent);
+  flex-shrink: 0;
+}
+
+/* ===== HR MODE — EXPERIENCE / TIMELINE ===== */
+.timeline { position: relative; padding-left: 28px; }
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--hr-accent), #E0E7FF, transparent);
+  border-radius: 2px;
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -35px; top: 20px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--hr-accent);
+  box-shadow: 0 0 0 3px rgba(26,86,219,0.1);
+}
+
+.timeline-card {
+  background: var(--hr-surface);
+  border: 1px solid var(--hr-border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s;
+}
+
+.timeline-card:hover {
+  border-color: var(--hr-accent);
+  box-shadow: 0 8px 24px rgba(26,86,219,0.06);
+}
+
+.timeline-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--hr-tag-bg);
+  border: 1px solid #BFDBFE;
+  border-radius: 50px;
+  padding: 3px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--hr-accent);
+  margin-bottom: 12px;
+}
+
+.timeline-job-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--hr-text);
+  margin-bottom: 4px;
+}
+
+.timeline-company {
+  font-size: 13.5px;
+  color: var(--hr-accent2);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.timeline-company a { color: inherit; text-decoration: none; }
+.timeline-company a:hover { text-decoration: underline; }
+
+.timeline-desc {
+  font-size: 14px;
+  color: var(--hr-text2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.achievements {
+  background: var(--hr-surface2);
+  border-radius: 10px;
+  padding: 16px;
+  list-style: none;
+}
+
+.achievement-item {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--hr-text2);
+  padding: 6px 0;
+}
+
+.achievement-item::before {
+  content: '↗';
+  color: var(--hr-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ===== HR MODE — PROJECTS ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--hr-surface);
+  border: 1px solid var(--hr-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.project-card:hover {
+  border-color: var(--hr-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(26,86,219,0.1);
+}
+
+.project-video-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: var(--hr-tag-bg);
+}
+
+.project-video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.project-body { padding: 24px; }
+
+.project-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--hr-text);
+  margin-bottom: 8px;
+}
+
+.project-desc {
+  font-size: 13.5px;
+  color: var(--hr-text2);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+
+.tech-tag {
+  background: var(--hr-tag-bg);
+  color: var(--hr-tag-text);
+  border: 1px solid #BFDBFE;
+  border-radius: 50px;
+  font-size: 11.5px;
+  padding: 3px 10px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.project-links-row {
+  display: flex;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hr-border);
+}
+
+.proj-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: 1.5px solid var(--hr-border);
+  color: var(--hr-text2);
+}
+
+.proj-link:hover {
+  border-color: var(--hr-accent);
+  color: var(--hr-accent);
+  background: var(--hr-tag-bg);
+}
+
+/* ===== HR MODE — CONTACT ===== */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.contact-intro-card {
+  background: linear-gradient(135deg, var(--hr-accent), #7C3AED);
+  border-radius: 20px;
+  padding: 32px;
+  color: white;
+  grid-column: 1 / -1;
+}
+
+.contact-intro-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.contact-intro-text {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.contact-card {
+  background: var(--hr-surface);
+  border: 1px solid var(--hr-border);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-card:hover {
+  border-color: var(--hr-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,86,219,0.08);
+}
+
+.contact-card-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: var(--hr-tag-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  border: 1px solid #BFDBFE;
+  flex-shrink: 0;
+}
+
+.contact-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--hr-text3);
+  margin-bottom: 2px;
+}
+
+.contact-card-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hr-text);
+}
+
+/* ===== TECH MODE OVERRIDES ===== */
+body.tech-mode {
+  --bg: var(--tech-bg);
+  --surface: var(--tech-panel);
+  --surface2: var(--tech-panel2);
+  --text: var(--tech-text);
+  --text2: var(--tech-text2);
+  --border: var(--tech-border);
+}
+
+/* Tech Profile */
+body.tech-mode .profile-hero {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  box-shadow: 0 0 30px rgba(0,255,135,0.05);
+  border-radius: 8px;
+}
+
+body.tech-mode .avatar {
+  background: transparent;
+  border: 1.5px solid var(--tech-green);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,255,135,0.15);
+}
+
+body.tech-mode .hero-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  color: var(--tech-text);
+}
+
+body.tech-mode .hero-title {
+  color: var(--tech-green);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+body.tech-mode .hero-tag {
+  background: rgba(0,255,135,0.05);
+  color: var(--tech-green);
+  border-color: rgba(0,255,135,0.25);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+body.tech-mode .hero-tag.green {
+  background: rgba(56,189,248,0.05);
+  color: var(--tech-blue);
+  border-color: rgba(56,189,248,0.25);
+}
+
+body.tech-mode .hero-tag.orange {
+  background: rgba(251,191,36,0.05);
+  color: var(--tech-amber);
+  border-color: rgba(251,191,36,0.25);
+}
+
+body.tech-mode .hero-meta { color: var(--tech-text2); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+/* Tech Stats */
+body.tech-mode .stat-card {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+body.tech-mode .stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--tech-green), var(--tech-blue));
+}
+
+body.tech-mode .stat-card:hover {
+  border-color: var(--tech-green);
+  box-shadow: 0 0 20px rgba(0,255,135,0.1);
+}
+
+body.tech-mode .stat-number {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--tech-green);
+  font-size: 1.8rem;
+}
+
+body.tech-mode .stat-label-text {
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Tech Info Cards */
+body.tech-mode .info-card {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+}
+
+body.tech-mode .info-card-title {
+  color: var(--tech-green);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body.tech-mode .info-row {
+  border-bottom-color: var(--tech-border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+body.tech-mode .info-row-key { color: var(--tech-text2); }
+body.tech-mode .info-row-val { color: var(--tech-blue); }
+
+/* Tech Skills */
+body.tech-mode .skill-card {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+}
+
+body.tech-mode .skill-card:hover {
+  border-color: var(--tech-green);
+  box-shadow: 0 0 20px rgba(0,255,135,0.08);
+}
+
+body.tech-mode .skill-card-icon {
+  background: rgba(0,255,135,0.05);
+  border-color: rgba(0,255,135,0.2);
+}
+
+body.tech-mode .skill-card-title {
+  color: var(--tech-text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+body.tech-mode .skill-item {
+  border-bottom-color: var(--tech-border);
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+body.tech-mode .skill-bullet { background: var(--tech-green); }
+
+/* Tech Timeline */
+body.tech-mode .timeline::before {
+  background: linear-gradient(to bottom, var(--tech-green), rgba(0,255,135,0.2), transparent);
+}
+
+body.tech-mode .timeline-dot {
+  background: var(--tech-panel);
+  border-color: var(--tech-green);
+  box-shadow: 0 0 10px rgba(0,255,135,0.3);
+}
+
+body.tech-mode .timeline-card {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+}
+
+body.tech-mode .timeline-card:hover {
+  border-color: var(--tech-green);
+  box-shadow: 0 0 20px rgba(0,255,135,0.08);
+}
+
+body.tech-mode .timeline-period {
+  background: rgba(0,255,135,0.05);
+  border-color: rgba(0,255,135,0.25);
+  color: var(--tech-green);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+body.tech-mode .timeline-job-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--tech-blue);
+}
+
+body.tech-mode .timeline-company { color: var(--tech-amber); }
+body.tech-mode .timeline-company a { color: inherit; }
+
+body.tech-mode .timeline-desc {
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+body.tech-mode .achievements { background: rgba(0,255,135,0.02); border: 1px solid rgba(0,255,135,0.1); }
+body.tech-mode .achievement-item { color: var(--tech-text2); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
+body.tech-mode .achievement-item::before { color: var(--tech-green); }
+
+/* Tech Projects */
+body.tech-mode .project-card {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+}
+
+body.tech-mode .project-card:hover {
+  border-color: var(--tech-blue);
+  box-shadow: 0 0 24px rgba(56,189,248,0.1);
+}
+
+body.tech-mode .project-video-wrap { background: var(--tech-panel2); }
+
+body.tech-mode .project-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--tech-blue);
+}
+
+body.tech-mode .project-desc {
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+body.tech-mode .tech-tag {
+  background: rgba(0,255,135,0.05);
+  color: var(--tech-green);
+  border-color: rgba(0,255,135,0.2);
+}
+
+body.tech-mode .project-links-row { border-top-color: var(--tech-border); }
+body.tech-mode .proj-link { border-color: var(--tech-border); color: var(--tech-text2); }
+body.tech-mode .proj-link:hover { border-color: var(--tech-blue); color: var(--tech-blue); background: rgba(56,189,248,0.05); }
+
+/* Tech Contact */
+body.tech-mode .contact-intro-card {
+  background: linear-gradient(135deg, #0D2137, #0A1628);
+  border: 1px solid var(--tech-border);
+  position: relative;
+  overflow: hidden;
+}
+
+body.tech-mode .contact-intro-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--tech-green), var(--tech-blue));
+}
+
+body.tech-mode .contact-intro-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--tech-green);
+}
+
+body.tech-mode .contact-intro-text { color: var(--tech-text2); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+body.tech-mode .contact-card {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+}
+
+body.tech-mode .contact-card:hover {
+  border-color: var(--tech-green);
+  box-shadow: 0 0 20px rgba(0,255,135,0.1);
+}
+
+body.tech-mode .contact-card-icon {
+  background: rgba(0,255,135,0.05);
+  border-color: rgba(0,255,135,0.2);
+}
+
+body.tech-mode .contact-card-label { color: var(--tech-text3); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+body.tech-mode .contact-card-value { color: var(--tech-blue); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+/* Tech-only terminal panel */
+.tech-terminal {
+  display: none;
+  background: #050A0F;
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0,255,135,0.05);
+}
+
+body.tech-mode .tech-terminal { display: block; }
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #0A0F18;
+  border-bottom: 1px solid var(--tech-border);
+}
+
+.t-dot { width: 12px; height: 12px; border-radius: 50%; }
+.t-dot.r { background: #FF5F57; }
+.t-dot.y { background: #FFBD2E; }
+.t-dot.g { background: #28C840; }
+
+.terminal-path {
+  margin-left: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--tech-text2);
+}
+
+.terminal-path .t-user { color: var(--tech-green); }
+.terminal-path .t-at { color: var(--tech-text2); }
+.terminal-path .t-host { color: var(--tech-blue); }
+.terminal-path .t-path { color: var(--tech-amber); }
+
+.terminal-body {
+  padding: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--tech-text2);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.t-cmd { color: var(--tech-text); }
+.t-prompt { color: var(--tech-green); margin-right: 8px; font-weight: 600; }
+.t-key { color: var(--tech-blue); }
+.t-val { color: var(--tech-amber); }
+.t-comment { color: var(--tech-text3); }
+.t-str { color: #A78BFA; }
+
+/* System monitoring panel for tech profile */
+.sys-monitor {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+body.tech-mode .sys-monitor { display: grid; }
+
+.monitor-panel {
+  background: var(--tech-panel);
+  border: 1px solid var(--tech-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.monitor-panel-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--tech-text3);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.monitor-panel-title span { color: var(--tech-green); }
+
+.bar-row { margin-bottom: 8px; }
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--tech-text2);
+  margin-bottom: 4px;
+}
+
+.bar-track {
+  height: 6px;
+  background: var(--tech-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--tech-green), var(--tech-blue));
+  transition: width 1s ease;
+}
+
+.bar-fill.amber { background: linear-gradient(90deg, var(--tech-amber), #F97316); }
+.bar-fill.blue { background: linear-gradient(90deg, var(--tech-blue), #818CF8); }
+
+.metric-list { list-style: none; }
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--tech-border);
+  color: var(--tech-text2);
+}
+.metric-item:last-child { border-bottom: none; }
+.metric-val { color: var(--tech-green); }
+.metric-val.blue { color: var(--tech-blue); }
+.metric-val.amber { color: var(--tech-amber); }
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--hr-surface);
+  border-top: 1px solid var(--hr-border);
+  padding: 8px 16px 12px;
+  z-index: 200;
+  backdrop-filter: blur(12px);
+  transition: all 0.4s;
+}
+
+body.tech-mode .mobile-nav {
+  background: rgba(13,20,33,0.95);
+  border-top-color: var(--tech-border);
+}
+
+.mobile-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.25s;
+  min-width: 56px;
+}
+
+.mobile-nav-item.active {
+  background: var(--hr-tag-bg);
+}
+
+body.tech-mode .mobile-nav-item.active {
+  background: rgba(0,255,135,0.08);
+}
+
+.mobile-nav-icon { font-size: 20px; }
+
+.mobile-nav-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--hr-text3);
+  letter-spacing: 0.3px;
+}
+
+.mobile-nav-item.active .mobile-nav-label {
+  color: var(--hr-accent);
+}
+
+body.tech-mode .mobile-nav-item.active .mobile-nav-label {
+  color: var(--tech-green);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .mobile-nav { display: block; }
+  .section { padding: 24px 20px 90px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .profile-hero { grid-template-columns: 1fr; gap: 20px; }
+  .info-cards { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-intro-card { grid-column: 1; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .sys-monitor { grid-template-columns: 1fr; }
+  .section-heading { font-size: 1.8rem; }
+  .mode-toggle { top: 12px; right: 12px; }
+  .toggle-btn { padding: 7px 12px; font-size: 12px; }
+  .toggle-btn .toggle-label { display: none; }
+}
+
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .mode-toggle { top: 10px; right: 10px; }
+  .hero-tags { gap: 6px; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--hr-border); border-radius: 3px; }
+body.tech-mode ::-webkit-scrollbar-thumb { background: var(--tech-border); }
+
+/* Animated scan line for tech mode */
+body.tech-mode::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,135,0.5), transparent);
+  animation: scanline 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+@keyframes scanline {
+  0% { top: 0; opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
+}
 </style>
 </head>
 <body>
 
-<div class="shell">
+<!-- Mode Toggle -->
+<div class="mode-toggle">
+  <button class="toggle-btn hr-btn active" onclick="setMode('hr')">
+    <span class="toggle-icon">🍎</span>
+    <span class="toggle-label">HR View</span>
+  </button>
+  <button class="toggle-btn tech-btn" onclick="setMode('tech')">
+    <span class="toggle-icon">⬡</span>
+    <span class="toggle-label">Dev View</span>
+  </button>
+</div>
 
-  <!-- TOPBAR -->
-  <header class="topbar">
-    <div class="topbar-left">
-      <div class="wm-dots">
-        <div class="wm-dot r"></div>
-        <div class="wm-dot y"></div>
-        <div class="wm-dot g"></div>
+<!-- Sidebar -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-initials" id="brand-init">HS</div>
+    <div class="brand-name" id="brand-name">Hendriansyah Setiawan</div>
+    <div class="brand-role" id="brand-role">Senior IT Support & System Analyst</div>
+  </div>
+
+  <div class="nav-section-label" style="margin-bottom:8px;">
+    <span class="hr-only">Navigation</span>
+    <span class="tech-only" style="display:none;font-family:'JetBrains Mono',monospace;">// nav</span>
+  </div>
+
+  <div class="nav-item active" data-section="profile" onclick="showSection('profile',this)">
+    <span class="nav-icon">👤</span>
+    <span class="nav-tech-prefix">01_</span>
+    <span>Profile</span>
+  </div>
+  <div class="nav-item" data-section="skills" onclick="showSection('skills',this)">
+    <span class="nav-icon">⚡</span>
+    <span class="nav-tech-prefix">02_</span>
+    <span>Skills</span>
+  </div>
+  <div class="nav-item" data-section="experience" onclick="showSection('experience',this)">
+    <span class="nav-icon">📋</span>
+    <span class="nav-tech-prefix">03_</span>
+    <span>Experience</span>
+  </div>
+  <div class="nav-item" data-section="projects" onclick="showSection('projects',this)">
+    <span class="nav-icon">🚀</span>
+    <span class="nav-tech-prefix">04_</span>
+    <span>Projects</span>
+  </div>
+  <div class="nav-item" data-section="contact" onclick="showSection('contact',this)">
+    <span class="nav-icon">📧</span>
+    <span class="nav-tech-prefix">05_</span>
+    <span>Contact</span>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="status-pill">
+      <div class="status-dot"></div>
+      <span id="status-text">Available for hire</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main">
+
+  <!-- ===== PROFILE ===== -->
+  <section class="section active" id="profile">
+    <div class="section-eyebrow" id="profile-eyebrow">Professional Profile</div>
+    <h1 class="section-heading" id="profile-heading">Hendriansyah Setiawan</h1>
+    <p class="section-sub" id="profile-sub">Senior IT Support & System Analyst · Bandung, Indonesia</p>
+
+    <!-- Tech Terminal intro (only in tech mode) -->
+    <div class="tech-terminal">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
+        <span class="terminal-path">
+          <span class="t-user">hendri</span><span class="t-at">@</span><span class="t-host">portfolio</span>:<span class="t-path">~</span>$
+        </span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#CBD5E1;margin-left:6px;">cat profile.json</span>
       </div>
-      <div class="topbar-title">
-        <span class="only-tech">root@portfolio</span><span class="only-hr">hendriansyah.portfolio</span>
-        <span>:~/<span id="topbar-section">profile</span></span>
+      <div class="terminal-body">
+        {<br>
+        &nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-str">"Hendriansyah Setiawan"</span>,<br>
+        &nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-str">"Senior IT Support (L2/L3) | System Analyst | QA Engineer"</span>,<br>
+        &nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-str">"Bandung, West Java, ID (GMT+7)"</span>,<br>
+        &nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">6</span>, <span class="t-comment">// years</span><br>
+        &nbsp;&nbsp;<span class="t-key">"stack"</span>: [<span class="t-str">"MySQL"</span>, <span class="t-str">"Laravel"</span>, <span class="t-str">"Linux"</span>, <span class="t-str">"Postman"</span>, <span class="t-str">"Power BI"</span>],<br>
+        &nbsp;&nbsp;<span class="t-key">"sla_compliance"</span>: <span class="t-val">95</span>, <span class="t-comment">// %</span><br>
+        &nbsp;&nbsp;<span class="t-key">"availability"</span>: <span class="t-str">"open_to_opportunities"</span>,<br>
+        &nbsp;&nbsp;<span class="t-key">"remote_ready"</span>: <span class="t-val">true</span><br>
+        }
       </div>
     </div>
-    <div class="mode-toggle">
-      <button class="mode-btn hr-btn" onclick="setMode('hr')">🍎 HR View</button>
-      <button class="mode-btn tech-btn active" onclick="setMode('tech')">🐧 Engineer</button>
-    </div>
-  </header>
 
-  <!-- RAIL -->
-  <nav class="rail">
-    <div class="rail-label">Navigation</div>
-    <div class="nav-item active" data-sec="profile">
-      <div class="nav-icon">👤</div>
-      <span class="only-tech">~/profile</span>
-      <span class="only-hr">Ringkasan</span>
-    </div>
-    <div class="nav-item" data-sec="skills">
-      <div class="nav-icon">⚡</div>
-      <span class="only-tech">skills.json</span>
-      <span class="only-hr">Kompetensi</span>
-    </div>
-    <div class="nav-item" data-sec="experience">
-      <div class="nav-icon">📁</div>
-      <span class="only-tech">work_history</span>
-      <span class="only-hr">Pengalaman</span>
-      <span class="nav-badge">3</span>
-    </div>
-    <div class="nav-item" data-sec="projects">
-      <div class="nav-icon">🚀</div>
-      <span class="only-tech">~/projects</span>
-      <span class="only-hr">Proyek</span>
-      <span class="nav-badge">6</span>
-    </div>
-    <div class="nav-item" data-sec="contact">
-      <div class="nav-icon">📡</div>
-      <span class="only-tech">contact.yaml</span>
-      <span class="only-hr">Kontak</span>
+    <!-- System Monitor (tech only) -->
+    <div class="sys-monitor">
+      <div class="monitor-panel">
+        <div class="monitor-panel-title">SKILL LEVELS <span>LIVE</span></div>
+        <div class="bar-row">
+          <div class="bar-label"><span>IT Support L2/L3</span><span>95%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>MySQL / DB</span><span>80%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>QA / Testing</span><span>75%</span></div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:75%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Linux / Server</span><span>70%</span></div>
+          <div class="bar-track"><div class="bar-fill blue" style="width:70%"></div></div>
+        </div>
+      </div>
+      <div class="monitor-panel">
+        <div class="monitor-panel-title">PERFORMANCE METRICS <span>OK</span></div>
+        <ul class="metric-list">
+          <li class="metric-item"><span>SLA Compliance</span><span class="metric-val">95%</span></li>
+          <li class="metric-item"><span>Avg Tickets/Month</span><span class="metric-val">100+</span></li>
+          <li class="metric-item"><span>Error Rate ↓</span><span class="metric-val">-60%</span></li>
+          <li class="metric-item"><span>Client Coverage</span><span class="metric-val blue">20+ Daerah</span></li>
+          <li class="metric-item"><span>Experience</span><span class="metric-val amber">6+ yrs</span></li>
+        </ul>
+      </div>
+      <div class="monitor-panel">
+        <div class="monitor-panel-title">SYSTEM STATUS <span>●</span></div>
+        <ul class="metric-list">
+          <li class="metric-item"><span>Email Response</span><span class="metric-val">&lt; 24h</span></li>
+          <li class="metric-item"><span>Remote Ready</span><span class="metric-val">TRUE</span></li>
+          <li class="metric-item"><span>Availability</span><span class="metric-val">OPEN</span></li>
+          <li class="metric-item"><span>Timezone</span><span class="metric-val amber">GMT+7</span></li>
+          <li class="metric-item"><span>Mode</span><span class="metric-val blue">Hybrid OK</span></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="rail-profile">
-      <div class="rail-avatar">H</div>
+    <!-- Hero Card -->
+    <div class="profile-hero">
+      <div class="avatar-wrap">
+        <div class="avatar">🧑‍💻</div>
+        <div class="avatar-badge">✓</div>
+      </div>
       <div>
-        <div class="rail-name">Hendriansyah S.</div>
-        <div class="rail-status only-tech">available</div>
-        <div class="rail-status only-hr">Siap bekerja</div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- ════ PROFILE ════ -->
-    <div class="section active" id="sec-profile">
-      <div class="page-hdr">
-        <div class="page-hdr-left">
-          <div class="page-tag only-tech">$ whoami</div>
-          <div class="page-tag only-hr">Profil Profesional</div>
-          <h1 class="page-h1">Hendriansyah Setiawan</h1>
-          <div class="page-sub only-tech">Senior IT Support (L2/L3) · System Analyst · QA Engineer</div>
-          <div class="page-sub only-hr">Senior IT Support & System Analyst · Bandung, Indonesia</div>
+        <div class="hero-name">Hendriansyah Setiawan</div>
+        <div class="hero-title" id="hero-title-text">Senior IT Support & System Analyst</div>
+        <div class="hero-tags">
+          <span class="hero-tag">IT Support L2/L3</span>
+          <span class="hero-tag green">System Analyst</span>
+          <span class="hero-tag orange">QA Engineer</span>
+          <span class="hero-tag">6+ Tahun Pengalaman</span>
+        </div>
+        <div class="hero-meta">
+          <span class="hero-meta-item">📍 Bandung, West Java</span>
+          <span class="hero-meta-item">🟢 Available for hire</span>
+          <span class="hero-meta-item">🌐 Remote Ready</span>
         </div>
       </div>
+    </div>
 
-      <div class="hero-grid">
-        <div class="hero-card">
-          <div class="hero-name">Hendriansyah Setiawan</div>
-          <div class="hero-role only-tech">[ IT Support L2/L3 | System Analyst | QA Engineer ]</div>
-          <div class="hero-role only-hr">Senior IT Support &amp; System Analyst</div>
-          <p class="hero-desc only-tech">
-            6+ tahun pengalaman end-to-end technical support untuk sistem perpajakan daerah, manajemen service otomotif, dan operasional gudang. Spesialis incident management, database troubleshooting (MySQL), Linux server administration, dan koordinasi UAT lintas tim.
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-number">6+</div>
+        <div class="stat-label-text">Tahun Pengalaman</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100+</div>
+        <div class="stat-label-text">Tiket/Bulan</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">95%</div>
+        <div class="stat-label-text">SLA Compliance</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">20+</div>
+        <div class="stat-label-text">Daerah Klien</div>
+      </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-title">Informasi Dasar</div>
+        <div class="info-row">
+          <span class="info-row-key">Nama</span>
+          <span class="info-row-val">Hendriansyah Setiawan</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-key">Lokasi</span>
+          <span class="info-row-val">Bandung, West Java</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-key">Pendidikan</span>
+          <span class="info-row-val">D3 Sistem Informasi</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-key">Institusi</span>
+          <span class="info-row-val">Universitas Telkom</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-key">Ketersediaan</span>
+          <span class="info-row-val">Open to Opportunities</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Ringkasan Profesional</div>
+        <div style="font-size:14px;line-height:1.75;color:var(--hr-text2);">
+          Profesional IT berpengalaman 6+ tahun di bidang <strong>IT Support L2/L3, System Analysis, dan QA Engineering</strong>. 
+          Spesialis dalam implementasi dan dukungan sistem enterprise, dengan track record membantu 20+ pemerintah daerah 
+          dalam adopsi sistem perpajakan digital. Memiliki kemampuan teknis kuat di MySQL, Linux, dan API Testing, 
+          dipadukan dengan kemampuan koordinasi tim dan komunikasi klien.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section class="section" id="skills">
+    <div class="section-eyebrow">Core Competencies</div>
+    <h2 class="section-heading">Keahlian & Teknologi</h2>
+    <p class="section-sub" id="skills-sub">Skill set yang diasah selama 6+ tahun di industri IT</p>
+
+    <div class="tech-terminal">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
+        <span class="terminal-path"><span class="t-user">hendri</span><span class="t-at">@</span><span class="t-host">portfolio</span>:<span class="t-path">~/skills</span>$ </span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#CBD5E1;">ls -la --classify</span>
+      </div>
+      <div class="terminal-body">
+        <span style="color:var(--tech-green);">drwxr-xr-x</span> &nbsp;it_support_l2l3/ &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Primary | 6y exp</span><br>
+        <span style="color:var(--tech-green);">drwxr-xr-x</span> &nbsp;mysql_database/ &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Queries, backup, sync</span><br>
+        <span style="color:var(--tech-blue);">drwxr-xr-x</span> &nbsp;linux_server/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Ubuntu, SSH, Apache/Nginx</span><br>
+        <span style="color:var(--tech-blue);">drwxr-xr-x</span> &nbsp;qa_testing/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># UAT, API (Postman), regression</span><br>
+        <span style="color:var(--tech-amber);">drwxr-xr-x</span> &nbsp;project_mgmt/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Coordination, mentoring</span><br>
+        <span style="color:var(--tech-amber);">drwxr-xr-x</span> &nbsp;deployment/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Rollout, migration, monitoring</span><br>
+        6 directories listed
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-card-icon">🖥️</div>
+          <div class="skill-card-title">IT Support & Troubleshooting</div>
+        </div>
+        <ul class="skill-items">
+          <li class="skill-item"><span class="skill-bullet"></span>Escalasi L2/L3 & Root Cause Analysis</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Penanganan Tiket & SLA Management</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Remote Support & Onboarding Pengguna</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Penyusunan SOP & Dokumentasi Teknis</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-card-icon">🗄️</div>
+          <div class="skill-card-title">MySQL & Database Administration</div>
+        </div>
+        <ul class="skill-items">
+          <li class="skill-item"><span class="skill-bullet"></span>Complex SQL Queries & Data Analysis</li>
+          <li class="skill-item"><span class="skill-bullet"></span>DB Backup/Restore & Migration</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Data Sync Issues & Integrity Checks</li>
+          <li class="skill-item"><span class="skill-bullet"></span>User Permissions & Access Control</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-card-icon">🐧</div>
+          <div class="skill-card-title">Linux Server Administration</div>
+        </div>
+        <ul class="skill-items">
+          <li class="skill-item"><span class="skill-bullet"></span>Ubuntu Server Management</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Bash/Shell Commands & SSH</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Apache/Nginx Configuration</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Network Troubleshooting & Diagnostics</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-card-icon">🧪</div>
+          <div class="skill-card-title">Quality Assurance & Testing</div>
+        </div>
+        <ul class="skill-items">
+          <li class="skill-item"><span class="skill-bullet"></span>UAT & Functional Testing</li>
+          <li class="skill-item"><span class="skill-bullet"></span>API Testing (Postman/REST)</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Bug Reporting & Test Case Management</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Regression & Smoke Testing</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-card-icon">💼</div>
+          <div class="skill-card-title">Manajemen & Koordinasi</div>
+        </div>
+        <ul class="skill-items">
+          <li class="skill-item"><span class="skill-bullet"></span>Task Prioritization & Backlog Mgmt</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Cross-functional Collaboration</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Mentoring Tim Junior</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Status Reporting & Escalation</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-card-icon">🛠️</div>
+          <div class="skill-card-title">Implementasi & Deployment</div>
+        </div>
+        <ul class="skill-items">
+          <li class="skill-item"><span class="skill-bullet"></span>System Rollout & Deployment</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Data Migration & System Transfer</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Production Monitoring & Alerting</li>
+          <li class="skill-item"><span class="skill-bullet"></span>Microsoft Power BI & Excel VBA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="section" id="experience">
+    <div class="section-eyebrow">Career History</div>
+    <h2 class="section-heading">Pengalaman Kerja</h2>
+    <p class="section-sub">6+ tahun lintas 3 industri — Teknologi, Otomotif, dan Manufaktur</p>
+
+    <div class="tech-terminal">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
+        <span class="terminal-path"><span class="t-user">hendri</span><span class="t-at">@</span><span class="t-host">portfolio</span>:<span class="t-path">~/work</span>$ </span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#CBD5E1;">git log --all --oneline</span>
+      </div>
+      <div class="terminal-body">
+        <span style="color:#A78BFA;">a1f2c3d</span> <span class="t-comment">(HEAD)</span> <span style="color:var(--tech-green);">2020-11 → now</span> Senior IT Support — V-TAX | Valuestream Group<br>
+        <span style="color:#A78BFA;">b4e5f6g</span> <span style="color:var(--tech-blue);">2019-04 → 2020-10</span> Service Operations Analyst — AUTO 2000<br>
+        <span style="color:#A78BFA;">c7h8i9j</span> <span style="color:var(--tech-amber);">2018-05 → 2019-04</span> Warehouse Operations — Mitra Bahan Sepatu<br>
+        3 commits | 6+ years total | promoted to Asst. Team Leader
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-entry">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-period">🗓️ Nov 2020 → Sekarang (4+ Tahun)</div>
+          <h3 class="timeline-job-title">Senior IT Support & System Analyst</h3>
+          <div class="timeline-company">
+            <a href="https://v-tax.id/" target="_blank">PT. Mutiara Bintang Abadi — V-TAX | Valuestream Group</a>
+          </div>
+          <p class="timeline-desc">
+            Bertanggung jawab penuh atas dukungan teknis sistem perpajakan daerah (V-TAX) untuk pemerintah daerah 
+            di seluruh Indonesia. Mengelola seluruh siklus implementasi sistem mulai dari pelatihan pengguna, 
+            troubleshooting harian, hingga koordinasi pengembangan fitur baru dengan tim developer.
+            Dipromosikan sebagai <strong>Assistant Team Leader</strong>.
           </p>
-          <p class="hero-desc only-hr">
-            Profesional IT dengan pengalaman 6+ tahun mendukung sistem informasi operasional di sektor pemerintahan, otomotif, dan ritel. Terbiasa menangani support end-to-end, menjaga stabilitas sistem, dan berkoordinasi lintas divisi untuk memastikan layanan sesuai SLA.
+          <ul class="achievements">
+            <li class="achievement-item">Meningkatkan kepuasan klien hingga 95% melalui response time cepat (&lt;24 jam untuk 95% tiket)</li>
+            <li class="achievement-item">Menyusun SOP & dokumentasi teknis yang digunakan di 20+ daerah klien</li>
+            <li class="achievement-item">Menurunkan error rate sistem produksi sebesar 60% melalui proses QA sistematis</li>
+            <li class="achievement-item">Mengelola rata-rata 100+ tiket support per bulan dengan tim yang efisien</li>
+            <li class="achievement-item">Platform: Laravel (MySQL), Ubuntu Server — handle L2/L3 escalations & dev-support bridge</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-period">🗓️ Apr 2019 → Okt 2020 (1.5 Tahun)</div>
+          <h3 class="timeline-job-title">Maintenance Service Appointment Coordinator</h3>
+          <div class="timeline-company">
+            <a href="https://auto2000.co.id/" target="_blank">AUTO 2000 Bandung Asia Afrika — PT Astra International</a>
+          </div>
+          <p class="timeline-desc">
+            Mengelola penjadwalan dan follow-up service kendaraan pelanggan, serta menyusun analisis data operasional 
+            menggunakan Microsoft Power BI untuk mendukung pengambilan keputusan manajemen bengkel.
           </p>
-          <div class="hero-tags">
-            <span class="htag">Bandung, ID</span>
-            <span class="htag only-tech">GMT+7 · Remote-ready</span>
-            <span class="htag only-hr">Terbuka untuk peluang baru</span>
-            <span class="htag only-tech">SLA 95%+</span>
-            <span class="htag only-hr">6+ Tahun</span>
-            <span class="htag only-tech">100+ tickets/mo</span>
-            <span class="htag only-hr">20+ Klien</span>
-          </div>
-        </div>
-
-        <div class="stat-panel">
-          <div class="stat-row">
-            <div class="stat-label">Experience</div>
-            <div class="stat-val">6+ Years</div>
-            <div class="stat-sub only-tech">~2160 days uptime</div>
-            <div class="stat-sub only-hr">Lintas 3 industri</div>
-          </div>
-          <div class="stat-row">
-            <div class="stat-label only-tech">Monthly Tickets</div>
-            <div class="stat-label only-hr">Cakupan Klien</div>
-            <div class="stat-val only-tech">100+</div>
-            <div class="stat-val only-hr">20+</div>
-            <div class="stat-sub only-tech">resolved per bulan</div>
-            <div class="stat-sub only-hr">pemerintah daerah</div>
-          </div>
-          <div class="stat-row">
-            <div class="stat-label only-tech">SLA Achievement</div>
-            <div class="stat-label only-hr">Kepuasan Klien</div>
-            <div class="stat-val">95%+</div>
-            <div class="stat-sub only-tech">first-response &lt;24h</div>
-            <div class="stat-sub only-hr">response &lt;24 jam</div>
-          </div>
-          <div class="stat-row">
-            <div class="stat-label only-tech">Error Reduction</div>
-            <div class="stat-label only-hr">Pengurangan Error</div>
-            <div class="stat-val">60%</div>
-            <div class="stat-sub">via systematic QA</div>
-          </div>
+          <ul class="achievements">
+            <li class="achievement-item">Meningkatkan efisiensi jadwal service hingga 25% melalui sistem pencatatan terstruktur</li>
+            <li class="achievement-item">Mengurangi komplain pelanggan sebesar 40% melalui koordinasi proaktif dengan teknisi</li>
+            <li class="achievement-item">Membuat dashboard operasional harian menggunakan Power BI untuk monitoring real-time</li>
+            <li class="achievement-item">Mencapai target kepuasan pelanggan selama 7 bulan berturut-turut</li>
+          </ul>
         </div>
       </div>
 
-      <!-- Terminal -->
-      <div class="terminal">
-        <div class="term-bar">
-          <div class="term-dots"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div></div>
-          <div class="term-path only-tech"><em>hendriansyah</em>@portfolio:~$ cat profile.sh</div>
-          <div class="term-path only-hr"><em>portfolio</em> — Professional Summary</div>
-        </div>
-        <div class="term-body">
-          <div class="only-tech">
-            <div class="tc-line"><span class="tc-prompt">❯ </span><span class="tc-cmd">whoami --verbose</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">user:</span> Hendriansyah Setiawan</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">role:</span> Senior IT Support (L2/L3) | System Analyst | QA Engineer</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">location:</span> Bandung, West Java · Asia/Jakarta (GMT+7)</span></div>
-            <div class="tc-line">&nbsp;</div>
-            <div class="tc-line"><span class="tc-prompt">❯ </span><span class="tc-cmd">ps aux | grep core_skills</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi2">[MySQL]</span> Query optimization · backup/recovery · data sync troubleshooting</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi2">[Linux]</span> Ubuntu server · shell scripting · Apache/Nginx · SSH · cron jobs</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi2">[QA]</span> Black-box testing · API validation (Postman) · regression · UAT</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi2">[Support]</span> L2/L3 escalation · incident management · RCA documentation</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi2">[Dev]</span> Basic PHP/Laravel understanding · SQL · YAML/JSON · Git</span></div>
+      <div class="timeline-entry">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-period">🗓️ Mei 2018 → Apr 2019 (1 Tahun)</div>
+          <h3 class="timeline-job-title">Staff Warehouse & Inventory Control</h3>
+          <div class="timeline-company">
+            <a href="https://www.instagram.com/tokomitra.bandung/" target="_blank">Mitra Bahan Sepatu — Bandung</a>
           </div>
-          <div class="only-hr">
-            <div class="tc-line"><span class="tc-prompt">$ </span><span class="tc-cmd">cat ringkasan.txt</span></div>
-            <div class="tc-line"><span class="tc-out">Nama       : Hendriansyah Setiawan</span></div>
-            <div class="tc-line"><span class="tc-out">Posisi     : Senior IT Support &amp; System Analyst</span></div>
-            <div class="tc-line"><span class="tc-out">Lokasi     : Bandung, Indonesia</span></div>
-            <div class="tc-line"><span class="tc-out">Status     : <span class="tc-hi">Terbuka untuk peluang baru</span></span></div>
-            <div class="tc-line">&nbsp;</div>
-            <div class="tc-line"><span class="tc-prompt">$ </span><span class="tc-cmd">cat kekuatan-utama.txt</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">✓</span> Manajemen Insiden &amp; Problem Solving</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">✓</span> Pelatihan Pengguna &amp; Dokumentasi Sistem</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">✓</span> Quality Assurance &amp; UAT Testing</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">✓</span> Koordinasi Lintas Tim (Developer, Operasional, User)</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">✓</span> Kepemimpinan Tim (Assistant Leader)</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ════ SKILLS ════ -->
-    <div class="section" id="sec-skills">
-      <div class="page-hdr">
-        <div class="page-hdr-left">
-          <div class="page-tag only-tech">$ cat skills.json | jq</div>
-          <div class="page-tag only-hr">Kompetensi Inti</div>
-          <h1 class="page-h1 only-tech">skills.json --verbose</h1>
-          <h1 class="page-h1 only-hr">Core Competencies</h1>
-        </div>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-card-hdr">
-            <div class="skill-ico">🎯</div>
-            <div>
-              <div class="skill-cat only-tech">L2/L3 Technical Support</div>
-              <div class="skill-cat only-hr">IT Support & Layanan Pengguna</div>
-              <div class="skill-cat-sub only-tech">incident · escalation · rca</div>
-              <div class="skill-cat-sub only-hr">troubleshooting · dokumentasi</div>
-            </div>
-          </div>
-          <ul class="skill-items">
-            <li class="skill-item"><span class="skill-name only-tech">Incident Management & Root Cause Analysis</span><span class="skill-name only-hr">Penanganan Keluhan & Troubleshooting</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">End-user Training & Onboarding</span><span class="skill-name only-hr">Pelatihan Pengguna Sistem</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Technical Documentation & Ticketing</span><span class="skill-name only-hr">Dokumentasi & Laporan Teknis</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Dev-Support Collaboration & Escalation</span><span class="skill-name only-hr">Koordinasi dengan Tim Developer</span></li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <div class="skill-card-hdr">
-            <div class="skill-ico">🗄️</div>
-            <div>
-              <div class="skill-cat only-tech">MySQL & Database Admin</div>
-              <div class="skill-cat only-hr">Database & Manajemen Data</div>
-              <div class="skill-cat-sub only-tech">query · backup · sync · permissions</div>
-              <div class="skill-cat-sub only-hr">analisis · backup · pemulihan</div>
-            </div>
-          </div>
-          <ul class="skill-items">
-            <li class="skill-item"><span class="skill-name only-tech">Complex SQL Queries & Data Analysis</span><span class="skill-name only-hr">Pengelolaan dan Analisis Data</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">DB Backup/Restore & Migration</span><span class="skill-name only-hr">Backup & Pemulihan Data</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Data Sync Issues & Integrity Checks</span><span class="skill-name only-hr">Pengelolaan Database Aplikasi</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">User Permissions & Access Control</span><span class="skill-name only-hr">Kontrol Akses & Hak Pengguna</span></li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <div class="skill-card-hdr">
-            <div class="skill-ico">🐧</div>
-            <div>
-              <div class="skill-cat only-tech">Linux Server Administration</div>
-              <div class="skill-cat only-hr">Server & Infrastruktur</div>
-              <div class="skill-cat-sub only-tech">ubuntu · bash · ssh · nginx</div>
-              <div class="skill-cat-sub only-hr">operasional server · jaringan</div>
-            </div>
-          </div>
-          <ul class="skill-items">
-            <li class="skill-item"><span class="skill-name only-tech">Ubuntu Server Management</span><span class="skill-name only-hr">Operasional Server Linux</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Bash/Shell Commands & SSH</span><span class="skill-name only-hr">Command Line & Navigasi Server</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Apache/Nginx Configuration</span><span class="skill-name only-hr">Konfigurasi Web Server</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Network Troubleshooting & Diagnostics</span><span class="skill-name only-hr">Troubleshooting Jaringan Dasar</span></li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <div class="skill-card-hdr">
-            <div class="skill-ico">🧪</div>
-            <div>
-              <div class="skill-cat only-tech">QA Engineering & Testing</div>
-              <div class="skill-cat only-hr">Quality Assurance & Testing</div>
-              <div class="skill-cat-sub only-tech">uat · api · regression · postman</div>
-              <div class="skill-cat-sub only-hr">pengujian · validasi · dokumentasi</div>
-            </div>
-          </div>
-          <ul class="skill-items">
-            <li class="skill-item"><span class="skill-name only-tech">UAT & Functional Testing</span><span class="skill-name only-hr">User Acceptance Testing (UAT)</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">API Testing (Postman/REST)</span><span class="skill-name only-hr">Testing API & Integrasi Sistem</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Bug Reporting & Test Case Management</span><span class="skill-name only-hr">Dokumentasi Bug & Enhancement</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Regression & Smoke Testing</span><span class="skill-name only-hr">Pengujian Fungsional & Validasi</span></li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <div class="skill-card-hdr">
-            <div class="skill-ico">💼</div>
-            <div>
-              <div class="skill-cat only-tech">Project Coordination & Team Lead</div>
-              <div class="skill-cat only-hr">Manajemen & Koordinasi</div>
-              <div class="skill-cat-sub only-tech">backlog · cross-func · mentoring</div>
-              <div class="skill-cat-sub only-hr">prioritas · lintas divisi · mentoring</div>
-            </div>
-          </div>
-          <ul class="skill-items">
-            <li class="skill-item"><span class="skill-name only-tech">Task Prioritization & Backlog Mgmt</span><span class="skill-name only-hr">Prioritas & Manajemen Tugas</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Cross-functional Collaboration</span><span class="skill-name only-hr">Koordinasi Lintas Divisi</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Junior Team Mentoring & Training</span><span class="skill-name only-hr">Mentoring Tim Junior</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Status Reporting & Escalation</span><span class="skill-name only-hr">Pelaporan & Follow-up</span></li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <div class="skill-card-hdr">
-            <div class="skill-ico">🛠️</div>
-            <div>
-              <div class="skill-cat only-tech">System Implementation & DevOps</div>
-              <div class="skill-cat only-hr">Implementasi & Deployment</div>
-              <div class="skill-cat-sub only-tech">rollout · migration · monitoring</div>
-              <div class="skill-cat-sub only-hr">implementasi · migrasi · monitoring</div>
-            </div>
-          </div>
-          <ul class="skill-items">
-            <li class="skill-item"><span class="skill-name only-tech">System Rollout & Deployment</span><span class="skill-name only-hr">Implementasi Sistem Baru</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Data Migration & System Transfer</span><span class="skill-name only-hr">Migrasi Data & Sistem</span></li>
-            <li class="skill-item"><span class="skill-name only-tech">Production Monitoring & Alerting</span><span class="skill-name only-hr">Monitoring Sistem Produksi</span></li>
+          <p class="timeline-desc">
+            Mengelola administrasi gudang termasuk stock opname, verifikasi barang masuk/keluar, 
+            dan penerapan sistem FIFO untuk rotasi inventory yang efisien.
+          </p>
+          <ul class="achievements">
+            <li class="achievement-item">Menyusun sistem pencatatan harian yang mempercepat proses stock opname hingga 30%</li>
+            <li class="achievement-item">Menerapkan sistem FIFO yang menurunkan produk kadaluarsa/expired sebesar 20%</li>
+            <li class="achievement-item">Akurasi stok 98%+ melalui pengecekan rutin dan rekonsiliasi data</li>
           </ul>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- ════ EXPERIENCE ════ -->
-    <div class="section" id="sec-experience">
-      <div class="page-hdr">
-        <div class="page-hdr-left">
-          <div class="page-tag only-tech">$ git log --work-history</div>
-          <div class="page-tag only-hr">Riwayat Pekerjaan</div>
-          <h1 class="page-h1 only-tech">work_history --detailed</h1>
-          <h1 class="page-h1 only-hr">Professional Experience</h1>
-        </div>
+  <!-- ===== PROJECTS ===== -->
+  <section class="section" id="projects">
+    <div class="section-eyebrow">Selected Work</div>
+    <h2 class="section-heading">Proyek & Portfolio</h2>
+    <p class="section-sub">Proyek personal yang mendemonstrasikan kemampuan teknis full-stack</p>
+
+    <div class="tech-terminal">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
+        <span class="terminal-path"><span class="t-user">hendri</span><span class="t-at">@</span><span class="t-host">portfolio</span>:<span class="t-path">~/projects</span>$ </span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#CBD5E1;">ls -la | grep -E "\.app|\.sys"</span>
       </div>
-      <div class="exp-list">
-
-        <div class="exp-card">
-          <div class="exp-header">
-            <div>
-              <div class="exp-title only-tech">Senior IT Support Engineer (L2/L3)</div>
-              <div class="exp-title only-hr">Senior IT Support & System Analyst</div>
-              <div class="exp-company"><a href="https://v-tax.id/" target="_blank">PT. Mutiara Bintang Abadi — V-TAX | Valuestream Group</a></div>
-            </div>
-            <div class="exp-date">Nov 2020 → Present · 4+ yr</div>
-          </div>
-          <p class="exp-body only-tech">End-to-end technical support untuk sistem manajemen perpajakan daerah (V-TAX) yang digunakan di 20+ pemerintah daerah seluruh Indonesia. Handle L2/L3 escalations, database troubleshooting, UAT coordination, dan dev-support bridge.</p>
-          <p class="exp-body only-hr">Bertanggung jawab penuh atas dukungan teknis sistem perpajakan daerah (V-TAX) untuk pemerintah daerah di seluruh Indonesia — mulai dari pelatihan pengguna, troubleshooting harian, hingga koordinasi pengembangan fitur baru dengan tim developer.</p>
-          <ul class="exp-bullets only-tech">
-            <li>Platform: Laravel-based web app · MySQL database · Ubuntu servers · Apache/Nginx</li>
-            <li>Daily ops: MySQL query debugging · data sync issues · server logs · API troubleshooting</li>
-            <li>QA: Functional testing · UAT coordination · regression testing · test case docs</li>
-            <li>SLA 95%+ tickets resolved within 24h · avg 100+ tickets/month</li>
-            <li>60% reduction in production errors through systematic QA · promoted to Assistant Team Leader</li>
-          </ul>
-          <ul class="exp-bullets only-hr">
-            <li>Meningkatkan kepuasan klien hingga 95% melalui response time &lt;24 jam</li>
-            <li>Menyusun SOP dan dokumentasi teknis untuk 20+ daerah klien</li>
-            <li>Menurunkan error rate sistem produksi sebesar 60% melalui proses QA sistematis</li>
-            <li>Mengelola rata-rata 100+ tiket support per bulan dengan tim yang efisien</li>
-            <li>Dipromosikan sebagai Assistant Leader berkat kinerja konsisten</li>
-          </ul>
-        </div>
-
-        <div class="exp-card">
-          <div class="exp-header">
-            <div>
-              <div class="exp-title only-tech">Service Operations Analyst (MRA)</div>
-              <div class="exp-title only-hr">Maintenance Service Appointment Coordinator</div>
-              <div class="exp-company"><a href="https://auto2000.co.id/" target="_blank">AUTO 2000 Bandung Asia Afrika — PT Astra International</a></div>
-            </div>
-            <div class="exp-date">Apr 2019 → Oct 2020 · 1.5 yr</div>
-          </div>
-          <p class="exp-body only-tech">Managed service appointment scheduling, customer database updates, and operational analytics. Built data visualization dashboards for service performance monitoring.</p>
-          <p class="exp-body only-hr">Mengelola penjadwalan dan follow-up service kendaraan pelanggan, serta menyusun analisis data operasional untuk mendukung pengambilan keputusan manajemen bengkel.</p>
-          <ul class="exp-bullets only-tech">
-            <li>Tools: Microsoft Power BI · Excel VBA · Service Management System</li>
-            <li>25% improvement in scheduling efficiency · 40% reduction in service complaints</li>
-            <li>7 consecutive months hitting monthly customer satisfaction targets</li>
-          </ul>
-          <ul class="exp-bullets only-hr">
-            <li>Meningkatkan efisiensi jadwal service 25% via pencatatan dan follow-up terstruktur</li>
-            <li>Menurunkan komplain pelanggan 40% melalui koordinasi proaktif dengan teknisi</li>
-            <li>Membuat dashboard operasional Power BI untuk monitoring real-time</li>
-            <li>Mencapai target kepuasan pelanggan bulanan selama 7 bulan berturut-turut</li>
-          </ul>
-        </div>
-
-        <div class="exp-card">
-          <div class="exp-header">
-            <div>
-              <div class="exp-title only-tech">Warehouse Operations & Inventory Control</div>
-              <div class="exp-title only-hr">Staff Warehouse</div>
-              <div class="exp-company"><a href="https://www.instagram.com/tokomitra.bandung/" target="_blank">Mitra Bahan Sepatu — Bandung</a></div>
-            </div>
-            <div class="exp-date">May 2018 → Apr 2019 · 1 yr</div>
-          </div>
-          <p class="exp-body only-tech">Warehouse inventory management with focus on stock accuracy, FIFO implementation, and order fulfillment verification.</p>
-          <p class="exp-body only-hr">Mengelola administrasi gudang: stock opname, verifikasi barang masuk/keluar, dan penerapan sistem FIFO untuk rotasi inventory yang efisien.</p>
-          <ul class="exp-bullets only-tech">
-            <li>95%+ order fulfillment accuracy · 30% faster stock count process</li>
-            <li>FIFO implementation to reduce dead stock · daily inventory reports</li>
-          </ul>
-          <ul class="exp-bullets only-hr">
-            <li>Mempercepat proses stock opname 30% via sistem pencatatan harian</li>
-            <li>Menurunkan kesalahan pengiriman 95% melalui proses double-check sistematis</li>
-            <li>Menerapkan FIFO secara konsisten untuk mengurangi dead stock</li>
-          </ul>
-        </div>
-
+      <div class="terminal-body">
+        <span style="color:var(--tech-green);">-rwxr-xr-x</span> &nbsp;vehicle_tracker.app &nbsp;&nbsp;<span class="t-comment"># Laravel + Vue.js | WebSockets | SPA</span><br>
+        <span style="color:var(--tech-blue);">-rwxr-xr-x</span> &nbsp;koperasi_sys.app &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Laravel + MySQL | PDF Reports | Finance</span><br>
+        2 projects | github.com/sayapburung
       </div>
     </div>
 
-    <!-- ════ PROJECTS ════ -->
-    <div class="section" id="sec-projects">
-      <div class="page-hdr">
-        <div class="page-hdr-left">
-          <div class="page-tag only-tech">$ ls ~/projects --showcase</div>
-          <div class="page-tag only-hr">Proyek Pilihan</div>
-          <h1 class="page-h1 only-tech">~/projects — 6 repos</h1>
-          <h1 class="page-h1 only-hr">Selected Projects</h1>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-video-wrap">
+          <iframe src="https://www.youtube.com/embed/7A2S70d85k4" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Sistem Tracking Kendaraan Real-time</h3>
+          <p class="project-desc">
+            Platform pelacakan status dokumen kendaraan secara real-time. Memudahkan pelanggan memantau 
+            progres pengurusan berkas secara online dengan notifikasi live status update.
+          </p>
+          <div class="tag-row">
+            <span class="tech-tag">Laravel</span>
+            <span class="tech-tag">Vue.js</span>
+            <span class="tech-tag">WebSockets</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">SPA</span>
+          </div>
+          <div class="project-links-row">
+            <a href="https://github.com/sayapburung/Trackingmobil" target="_blank" class="proj-link">
+              🔗 GitHub
+            </a>
+            <a href="https://www.youtube.com/watch?v=7A2S70d85k4" target="_blank" class="proj-link">
+              ▶️ Demo
+            </a>
+          </div>
         </div>
       </div>
-      <div class="projects-grid">
 
-        <div class="project-card">
-          <div class="proj-vid">
-            <iframe src="https://www.youtube.com/embed/v2l7tBbrVf0?start=17" allowfullscreen loading="lazy"></iframe>
+      <div class="project-card">
+        <div class="project-video-wrap">
+          <iframe src="https://www.youtube.com/embed/F7fo5zVRYHE" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Sistem Koperasi Simpan Pinjam</h3>
+          <p class="project-desc">
+            Aplikasi manajemen koperasi lengkap dengan fitur simpanan, pinjaman, cicilan, 
+            dan laporan keuangan terintegrasi termasuk PDF export otomatis.
+          </p>
+          <div class="tag-row">
+            <span class="tech-tag">Laravel</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Financial Module</span>
+            <span class="tech-tag">PDF Reports</span>
           </div>
-          <div class="proj-body">
-            <div class="proj-title only-tech">Project Management System — Dynamic Workflow</div>
-            <div class="proj-title only-hr">Sistem Manajemen Proyek — Dynamic Workflow</div>
-            <p class="proj-desc only-tech">Laravel-based project management platform with dynamic workflow engine. Supports flexible task flows, real-time collaboration, and customizable project states for agile teams.</p>
-            <p class="proj-desc only-hr">Platform manajemen proyek berbasis web yang memungkinkan tim menyesuaikan alur kerja sesuai kebutuhan proyek yang dinamis, meningkatkan fleksibilitas dan produktivitas.</p>
-            <div class="proj-tags">
-              <span class="ptag">Laravel</span><span class="ptag">MySQL</span><span class="ptag">Dynamic Workflow</span>
-              <span class="ptag only-tech">REST API</span><span class="ptag only-hr">Web App</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://github.com/sayapburung/sbj-project" target="_blank" class="plink">🔗 <span class="only-tech">Source Code</span><span class="only-hr">Kode Sumber</span></a>
-              <a href="https://www.youtube.com/watch?v=v2l7tBbrVf0" target="_blank" class="plink primary">▶ Demo</a>
-            </div>
+          <div class="project-links-row">
+            <a href="https://github.com/sayapburung/kosipa" target="_blank" class="proj-link">
+              🔗 GitHub
+            </a>
+            <a href="https://www.youtube.com/watch?v=F7fo5zVRYHE" target="_blank" class="proj-link">
+              ▶️ Demo
+            </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="project-card">
-          <div class="proj-vid">
-            <iframe src="https://www.youtube.com/embed/qWD0llnbb-w" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="proj-body">
-            <div class="proj-title only-tech">Mixed-Method PM System (Linear + Dynamic)</div>
-            <div class="proj-title only-hr">Hybrid Project Management (Linear + Dynamic)</div>
-            <p class="proj-desc only-tech">Hybrid project management combining waterfall (linear) and agile (dynamic) methodologies. Supports both structured and flexible workflows in one platform.</p>
-            <p class="proj-desc only-hr">Sistem manajemen proyek yang menggabungkan pendekatan terstruktur (linear) dengan fleksibilitas (dynamic), cocok untuk berbagai jenis proyek dan tim.</p>
-            <div class="proj-tags">
-              <span class="ptag">Laravel 8</span><span class="ptag">Linear Workflow</span><span class="ptag">Dynamic Workflow</span>
-              <span class="ptag only-tech">Blade Templates</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://github.com/sayapburung/Manajemen-proyek-metode-campuran" target="_blank" class="plink">🔗 GitHub</a>
-              <a href="https://www.youtube.com/watch?v=qWD0llnbb-w" target="_blank" class="plink primary">▶ Demo</a>
-            </div>
-          </div>
-        </div>
+  <!-- ===== CONTACT ===== -->
+  <section class="section" id="contact">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-heading">Hubungi Saya</h2>
+    <p class="section-sub">Terbuka untuk peluang baru, kolaborasi, atau sekadar ngobrol!</p>
 
-        <div class="project-card">
-          <div class="proj-vid">
-            <iframe src="https://www.youtube.com/embed/kLAjj7k1Tic" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="proj-body">
-            <div class="proj-title only-tech">Sequential Workflow / Kanban System</div>
-            <div class="proj-title only-hr">Kanban-Style Task Management</div>
-            <p class="proj-desc only-tech">Laravel-based Kanban board with sequential workflow. Features drag-and-drop interface, task dependencies, and progress tracking for structured project management.</p>
-            <p class="proj-desc only-hr">Platform manajemen tugas dengan antarmuka visual drag-and-drop, mirip Trello, untuk tim yang membutuhkan alur kerja yang jelas dan terstruktur.</p>
-            <div class="proj-tags">
-              <span class="ptag">Laravel</span><span class="ptag">Sequential Method</span>
-              <span class="ptag only-tech">jQuery UI</span><span class="ptag only-hr">Drag & Drop</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://github.com/sayapburung/management-project-with-linear-method" target="_blank" class="plink">🔗 GitHub</a>
-              <a href="https://www.youtube.com/watch?v=kLAjj7k1Tic" target="_blank" class="plink primary">▶ Demo</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-vid">
-            <iframe src="https://www.youtube.com/embed/N5iy6Gc1Sg8" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="proj-body">
-            <div class="proj-title only-tech">Fuzzy C-Means Clustering Engine</div>
-            <div class="proj-title only-hr">Data Mining — Segmentasi Pelanggan</div>
-            <p class="proj-desc only-tech">Web-based data mining app implementing Fuzzy C-Means algorithm for customer segmentation with interactive visualization and configurable clustering parameters.</p>
-            <p class="proj-desc only-hr">Aplikasi analisis data untuk mengelompokkan pelanggan potensial berdasarkan pola perilaku, membantu tim marketing dalam strategi targeting yang lebih efektif.</p>
-            <div class="proj-tags">
-              <span class="ptag">Vue.js</span><span class="ptag">Fuzzy C-Means</span>
-              <span class="ptag only-tech">Algorithm: FCM</span><span class="ptag only-tech">Chart.js</span>
-              <span class="ptag only-hr">Machine Learning</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://github.com/sayapburung/service-fuzzycm" target="_blank" class="plink">🔗 GitHub</a>
-              <a href="https://www.youtube.com/watch?v=N5iy6Gc1Sg8" target="_blank" class="plink primary">▶ Demo</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-vid">
-            <iframe src="https://www.youtube.com/embed/7A2S70d85k4" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="proj-body">
-            <div class="proj-title only-tech">Vehicle Document Tracking System</div>
-            <div class="proj-title only-hr">Sistem Tracking Berkas Kendaraan</div>
-            <p class="proj-desc only-tech">Real-time vehicle document tracking system with status notifications. Built with Laravel + Vue.js for responsive SPA experience and live status updates.</p>
-            <p class="proj-desc only-hr">Platform pelacakan status dokumen kendaraan secara real-time, memudahkan pelanggan memantau progres pengurusan berkas mereka secara online.</p>
-            <div class="proj-tags">
-              <span class="ptag">Laravel</span><span class="ptag">Vue.js</span>
-              <span class="ptag only-tech">WebSockets</span><span class="ptag only-tech">SPA</span>
-              <span class="ptag only-hr">Real-time Tracking</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://github.com/sayapburung/Trackingmobil" target="_blank" class="plink">🔗 GitHub</a>
-              <a href="https://www.youtube.com/watch?v=7A2S70d85k4" target="_blank" class="plink primary">▶ Demo</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-vid">
-            <iframe src="https://www.youtube.com/embed/F7fo5zVRYHE" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="proj-body">
-            <div class="proj-title only-tech">Cooperative Financial Management System</div>
-            <div class="proj-title only-hr">Sistem Koperasi Simpan Pinjam</div>
-            <p class="proj-desc only-tech">Full-featured cooperative management system with member management, savings/loans tracking, installment scheduling, and automated financial reporting with PDF export.</p>
-            <p class="proj-desc only-hr">Aplikasi manajemen koperasi lengkap dengan fitur simpanan, pinjaman, cicilan, dan laporan keuangan terintegrasi untuk mempermudah pengelolaan koperasi.</p>
-            <div class="proj-tags">
-              <span class="ptag">Laravel</span><span class="ptag">MySQL</span>
-              <span class="ptag only-tech">Financial Module</span><span class="ptag only-tech">PDF Reports</span>
-              <span class="ptag only-hr">Sistem Keuangan</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://github.com/sayapburung/kosipa" target="_blank" class="plink">🔗 GitHub</a>
-              <a href="https://www.youtube.com/watch?v=F7fo5zVRYHE" target="_blank" class="plink primary">▶ Demo</a>
-            </div>
-          </div>
-        </div>
-
+    <div class="tech-terminal">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
+        <span class="terminal-path"><span class="t-user">hendri</span><span class="t-at">@</span><span class="t-host">portfolio</span>:<span class="t-path">~/contact</span>$ </span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#CBD5E1;">cat contact.yaml</span>
+      </div>
+      <div class="terminal-body">
+        <span class="t-comment">---</span><br>
+        <span class="t-key">profile</span>:<br>
+        &nbsp;&nbsp;<span class="t-key">name</span>: <span class="t-str">"Hendriansyah Setiawan"</span><br>
+        &nbsp;&nbsp;<span class="t-key">availability</span>: <span class="t-str">"open_to_opportunities"</span><br>
+        &nbsp;&nbsp;<span class="t-key">remote_ready</span>: <span class="t-val">true</span><br>
+        <br>
+        <span class="t-key">contact</span>:<br>
+        &nbsp;&nbsp;<span class="t-key">email</span>: <span class="t-str">"hendriansyhs@gmail.com"</span> <span class="t-comment"># preferred</span><br>
+        &nbsp;&nbsp;<span class="t-key">whatsapp</span>: <span class="t-str">"+62-812-2382-3256"</span><br>
+        &nbsp;&nbsp;<span class="t-key">linkedin</span>: <span class="t-str">"linkedin.com/in/hendriansyah-setiawan"</span><br>
+        &nbsp;&nbsp;<span class="t-key">github</span>: <span class="t-str">"github.com/sayapburung"</span><br>
+        &nbsp;&nbsp;<span class="t-key">response_time</span>: <span class="t-str">"&lt; 24h"</span>
       </div>
     </div>
 
-    <!-- ════ CONTACT ════ -->
-    <div class="section" id="sec-contact">
-      <div class="page-hdr">
-        <div class="page-hdr-left">
-          <div class="page-tag only-tech">$ cat contact.yaml</div>
-          <div class="page-tag only-hr">Hubungi Saya</div>
-          <h1 class="page-h1 only-tech">contact.yaml --export</h1>
-          <h1 class="page-h1 only-hr">Contact Information</h1>
+    <div class="contact-layout">
+      <div class="contact-intro-card">
+        <div class="contact-intro-title">Mari Berkolaborasi! 👋</div>
+        <div class="contact-intro-text">
+          Saya terbuka untuk diskusi mengenai peluang kerja baru, proyek menarik, atau sekadar berbagi 
+          pengetahuan di bidang IT Support, System Analysis, dan QA Engineering. Jangan ragu untuk menghubungi!
         </div>
       </div>
 
-      <div class="terminal" style="margin-bottom:24px;">
-        <div class="term-bar">
-          <div class="term-dots"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div></div>
-          <div class="term-path only-tech"><em>hendriansyah</em>@portfolio:~/contact# cat info.yaml</div>
-          <div class="term-path only-hr"><em>portfolio</em> — Informasi Kontak</div>
+      <a href="mailto:hendriansyhs@gmail.com" class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">hendriansyhs@gmail.com</div>
         </div>
-        <div class="term-body">
-          <div class="only-tech">
-            <div class="tc-line"><span class="tc-out">---</span></div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">profile:</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;full_name: <span class="tc-hi2">"Hendriansyah Setiawan"</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;role: <span class="tc-hi2">"Senior IT Support (L2/L3) | System Analyst | QA Engineer"</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;location: <span class="tc-hi2">"Bandung, West Java · GMT+7"</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;remote_ready: <span class="tc-hi">true</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;availability: <span class="tc-hi">open_to_opportunities</span></span></div>
-            <div class="tc-line">&nbsp;</div>
-            <div class="tc-line"><span class="tc-out"><span class="tc-hi">contact:</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;email: <span class="tc-hi2">hendriansyhs@gmail.com</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;whatsapp: <span class="tc-hi2">+62-812-2382-3256</span> </span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;linkedin: <span class="tc-hi2">linkedin.com/in/hendriansyah-setiawan</span></span></div>
-            <div class="tc-line"><span class="tc-out">&nbsp;&nbsp;github: <span class="tc-hi2">github.com/sayapburung</span></span></div>
-          </div>
-          <div class="only-hr">
-            <div class="tc-line"><span class="tc-prompt">$ </span><span class="tc-cmd">cat informasi-kontak.txt</span></div>
-            <div class="tc-line"><span class="tc-out">Nama Lengkap : Hendriansyah Setiawan</span></div>
-            <div class="tc-line"><span class="tc-out">Posisi       : Senior IT Support & System Analyst</span></div>
-            <div class="tc-line"><span class="tc-out">Lokasi       : Bandung, Indonesia</span></div>
-            <div class="tc-line"><span class="tc-out">Status       : <span class="tc-hi">Terbuka untuk peluang baru</span></span></div>
-            <div class="tc-line">&nbsp;</div>
-            <div class="tc-line"><span class="tc-out">Email     : <span class="tc-hi">hendriansyhs@gmail.com</span></span></div>
-            <div class="tc-line"><span class="tc-out">WhatsApp  : <span class="tc-hi">+62 812-2382-3256</span></span></div>
-          </div>
-        </div>
-      </div>
+      </a>
 
-      <div class="contact-grid">
-        <a href="mailto:hendriansyhs@gmail.com" class="citem">
-          <div class="citem-icon">📧</div>
-          <div class="citem-label">Email</div>
-          <div class="citem-val">hendriansyhs@gmail.com</div>
-        </a>
-        <a href="https://wa.me/6281223823256" target="_blank" class="citem">
-          <div class="citem-icon">📱</div>
-          <div class="citem-label">WhatsApp</div>
-          <div class="citem-val">+62 812-2382-3256</div>
-        </a>
-        <a href="https://www.linkedin.com/in/hendriansyah-setiawan" target="_blank" class="citem">
-          <div class="citem-icon">💼</div>
-          <div class="citem-label">LinkedIn</div>
-          <div class="citem-val">hendriansyah-setiawan</div>
-        </a>
-        <a href="https://github.com/sayapburung" target="_blank" class="citem">
-          <div class="citem-icon">🔗</div>
-          <div class="citem-label">GitHub</div>
-          <div class="citem-val">sayapburung</div>
-        </a>
-        <a href="https://www.instagram.com/hendriansyhs" target="_blank" class="citem">
-          <div class="citem-icon">📷</div>
-          <div class="citem-label">Instagram</div>
-          <div class="citem-val">@hendriansyhs</div>
-        </a>
-        <a href="https://drive.google.com/file/d/1-fXuaRxoj7PL-afv4EoiErfI70xedZIZ/view" target="_blank" class="citem">
-          <div class="citem-icon">📄</div>
-          <div class="citem-label">Resume / CV</div>
-          <div class="citem-val">Download PDF</div>
-        </a>
-      </div>
+      <a href="https://wa.me/6281223823256" target="_blank" class="contact-card">
+        <div class="contact-card-icon">📱</div>
+        <div>
+          <div class="contact-card-label">WhatsApp</div>
+          <div class="contact-card-value">+62 812-2382-3256</div>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/hendriansyah-setiawan" target="_blank" class="contact-card">
+        <div class="contact-card-icon">💼</div>
+        <div>
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-value">Hendriansyah Setiawan</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/sayapburung" target="_blank" class="contact-card">
+        <div class="contact-card-icon">🔗</div>
+        <div>
+          <div class="contact-card-label">GitHub</div>
+          <div class="contact-card-value">sayapburung</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/hendriansyhs" target="_blank" class="contact-card">
+        <div class="contact-card-icon">📷</div>
+        <div>
+          <div class="contact-card-label">Instagram</div>
+          <div class="contact-card-value">@hendriansyhs</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/file/d/1-fXuaRxoj7PL-afv4EoiErfI70xedZIZ/view" target="_blank" class="contact-card">
+        <div class="contact-card-icon">📄</div>
+        <div>
+          <div class="contact-card-label">Resume / CV</div>
+          <div class="contact-card-value">Download PDF</div>
+        </div>
+      </a>
     </div>
+  </section>
 
-  </main>
-</div>
+</main>
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav">
-  <div class="mobile-nav-item active" data-sec="profile"><div class="mobile-nav-icon">👤</div><span>Profile</span></div>
-  <div class="mobile-nav-item" data-sec="skills"><div class="mobile-nav-icon">⚡</div><span>Skills</span></div>
-  <div class="mobile-nav-item" data-sec="experience"><div class="mobile-nav-icon">📁</div><span>Exp</span></div>
-  <div class="mobile-nav-item" data-sec="projects"><div class="mobile-nav-icon">🚀</div><span>Projects</span></div>
-  <div class="mobile-nav-item" data-sec="contact"><div class="mobile-nav-icon">📡</div><span>Contact</span></div>
-</div>
+<!-- Mobile Navigation -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <div class="mobile-nav-item active" onclick="showSection('profile',this)" data-section="profile">
+      <span class="mobile-nav-icon">👤</span>
+      <span class="mobile-nav-label">Profile</span>
+    </div>
+    <div class="mobile-nav-item" onclick="showSection('skills',this)" data-section="skills">
+      <span class="mobile-nav-icon">⚡</span>
+      <span class="mobile-nav-label">Skills</span>
+    </div>
+    <div class="mobile-nav-item" onclick="showSection('experience',this)" data-section="experience">
+      <span class="mobile-nav-icon">📋</span>
+      <span class="mobile-nav-label">Experience</span>
+    </div>
+    <div class="mobile-nav-item" onclick="showSection('projects',this)" data-section="projects">
+      <span class="mobile-nav-icon">🚀</span>
+      <span class="mobile-nav-label">Projects</span>
+    </div>
+    <div class="mobile-nav-item" onclick="showSection('contact',this)" data-section="contact">
+      <span class="mobile-nav-icon">📧</span>
+      <span class="mobile-nav-label">Contact</span>
+    </div>
+  </div>
+</nav>
 
 <script>
-const SECTIONS = ['profile','skills','experience','projects','contact'];
+// ===== Mode Switching =====
+function setMode(mode) {
+  const hrBtn = document.querySelector('.hr-btn');
+  const techBtn = document.querySelector('.tech-btn');
 
-function setMode(m){
-  if(m==='hr') document.body.classList.add('hr-mode');
-  else document.body.classList.remove('hr-mode');
-  document.querySelector('.mode-btn.hr-btn').classList.toggle('active', m==='hr');
-  document.querySelector('.mode-btn.tech-btn').classList.toggle('active', m!=='hr');
-  try{localStorage.setItem('ptf-mode',m);}catch(e){}
+  if (mode === 'tech') {
+    document.body.classList.add('tech-mode');
+    hrBtn.classList.remove('active');
+    techBtn.classList.add('active');
+    localStorage.setItem('pf-mode', 'tech');
+    // Update brand
+    document.getElementById('brand-init').textContent = '~/';
+    document.getElementById('brand-name').textContent = 'hendri@portfolio';
+    document.getElementById('brand-role').textContent = 'Senior IT Support | L2/L3 | QA Eng';
+    document.getElementById('status-text').textContent = 'status: available';
+  } else {
+    document.body.classList.remove('tech-mode');
+    hrBtn.classList.add('active');
+    techBtn.classList.remove('active');
+    localStorage.setItem('pf-mode', 'hr');
+    // Update brand
+    document.getElementById('brand-init').textContent = 'HS';
+    document.getElementById('brand-name').textContent = 'Hendriansyah Setiawan';
+    document.getElementById('brand-role').textContent = 'Senior IT Support & System Analyst';
+    document.getElementById('status-text').textContent = 'Available for hire';
+  }
 }
 
-function showSec(id){
-  SECTIONS.forEach(s=>{
-    document.getElementById('sec-'+s).classList.toggle('active', s===id);
-  });
-  document.querySelectorAll('.nav-item[data-sec], .mobile-nav-item[data-sec]').forEach(el=>{
-    el.classList.toggle('active', el.dataset.sec===id);
-  });
-  document.getElementById('topbar-section').textContent = id;
-  document.querySelector('.main').scrollTo({top:0,behavior:'smooth'});
+// ===== Section Navigation =====
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  // Sidebar
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const sidebarItem = document.querySelector(`.nav-item[data-section="${id}"]`);
+  if (sidebarItem) sidebarItem.classList.add('active');
+
+  // Mobile nav
+  document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
+  const mobileItem = document.querySelector(`.mobile-nav-item[data-section="${id}"]`);
+  if (mobileItem) mobileItem.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.querySelectorAll('[data-sec]').forEach(el=>{
-  el.addEventListener('click',()=>showSec(el.dataset.sec));
-});
-
-try{
-  const saved=localStorage.getItem('ptf-mode');
-  if(saved==='hr') setMode('hr');
-}catch(e){}
+// ===== Init =====
+const saved = localStorage.getItem('pf-mode');
+if (saved === 'tech') setMode('tech');
+// default is HR — already rendered as HR mode
 </script>
 </body>
 </html>
