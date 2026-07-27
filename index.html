@@ -3,7 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hendriansyah Setiawan — Portfolio</title>
+<title>Hendriansyah Setiawan — IT Support & System Analyst Portfolio</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Portfolio Hendriansyah Setiawan — Senior IT Support (L2/L3), System Analyst & QA Engineer dengan 6+ tahun pengalaman menangani sistem perpajakan daerah, troubleshooting, dan quality assurance.">
+<meta name="keywords" content="Hendriansyah Setiawan, IT Support, System Analyst, QA Engineer, Web Developer, Laravel, MySQL, Linux, Bandung, Portfolio">
+<meta name="author" content="Hendriansyah Setiawan">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook & LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hendriansyah Setiawan — IT Support & System Analyst Portfolio">
+<meta property="og:description" content="Senior IT Support (L2/L3), System Analyst & QA Engineer dengan 6+ tahun pengalaman. 95% SLA compliance, 20+ daerah klien, spesialis Laravel/MySQL/Linux.">
+<meta property="og:locale" content="id_ID">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hendriansyah Setiawan — IT Support & System Analyst Portfolio">
+<meta name="twitter:description" content="Senior IT Support (L2/L3), System Analyst & QA Engineer dengan 6+ tahun pengalaman.">
+
+<!-- Favicon (emoji-based, no external file needed) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%91%E2%80%8D%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,600;1,300&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -114,6 +135,114 @@ body.tech-mode .mode-toggle {
 }
 
 .toggle-icon { font-size: 15px; }
+
+/* ===== LANGUAGE TOGGLE ===== */
+.lang-toggle {
+  position: fixed;
+  top: 68px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--hr-surface);
+  border: 1.5px solid var(--hr-border);
+  border-radius: 50px;
+  padding: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.4s;
+}
+
+body.tech-mode .lang-toggle {
+  background: #0D1421;
+  border-color: #1E2D45;
+  box-shadow: 0 4px 20px rgba(0,255,135,0.1);
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: all 0.3s;
+  background: transparent;
+  color: #9CA3AF;
+}
+
+.lang-btn.active {
+  background: var(--hr-accent);
+  color: white;
+  box-shadow: 0 2px 10px rgba(26,86,219,0.3);
+}
+
+body.tech-mode .lang-btn {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body.tech-mode .lang-btn.active {
+  background: linear-gradient(135deg, #00FF87, #38BDF8);
+  color: #080C14;
+  box-shadow: 0 2px 12px rgba(0,255,135,0.4);
+}
+
+@media (max-width: 900px) {
+  .lang-toggle { top: 58px; right: 12px; }
+  .lang-btn { padding: 5px 11px; font-size: 11px; }
+}
+
+/* ===== BACK TO TOP BUTTON ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--hr-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(26,86,219,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all 0.3s;
+  z-index: 500;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(26,86,219,0.4);
+}
+
+body.tech-mode .back-to-top {
+  background: transparent;
+  border: 1.5px solid var(--tech-green);
+  color: var(--tech-green);
+  box-shadow: 0 0 20px rgba(0,255,135,0.15);
+}
+
+body.tech-mode .back-to-top:hover {
+  box-shadow: 0 0 28px rgba(0,255,135,0.3);
+}
+
+@media (max-width: 900px) {
+  .back-to-top { bottom: 84px; right: 16px; width: 40px; height: 40px; font-size: 16px; }
+}
 
 /* ===== LAYOUT ===== */
 .app-container {
@@ -1320,6 +1449,63 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label {
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* ===== PROJECT FILTER (grouping) ===== */
+.project-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1.5px solid var(--hr-border);
+  background: var(--hr-surface);
+  color: var(--hr-text2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.filter-btn:hover {
+  border-color: var(--hr-accent);
+  color: var(--hr-accent);
+  background: var(--hr-tag-bg);
+}
+
+.filter-btn.active {
+  background: var(--hr-accent);
+  border-color: var(--hr-accent);
+  color: white;
+}
+
+body.tech-mode .filter-btn {
+  background: var(--tech-panel);
+  border-color: var(--tech-border);
+  color: var(--tech-text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+body.tech-mode .filter-btn:hover {
+  border-color: var(--tech-green);
+  color: var(--tech-green);
+  background: rgba(0,255,135,0.05);
+}
+
+body.tech-mode .filter-btn.active {
+  background: rgba(0,255,135,0.1);
+  border-color: var(--tech-green);
+  color: var(--tech-green);
+  box-shadow: 0 0 12px rgba(0,255,135,0.15);
+}
+
+.project-card.is-hidden { display: none !important; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .sidebar { display: none; }
@@ -1384,6 +1570,12 @@ body.tech-mode::after {
   </button>
 </div>
 
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="lang-id-btn" onclick="setLanguage('id')">ID</button>
+  <button class="lang-btn" id="lang-en-btn" onclick="setLanguage('en')">EN</button>
+</div>
+
 <!-- Sidebar -->
 <nav class="sidebar">
   <div class="sidebar-brand">
@@ -1400,27 +1592,27 @@ body.tech-mode::after {
   <div class="nav-item active" data-section="profile" onclick="showSection('profile',this)">
     <span class="nav-icon">👤</span>
     <span class="nav-tech-prefix">01_</span>
-    <span>Profile</span>
+    <span data-i18n="nav-profile">Profile</span>
   </div>
   <div class="nav-item" data-section="skills" onclick="showSection('skills',this)">
     <span class="nav-icon">⚡</span>
     <span class="nav-tech-prefix">02_</span>
-    <span>Skills</span>
+    <span data-i18n="nav-skills">Skills</span>
   </div>
   <div class="nav-item" data-section="experience" onclick="showSection('experience',this)">
     <span class="nav-icon">📋</span>
     <span class="nav-tech-prefix">03_</span>
-    <span>Experience</span>
+    <span data-i18n="nav-experience">Experience</span>
   </div>
   <div class="nav-item" data-section="projects" onclick="showSection('projects',this)">
     <span class="nav-icon">🚀</span>
     <span class="nav-tech-prefix">04_</span>
-    <span>Projects</span>
+    <span data-i18n="nav-projects">Projects</span>
   </div>
   <div class="nav-item" data-section="contact" onclick="showSection('contact',this)">
     <span class="nav-icon">📧</span>
     <span class="nav-tech-prefix">05_</span>
-    <span>Contact</span>
+    <span data-i18n="nav-contact">Contact</span>
   </div>
 
   <div class="sidebar-footer">
@@ -1436,9 +1628,9 @@ body.tech-mode::after {
 
   <!-- ===== PROFILE ===== -->
   <section class="section active" id="profile">
-    <div class="section-eyebrow" id="profile-eyebrow">Professional Profile</div>
+    <div class="section-eyebrow" id="profile-eyebrow" data-i18n="profile-eyebrow">Professional Profile</div>
     <h1 class="section-heading" id="profile-heading">Hendriansyah Setiawan</h1>
-    <p class="section-sub" id="profile-sub">IT Support Engineer | Improving System Stability & Reducing Errors</p>
+    <p class="section-sub" id="profile-sub" data-i18n="profile-sub">IT Support Engineer | Improving System Stability & Reducing Errors</p>
 
     <!-- Tech Terminal intro (only in tech mode) -->
     <div class="tech-terminal">
@@ -1514,17 +1706,17 @@ body.tech-mode::after {
       </div>
       <div>
         <div class="hero-name">Hendriansyah Setiawan</div>
-        <div class="hero-title" id="hero-title-text">Experienced in handling government systems, troubleshooting, and system monitoring with 95% SLA achievement.</div>
+        <div class="hero-title" id="hero-title-text" data-i18n="hero-title">Experienced in handling government systems, troubleshooting, and system monitoring with 95% SLA achievement.</div>
         <div class="hero-tags">
           <span class="hero-tag">IT Support L2/L3</span>
           <span class="hero-tag green">System Analyst</span>
           <span class="hero-tag orange">QA Engineer</span>
-          <span class="hero-tag">6+ Tahun Experience</span>
+          <span class="hero-tag" data-i18n="hero-tag-exp">6+ Tahun Experience</span>
         </div>
         <div class="hero-meta">
           <span class="hero-meta-item">📍 Bandung, West Java</span>
-          <span class="hero-meta-item">🟢 Available for hire</span>
-          <span class="hero-meta-item">🌐 Remote Ready</span>
+          <span class="hero-meta-item" data-i18n="hero-meta-hire">🟢 Available for hire</span>
+          <span class="hero-meta-item" data-i18n="hero-meta-remote">🌐 Remote Ready</span>
         </div>
       </div>
     </div>
@@ -1533,11 +1725,11 @@ body.tech-mode::after {
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-number">6+</div>
-        <div class="stat-label-text">Tahun Pengalaman</div>
+        <div class="stat-label-text" data-i18n="stat-years">Tahun Pengalaman</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">100+</div>
-        <div class="stat-label-text">Tiket/Bulan</div>
+        <div class="stat-label-text" data-i18n="stat-tickets">Tiket/Bulan</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">95%</div>
@@ -1545,38 +1737,38 @@ body.tech-mode::after {
       </div>
       <div class="stat-card">
         <div class="stat-number">20+</div>
-        <div class="stat-label-text">Daerah Klien</div>
+        <div class="stat-label-text" data-i18n="stat-region">Daerah Klien</div>
       </div>
     </div>
 
     <!-- Info Cards -->
     <div class="info-cards">
       <div class="info-card">
-        <div class="info-card-title">Informasi Dasar</div>
+        <div class="info-card-title" data-i18n="info-basic-title">Informasi Dasar</div>
         <div class="info-row">
-          <span class="info-row-key">Nama</span>
+          <span class="info-row-key" data-i18n="info-name">Nama</span>
           <span class="info-row-val">Hendriansyah Setiawan</span>
         </div>
         <div class="info-row">
-          <span class="info-row-key">Lokasi</span>
+          <span class="info-row-key" data-i18n="info-location">Lokasi</span>
           <span class="info-row-val">Bandung, West Java</span>
         </div>
         <div class="info-row">
-          <span class="info-row-key">Pendidikan</span>
-          <span class="info-row-val">S1 Teknik Informatika</span>
+          <span class="info-row-key" data-i18n="info-education">Pendidikan</span>
+          <span class="info-row-val" data-i18n="info-education-val">S1 Teknik Informatika</span>
         </div>
         <div class="info-row">
-          <span class="info-row-key">Institusi</span>
+          <span class="info-row-key" data-i18n="info-institution">Institusi</span>
           <span class="info-row-val">Universitas Teknologi Bandung</span>
         </div>
         <div class="info-row">
-          <span class="info-row-key">Ketersediaan</span>
+          <span class="info-row-key" data-i18n="info-availability">Ketersediaan</span>
           <span class="info-row-val">Available to Opportunities</span>
         </div>
       </div>
       <div class="info-card">
-        <div class="info-card-title">Ringkasan Profesional</div>
-        <div style="font-size:14px;line-height:1.75;color:var(--hr-text2);">
+        <div class="info-card-title" data-i18n="info-summary-title">Ringkasan Profesional</div>
+        <div style="font-size:14px;line-height:1.75;color:var(--hr-text2);" id="profile-summary" data-i18n="profile-summary">
 <p>
   IT Support L2/L3 dengan pengalaman <strong>6+ tahun</strong> dalam 
   <strong>system analysis dan QA engineering</strong>, berfokus pada implementasi serta dukungan sistem enterprise.<br><br>
@@ -1596,9 +1788,9 @@ body.tech-mode::after {
 
   <!-- ===== SKILLS ===== -->
   <section class="section" id="skills">
-    <div class="section-eyebrow">Core Competencies</div>
-    <h2 class="section-heading">Keahlian & Teknologi</h2>
-    <p class="section-sub" id="skills-sub">Skill dan teknologi yang dikuasai selama 6+ tahun pengalaman di bidang IT Support dan operasional sistem.</p>
+    <div class="section-eyebrow" data-i18n="skills-eyebrow">Core Competencies</div>
+    <h2 class="section-heading" data-i18n="skills-heading">Keahlian & Teknologi</h2>
+    <p class="section-sub" id="skills-sub" data-i18n="skills-sub">Skill dan teknologi yang dikuasai selama 6+ tahun pengalaman di bidang IT Support dan operasional sistem.</p>
 
     <div class="tech-terminal">
       <div class="terminal-bar">
@@ -1624,10 +1816,10 @@ body.tech-mode::after {
           <div class="skill-card-title">IT Support & Troubleshooting</div>
         </div>
         <ul class="skill-items">
-          <li class="skill-item"><span class="skill-bullet"></span>Escalasi L2/L3 & Root Cause Analysis</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Penanganan Tiket & SLA Management</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Remote Support & Onboarding Pengguna</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Penyusunan SOP & Dokumentasi Teknis</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-1">Escalasi L2/L3 & Root Cause Analysis</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-2">Penanganan Tiket & SLA Management</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-3">Remote Support & Onboarding Pengguna</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-4">Penyusunan SOP & Dokumentasi Teknis</span></li>
         </ul>
       </div>
       <div class="skill-card">
@@ -1637,9 +1829,9 @@ body.tech-mode::after {
         </div>
         <ul class="skill-items">
           <li class="skill-item"><span class="skill-bullet"></span>Complex SQL Queries & Data Analysis</li>
-          <li class="skill-item"><span class="skill-bullet"></span>DB Backup/Restore & Migration</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Data Sync Issues & Integrity Checks</li>
-          <li class="skill-item"><span class="skill-bullet"></span>User Permissions & Access Control</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-2-2">DB Backup/Restore & Migration</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-2-3">Data Sync Issues & Integrity Checks</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-2-4">User Permissions & Access Control</span></li>
         </ul>
       </div>
       <div class="skill-card">
@@ -1657,7 +1849,7 @@ body.tech-mode::after {
       <div class="skill-card">
         <div class="skill-card-header">
           <div class="skill-card-icon">🧪</div>
-          <div class="skill-card-title">Quality Assurance & Testing</div>
+          <div class="skill-card-title" data-i18n="skill-card-4-title">Quality Assurance & Testing</div>
         </div>
         <ul class="skill-items">
           <li class="skill-item"><span class="skill-bullet"></span>UAT & Functional Testing</li>
@@ -1669,19 +1861,19 @@ body.tech-mode::after {
       <div class="skill-card">
         <div class="skill-card-header">
           <div class="skill-card-icon">💼</div>
-          <div class="skill-card-title">Manajemen & Koordinasi</div>
+          <div class="skill-card-title" data-i18n="skill-card-5-title">Manajemen & Koordinasi</div>
         </div>
         <ul class="skill-items">
           <li class="skill-item"><span class="skill-bullet"></span>Task Prioritization & Backlog Mgmt</li>
           <li class="skill-item"><span class="skill-bullet"></span>Cross-functional Collaboration</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Mentoring Tim Junior</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-5-3">Mentoring Tim Junior</span></li>
           <li class="skill-item"><span class="skill-bullet"></span>Status Reporting & Escalation</li>
         </ul>
       </div>
       <div class="skill-card">
         <div class="skill-card-header">
           <div class="skill-card-icon">🛠️</div>
-          <div class="skill-card-title">Implementasi & Deployment</div>
+          <div class="skill-card-title" data-i18n="skill-card-6-title">Implementasi & Deployment</div>
         </div>
         <ul class="skill-items">
           <li class="skill-item"><span class="skill-bullet"></span>System Rollout & Deployment</li>
@@ -1695,9 +1887,9 @@ body.tech-mode::after {
 
   <!-- ===== EXPERIENCE ===== -->
   <section class="section" id="experience">
-    <div class="section-eyebrow">Career History</div>
-    <h2 class="section-heading">Pengalaman Kerja</h2>
-    <p class="section-sub">6+ tahun lintas 3 industri — Teknologi, Otomotif, dan Manufaktur</p>
+    <div class="section-eyebrow" data-i18n="exp-eyebrow">Career History</div>
+    <h2 class="section-heading" data-i18n="exp-heading">Pengalaman Kerja</h2>
+    <p class="section-sub" data-i18n="exp-sub">6+ tahun lintas 3 industri — Teknologi, Otomotif, dan Manufaktur</p>
 
     <div class="tech-terminal">
       <div class="terminal-bar">
@@ -1717,18 +1909,18 @@ body.tech-mode::after {
       <div class="timeline-entry">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="timeline-period">🗓️ Nov 2020 → Sekarang (5+ Tahun)</div>
+          <div class="timeline-period" data-i18n="exp1-period">🗓️ Nov 2020 → Sekarang (5+ Tahun)</div>
           <h3 class="timeline-job-title">Senior IT Support & System Analyst</h3>
           <div class="timeline-company">
             <a href="https://v-tax.id/" target="_blank">PT. Mutiara Bintang Abadi — V-TAX | Valuestream Group</a>
           </div>
-          <p class="timeline-desc">
+          <p class="timeline-desc" data-i18n="exp1-desc">
             Bertanggung jawab penuh atas dukungan teknis sistem perpajakan daerah (V-TAX) untuk pemerintah daerah 
             di seluruh Indonesia. Mengelola seluruh siklus implementasi sistem mulai dari pelatihan pengguna, 
             troubleshooting harian, hingga koordinasi pengembangan fitur baru dengan tim developer.
             Dipromosikan sebagai <strong>Assistant Team Leader</strong>.
           </p>
-          <ul class="achievements">
+          <ul class="achievements" id="exp1-achievements" data-i18n="exp1-achievements">
             <li class="achievement-item">Meningkatkan kepuasan klien hingga 95% melalui response time cepat (&lt;24 jam untuk 95% tiket)</li>
             <li class="achievement-item">Menyusun SOP & dokumentasi teknis yang digunakan di 20+ daerah klien</li>
             <li class="achievement-item">Menurunkan error rate sistem produksi sebesar 60% melalui proses QA sistematis</li>
@@ -1741,16 +1933,16 @@ body.tech-mode::after {
       <div class="timeline-entry">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="timeline-period">🗓️ Apr 2019 → Okt 2020 (1.5 Tahun)</div>
+          <div class="timeline-period" data-i18n="exp2-period">🗓️ Apr 2019 → Okt 2020 (1.5 Tahun)</div>
           <h3 class="timeline-job-title">Maintenance Service Appointment Coordinator</h3>
           <div class="timeline-company">
             <a href="https://auto2000.co.id/" target="_blank">AUTO 2000 Bandung Asia Afrika — PT Astra International</a>
           </div>
-          <p class="timeline-desc">
+          <p class="timeline-desc" data-i18n="exp2-desc">
             Mengelola penjadwalan dan follow-up service kendaraan pelanggan, serta menyusun analisis data operasional 
             menggunakan Microsoft Power BI untuk mendukung pengambilan keputusan manajemen bengkel.
           </p>
-          <ul class="achievements">
+          <ul class="achievements" data-i18n="exp2-achievements">
             <li class="achievement-item">Meningkatkan efisiensi jadwal service hingga 25% melalui sistem pencatatan terstruktur</li>
             <li class="achievement-item">Mengurangi komplain pelanggan sebesar 40% melalui koordinasi proaktif dengan teknisi</li>
             <li class="achievement-item">Membuat dashboard operasional harian menggunakan Power BI untuk monitoring real-time</li>
@@ -1762,16 +1954,16 @@ body.tech-mode::after {
       <div class="timeline-entry">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <div class="timeline-period">🗓️ Mei 2018 → Apr 2019 (1 Tahun)</div>
+          <div class="timeline-period" data-i18n="exp3-period">🗓️ Mei 2018 → Apr 2019 (1 Tahun)</div>
           <h3 class="timeline-job-title">Staff Warehouse & Inventory Control</h3>
           <div class="timeline-company">
             <a href="https://www.instagram.com/tokomitra.bandung/" target="_blank">Mitra Bahan Sepatu — Bandung</a>
           </div>
-          <p class="timeline-desc">
+          <p class="timeline-desc" data-i18n="exp3-desc">
             Mengelola administrasi gudang termasuk stock opname, verifikasi barang masuk/keluar, 
             dan penerapan sistem FIFO untuk rotasi inventory yang efisien.
           </p>
-          <ul class="achievements">
+          <ul class="achievements" data-i18n="exp3-achievements">
             <li class="achievement-item">Menyusun sistem pencatatan harian yang mempercepat proses stock opname hingga 30%</li>
             <li class="achievement-item">Menerapkan sistem FIFO yang menurunkan produk kadaluarsa/expired sebesar 20%</li>
             <li class="achievement-item">Akurasi stok 98%+ melalui pengecekan rutin dan rekonsiliasi data</li>
@@ -1783,9 +1975,9 @@ body.tech-mode::after {
 
   <!-- ===== PROJECTS ===== -->
 <section class="section" id="projects">
-  <div class="section-eyebrow">Selected Work</div>
-  <h2 class="section-heading">Proyek & Portfolio</h2>
-  <p class="section-sub">Proyek yang mendemonstrasikan kemampuan dalam system development, troubleshooting, dan implementasi solusi berbasis kebutuhan bisnis</p>
+  <div class="section-eyebrow" data-i18n="proj-eyebrow">Selected Work</div>
+  <h2 class="section-heading" data-i18n="proj-heading">Proyek & Portfolio</h2>
+  <p class="section-sub" data-i18n="proj-sub">Proyek yang mendemonstrasikan kemampuan dalam system development, troubleshooting, dan implementasi solusi berbasis kebutuhan bisnis</p>
 
   <div class="tech-terminal">
     <div class="terminal-bar">
@@ -1804,16 +1996,25 @@ body.tech-mode::after {
     </div>
   </div>
 
+  <!-- Filter Kategori Proyek: silakan sesuaikan data-category tiap kartu di bawah -->
+  <div class="project-filter" id="project-filter">
+    <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)" data-i18n="filter-all">Semua</button>
+    <button class="filter-btn" data-filter="web-developer" onclick="filterProjects('web-developer', this)">Web Developer</button>
+    <button class="filter-btn" data-filter="system-analyst" onclick="filterProjects('system-analyst', this)">System Analyst</button>
+    <button class="filter-btn" data-filter="qa" onclick="filterProjects('qa', this)">QA / Testing</button>
+    <button class="filter-btn" data-filter="data-analyst" onclick="filterProjects('data-analyst', this)">Data Analyst</button>
+  </div>
+
   <div class="projects-grid">
 
     <!-- 1 -->
-    <div class="project-card">
+    <div class="project-card" data-category="isi-kategori-disini">
       <div class="project-video-wrap">
         <iframe src="https://www.youtube.com/embed/v2l7tBbrVf0?start=17" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="project-body">
         <h3 class="project-title">Sistem Manajemen Proyek - Dynamic Workflow</h3>
-        <p class="project-desc">
+        <p class="project-desc" data-i18n="proj1-desc">
           Platform manajemen proyek berbasis web yang memungkinkan penyesuaian alur kerja secara dinamis sesuai kebutuhan tim. 
           Membantu meningkatkan fleksibilitas operasional dan efisiensi dalam pengelolaan proyek dengan berbagai skenario workflow.
         </p>
@@ -1830,13 +2031,13 @@ body.tech-mode::after {
     </div>
 
     <!-- 2 -->
-    <div class="project-card">
+    <div class="project-card" data-category="isi-kategori-disini">
       <div class="project-video-wrap">
         <iframe src="https://www.youtube.com/embed/qWD0llnbb-w" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="project-body">
         <h3 class="project-title">Hybrid Project Management System</h3>
-        <p class="project-desc">
+        <p class="project-desc" data-i18n="proj2-desc">
           Sistem manajemen proyek yang menggabungkan metode linear dan agile dalam satu platform, 
           memungkinkan tim menggunakan pendekatan yang paling sesuai untuk berbagai jenis proyek.
         </p>
@@ -1853,13 +2054,13 @@ body.tech-mode::after {
     </div>
 
     <!-- 3 -->
-    <div class="project-card">
+    <div class="project-card" data-category="isi-kategori-disini">
       <div class="project-video-wrap">
         <iframe src="https://www.youtube.com/embed/kLAjj7k1Tic" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="project-body">
         <h3 class="project-title">Kanban Task Management System</h3>
-        <p class="project-desc">
+        <p class="project-desc" data-i18n="proj3-desc">
           Sistem manajemen tugas dengan konsep Kanban dan fitur drag-and-drop, membantu tim dalam memvisualisasikan progres pekerjaan 
           serta meningkatkan koordinasi dan transparansi antar anggota tim.
         </p>
@@ -1876,13 +2077,13 @@ body.tech-mode::after {
     </div>
 
     <!-- 4 -->
-    <div class="project-card">
+    <div class="project-card" data-category="isi-kategori-disini">
       <div class="project-video-wrap">
         <iframe src="https://www.youtube.com/embed/N5iy6Gc1Sg8" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="project-body">
         <h3 class="project-title">Data Mining - Segmentasi Pelanggan</h3>
-        <p class="project-desc">
+        <p class="project-desc" data-i18n="proj4-desc">
           Aplikasi analisis data menggunakan metode Fuzzy C-Means untuk segmentasi pelanggan, 
           membantu dalam pengambilan keputusan berbasis data dan strategi targeting yang lebih efektif.
         </p>
@@ -1899,13 +2100,13 @@ body.tech-mode::after {
     </div>
 
     <!-- 5 -->
-    <div class="project-card">
+    <div class="project-card" data-category="isi-kategori-disini">
       <div class="project-video-wrap">
         <iframe src="https://www.youtube.com/embed/7A2S70d85k4" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="project-body">
         <h3 class="project-title">Sistem Tracking Berkas Kendaraan</h3>
-        <p class="project-desc">
+        <p class="project-desc" data-i18n="proj5-desc">
           Platform pelacakan status dokumen kendaraan secara real-time yang membantu pengguna memonitor progres pengurusan berkas, 
           meningkatkan transparansi layanan dan efisiensi komunikasi.
         </p>
@@ -1922,13 +2123,13 @@ body.tech-mode::after {
     </div>
 
     <!-- 6 -->
-    <div class="project-card">
+    <div class="project-card" data-category="isi-kategori-disini">
       <div class="project-video-wrap">
         <iframe src="https://www.youtube.com/embed/F7fo5zVRYHE" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="project-body">
         <h3 class="project-title">Sistem Koperasi Simpan Pinjam</h3>
-        <p class="project-desc">
+        <p class="project-desc" data-i18n="proj6-desc">
           Aplikasi manajemen koperasi dengan fitur lengkap seperti simpanan, pinjaman, cicilan, dan laporan keuangan otomatis, 
           membantu meningkatkan efisiensi pengelolaan dan akurasi data keuangan.
         </p>
@@ -1948,9 +2149,9 @@ body.tech-mode::after {
 </section>
   <!-- ===== CONTACT ===== -->
   <section class="section" id="contact">
-    <div class="section-eyebrow">Get In Touch</div>
-    <h2 class="section-heading">Hubungi Saya</h2>
-    <p class="section-sub">Terbuka untuk peluang baru, kolaborasi, atau sekadar ngobrol!</p>
+    <div class="section-eyebrow" data-i18n="contact-eyebrow">Get In Touch</div>
+    <h2 class="section-heading" data-i18n="contact-heading">Hubungi Saya</h2>
+    <p class="section-sub" data-i18n="contact-sub">Terbuka untuk peluang baru, kolaborasi, atau sekadar ngobrol!</p>
 
     <div class="tech-terminal">
       <div class="terminal-bar">
@@ -1976,8 +2177,8 @@ body.tech-mode::after {
 
     <div class="contact-layout">
       <div class="contact-intro-card">
-        <div class="contact-intro-title">Mari Berkolaborasi! 👋</div>
-        <div class="contact-intro-text">
+        <div class="contact-intro-title" data-i18n="contact-intro-title">Mari Berkolaborasi! 👋</div>
+        <div class="contact-intro-text" data-i18n="contact-intro-text">
           Saya terbuka untuk diskusi mengenai peluang kerja baru, proyek menarik, atau sekadar berbagi 
           pengetahuan di bidang IT Support, System Analysis, dan QA Engineering. Jangan ragu untuk menghubungi!
         </div>
@@ -2027,7 +2228,7 @@ body.tech-mode::after {
         <div class="contact-card-icon">📄</div>
         <div>
           <div class="contact-card-label">Resume / CV</div>
-          <div class="contact-card-value">Download PDF</div>
+          <div class="contact-card-value" data-i18n="contact-cv-value">Download PDF</div>
         </div>
       </a>
     </div>
@@ -2040,54 +2241,275 @@ body.tech-mode::after {
   <div class="mobile-nav-inner">
     <div class="mobile-nav-item active" onclick="showSection('profile',this)" data-section="profile">
       <span class="mobile-nav-icon">👤</span>
-      <span class="mobile-nav-label">Profile</span>
+      <span class="mobile-nav-label" data-i18n="nav-profile">Profile</span>
     </div>
     <div class="mobile-nav-item" onclick="showSection('skills',this)" data-section="skills">
       <span class="mobile-nav-icon">⚡</span>
-      <span class="mobile-nav-label">Skills</span>
+      <span class="mobile-nav-label" data-i18n="nav-skills">Skills</span>
     </div>
     <div class="mobile-nav-item" onclick="showSection('experience',this)" data-section="experience">
       <span class="mobile-nav-icon">📋</span>
-      <span class="mobile-nav-label">Experience</span>
+      <span class="mobile-nav-label" data-i18n="nav-experience">Experience</span>
     </div>
     <div class="mobile-nav-item" onclick="showSection('projects',this)" data-section="projects">
       <span class="mobile-nav-icon">🚀</span>
-      <span class="mobile-nav-label">Projects</span>
+      <span class="mobile-nav-label" data-i18n="nav-projects">Projects</span>
     </div>
     <div class="mobile-nav-item" onclick="showSection('contact',this)" data-section="contact">
       <span class="mobile-nav-icon">📧</span>
-      <span class="mobile-nav-label">Contact</span>
+      <span class="mobile-nav-label" data-i18n="nav-contact">Contact</span>
     </div>
   </div>
 </nav>
 
+<!-- Back to Top -->
+<button class="back-to-top" id="back-to-top" onclick="scrollToTop()" aria-label="Kembali ke atas" title="Kembali ke atas">⬆</button>
+
 <script>
+// ===== Language Translations (ID / EN) =====
+const translations = {
+  'nav-profile': { id: 'Profile', en: 'Profile' },
+  'nav-skills': { id: 'Skills', en: 'Skills' },
+  'nav-experience': { id: 'Experience', en: 'Experience' },
+  'nav-projects': { id: 'Projects', en: 'Projects' },
+  'nav-contact': { id: 'Contact', en: 'Contact' },
+
+  'profile-eyebrow': { id: 'Profil Profesional', en: 'Professional Profile' },
+  'profile-sub': { id: 'IT Support Engineer | Meningkatkan Stabilitas Sistem & Mengurangi Error', en: 'IT Support Engineer | Improving System Stability & Reducing Errors' },
+  'hero-title': { id: 'Berpengalaman menangani sistem pemerintahan, troubleshooting, dan monitoring sistem dengan pencapaian 95% SLA.', en: 'Experienced in handling government systems, troubleshooting, and system monitoring with 95% SLA achievement.' },
+  'hero-tag-exp': { id: '6+ Tahun Pengalaman', en: '6+ Years Experience' },
+  'hero-meta-hire': { id: '🟢 Terbuka untuk peluang kerja', en: '🟢 Available for hire' },
+  'hero-meta-remote': { id: '🌐 Siap Remote', en: '🌐 Remote Ready' },
+
+  'stat-years': { id: 'Tahun Pengalaman', en: 'Years Experience' },
+  'stat-tickets': { id: 'Tiket/Bulan', en: 'Tickets/Month' },
+  'stat-region': { id: 'Daerah Klien', en: 'Client Regions' },
+
+  'info-basic-title': { id: 'Informasi Dasar', en: 'Basic Information' },
+  'info-name': { id: 'Nama', en: 'Name' },
+  'info-location': { id: 'Lokasi', en: 'Location' },
+  'info-education': { id: 'Pendidikan', en: 'Education' },
+  'info-education-val': { id: 'S1 Teknik Informatika', en: 'B.Sc. Information Technology' },
+  'info-institution': { id: 'Institusi', en: 'Institution' },
+  'info-availability': { id: 'Ketersediaan', en: 'Availability' },
+  'info-summary-title': { id: 'Ringkasan Profesional', en: 'Professional Summary' },
+  'profile-summary': {
+    id: `<p>
+  IT Support L2/L3 dengan pengalaman <strong>6+ tahun</strong> dalam 
+  <strong>system analysis dan QA engineering</strong>, berfokus pada implementasi serta dukungan sistem enterprise.<br><br>
+  Berpengalaman membantu <strong>lebih dari 20 pemerintah daerah</strong> dalam adopsi sistem perpajakan digital, 
+  dengan pencapaian <strong>95%+ SLA</strong>, penyelesaian <strong>100+ tiket per bulan</strong>, 
+  serta penurunan <strong>error produksi hingga 60%</strong> melalui pendekatan QA yang sistematis.<br><br>
+  Memiliki keahlian dalam <strong>troubleshooting end-to-end</strong>, <strong>root cause analysis</strong>, 
+  serta pengelolaan sistem berbasis <strong>MySQL dan Linux (Ubuntu)</strong>, 
+  didukung kemampuan <strong>API testing</strong> dan koordinasi lintas tim untuk memastikan stabilitas sistem dan kelancaran layanan.
+</p>`,
+    en: `<p>
+  IT Support L2/L3 with <strong>6+ years</strong> of experience in 
+  <strong>system analysis and QA engineering</strong>, focused on implementing and supporting enterprise systems.<br><br>
+  Experienced in helping <strong>20+ regional governments</strong> adopt a digital taxation system, 
+  achieving <strong>95%+ SLA</strong>, resolving <strong>100+ tickets per month</strong>, 
+  and reducing <strong>production errors by up to 60%</strong> through a systematic QA approach.<br><br>
+  Skilled in <strong>end-to-end troubleshooting</strong>, <strong>root cause analysis</strong>, 
+  and managing systems built on <strong>MySQL and Linux (Ubuntu)</strong>, 
+  supported by <strong>API testing</strong> skills and cross-team coordination to ensure system stability and smooth service.
+</p>`
+  },
+
+  'skills-eyebrow': { id: 'Kompetensi Inti', en: 'Core Competencies' },
+  'skills-heading': { id: 'Keahlian & Teknologi', en: 'Skills & Technologies' },
+  'skills-sub': { id: 'Skill dan teknologi yang dikuasai selama 6+ tahun pengalaman di bidang IT Support dan operasional sistem.', en: 'Skills and technologies mastered over 6+ years of experience in IT Support and system operations.' },
+  'skill-1-1': { id: 'Escalasi L2/L3 & Root Cause Analysis', en: 'L2/L3 Escalation & Root Cause Analysis' },
+  'skill-1-2': { id: 'Penanganan Tiket & SLA Management', en: 'Ticket Handling & SLA Management' },
+  'skill-1-3': { id: 'Remote Support & Onboarding Pengguna', en: 'Remote Support & User Onboarding' },
+  'skill-1-4': { id: 'Penyusunan SOP & Dokumentasi Teknis', en: 'SOP Development & Technical Documentation' },
+  'skill-2-2': { id: 'DB Backup/Restore & Migration', en: 'DB Backup/Restore & Migration' },
+  'skill-2-3': { id: 'Data Sync Issues & Integrity Checks', en: 'Data Sync Issues & Integrity Checks' },
+  'skill-2-4': { id: 'User Permissions & Access Control', en: 'User Permissions & Access Control' },
+  'skill-card-4-title': { id: 'Quality Assurance & Testing', en: 'Quality Assurance & Testing' },
+  'skill-card-5-title': { id: 'Manajemen & Koordinasi', en: 'Management & Coordination' },
+  'skill-5-3': { id: 'Mentoring Tim Junior', en: 'Mentoring Junior Team' },
+  'skill-card-6-title': { id: 'Implementasi & Deployment', en: 'Implementation & Deployment' },
+
+  'exp-eyebrow': { id: 'Riwayat Karier', en: 'Career History' },
+  'exp-heading': { id: 'Pengalaman Kerja', en: 'Work Experience' },
+  'exp-sub': { id: '6+ tahun lintas 3 industri — Teknologi, Otomotif, dan Manufaktur', en: '6+ years across 3 industries — Technology, Automotive, and Manufacturing' },
+
+  'exp1-period': { id: '🗓️ Nov 2020 → Sekarang (5+ Tahun)', en: '🗓️ Nov 2020 → Present (5+ Years)' },
+  'exp1-desc': {
+    id: `Bertanggung jawab penuh atas dukungan teknis sistem perpajakan daerah (V-TAX) untuk pemerintah daerah 
+            di seluruh Indonesia. Mengelola seluruh siklus implementasi sistem mulai dari pelatihan pengguna, 
+            troubleshooting harian, hingga koordinasi pengembangan fitur baru dengan tim developer.
+            Dipromosikan sebagai <strong>Assistant Team Leader</strong>.`,
+    en: `Fully responsible for technical support of the regional taxation system (V-TAX) for local governments 
+            across Indonesia. Managed the full system implementation cycle from user training, 
+            daily troubleshooting, to coordinating new feature development with the dev team.
+            Promoted to <strong>Assistant Team Leader</strong>.`
+  },
+  'exp1-achievements': {
+    id: `<li class="achievement-item">Meningkatkan kepuasan klien hingga 95% melalui response time cepat (&lt;24 jam untuk 95% tiket)</li>
+            <li class="achievement-item">Menyusun SOP & dokumentasi teknis yang digunakan di 20+ daerah klien</li>
+            <li class="achievement-item">Menurunkan error rate sistem produksi sebesar 60% melalui proses QA sistematis</li>
+            <li class="achievement-item">Mengelola rata-rata 100+ tiket support per bulan dengan tim yang efisien</li>
+            <li class="achievement-item">Platform: Laravel (MySQL), Ubuntu Server — handle L2/L3 escalations & dev-support bridge</li>`,
+    en: `<li class="achievement-item">Increased client satisfaction to 95% through fast response time (&lt;24h for 95% of tickets)</li>
+            <li class="achievement-item">Developed SOPs & technical documentation used across 20+ client regions</li>
+            <li class="achievement-item">Reduced production error rate by 60% through systematic QA processes</li>
+            <li class="achievement-item">Managed an average of 100+ support tickets per month with an efficient team</li>
+            <li class="achievement-item">Platform: Laravel (MySQL), Ubuntu Server — handled L2/L3 escalations & dev-support bridge</li>`
+  },
+
+  'exp2-period': { id: '🗓️ Apr 2019 → Okt 2020 (1.5 Tahun)', en: '🗓️ Apr 2019 → Oct 2020 (1.5 Years)' },
+  'exp2-desc': {
+    id: `Mengelola penjadwalan dan follow-up service kendaraan pelanggan, serta menyusun analisis data operasional 
+            menggunakan Microsoft Power BI untuk mendukung pengambilan keputusan manajemen bengkel.`,
+    en: `Managed scheduling and follow-up of customer vehicle services, and prepared operational data analysis 
+            using Microsoft Power BI to support workshop management decision-making.`
+  },
+  'exp2-achievements': {
+    id: `<li class="achievement-item">Meningkatkan efisiensi jadwal service hingga 25% melalui sistem pencatatan terstruktur</li>
+            <li class="achievement-item">Mengurangi komplain pelanggan sebesar 40% melalui koordinasi proaktif dengan teknisi</li>
+            <li class="achievement-item">Membuat dashboard operasional harian menggunakan Power BI untuk monitoring real-time</li>
+            <li class="achievement-item">Mencapai target kepuasan pelanggan selama 7 bulan berturut-turut</li>`,
+    en: `<li class="achievement-item">Improved service scheduling efficiency by 25% through a structured recording system</li>
+            <li class="achievement-item">Reduced customer complaints by 40% through proactive coordination with technicians</li>
+            <li class="achievement-item">Built a daily operational dashboard using Power BI for real-time monitoring</li>
+            <li class="achievement-item">Achieved customer satisfaction targets for 7 consecutive months</li>`
+  },
+
+  'exp3-period': { id: '🗓️ Mei 2018 → Apr 2019 (1 Tahun)', en: '🗓️ May 2018 → Apr 2019 (1 Year)' },
+  'exp3-desc': {
+    id: `Mengelola administrasi gudang termasuk stock opname, verifikasi barang masuk/keluar, 
+            dan penerapan sistem FIFO untuk rotasi inventory yang efisien.`,
+    en: `Managed warehouse administration including stock opname, verification of incoming/outgoing goods, 
+            and implementation of a FIFO system for efficient inventory rotation.`
+  },
+  'exp3-achievements': {
+    id: `<li class="achievement-item">Menyusun sistem pencatatan harian yang mempercepat proses stock opname hingga 30%</li>
+            <li class="achievement-item">Menerapkan sistem FIFO yang menurunkan produk kadaluarsa/expired sebesar 20%</li>
+            <li class="achievement-item">Akurasi stok 98%+ melalui pengecekan rutin dan rekonsiliasi data</li>`,
+    en: `<li class="achievement-item">Built a daily recording system that sped up the stock opname process by 30%</li>
+            <li class="achievement-item">Implemented a FIFO system that reduced expired products by 20%</li>
+            <li class="achievement-item">Achieved 98%+ stock accuracy through routine checks and data reconciliation</li>`
+  },
+
+  'proj-eyebrow': { id: 'Karya Terpilih', en: 'Selected Work' },
+  'proj-heading': { id: 'Proyek & Portfolio', en: 'Projects & Portfolio' },
+  'proj-sub': { id: 'Proyek yang mendemonstrasikan kemampuan dalam system development, troubleshooting, dan implementasi solusi berbasis kebutuhan bisnis', en: 'Projects demonstrating capabilities in system development, troubleshooting, and implementing business-driven solutions' },
+  'filter-all': { id: 'Semua', en: 'All' },
+
+  'proj1-desc': {
+    id: `Platform manajemen proyek berbasis web yang memungkinkan penyesuaian alur kerja secara dinamis sesuai kebutuhan tim. 
+          Membantu meningkatkan fleksibilitas operasional dan efisiensi dalam pengelolaan proyek dengan berbagai skenario workflow.`,
+    en: `A web-based project management platform that allows workflows to be dynamically adjusted to team needs. 
+          Helps improve operational flexibility and efficiency in managing projects across various workflow scenarios.`
+  },
+  'proj2-desc': {
+    id: `Sistem manajemen proyek yang menggabungkan metode linear dan agile dalam satu platform, 
+          memungkinkan tim menggunakan pendekatan yang paling sesuai untuk berbagai jenis proyek.`,
+    en: `A project management system combining linear and agile methods in one platform, 
+          allowing teams to use the most suitable approach for different types of projects.`
+  },
+  'proj3-desc': {
+    id: `Sistem manajemen tugas dengan konsep Kanban dan fitur drag-and-drop, membantu tim dalam memvisualisasikan progres pekerjaan 
+          serta meningkatkan koordinasi dan transparansi antar anggota tim.`,
+    en: `A task management system with a Kanban concept and drag-and-drop feature, helping teams visualize work progress 
+          and improve coordination and transparency among team members.`
+  },
+  'proj4-desc': {
+    id: `Aplikasi analisis data menggunakan metode Fuzzy C-Means untuk segmentasi pelanggan, 
+          membantu dalam pengambilan keputusan berbasis data dan strategi targeting yang lebih efektif.`,
+    en: `A data analysis application using the Fuzzy C-Means method for customer segmentation, 
+          supporting data-driven decision-making and more effective targeting strategies.`
+  },
+  'proj5-desc': {
+    id: `Platform pelacakan status dokumen kendaraan secara real-time yang membantu pengguna memonitor progres pengurusan berkas, 
+          meningkatkan transparansi layanan dan efisiensi komunikasi.`,
+    en: `A real-time vehicle document status tracking platform that helps users monitor document processing progress, 
+          improving service transparency and communication efficiency.`
+  },
+  'proj6-desc': {
+    id: `Aplikasi manajemen koperasi dengan fitur lengkap seperti simpanan, pinjaman, cicilan, dan laporan keuangan otomatis, 
+          membantu meningkatkan efisiensi pengelolaan dan akurasi data keuangan.`,
+    en: `A cooperative management application with full features such as savings, loans, installments, and automated financial reports, 
+          helping improve management efficiency and financial data accuracy.`
+  },
+
+  'contact-eyebrow': { id: 'Hubungi Saya', en: 'Get In Touch' },
+  'contact-heading': { id: 'Hubungi Saya', en: 'Contact Me' },
+  'contact-sub': { id: 'Terbuka untuk peluang baru, kolaborasi, atau sekadar ngobrol!', en: 'Open to new opportunities, collaboration, or just a chat!' },
+  'contact-intro-title': { id: 'Mari Berkolaborasi! 👋', en: "Let's Collaborate! 👋" },
+  'contact-intro-text': {
+    id: `Saya terbuka untuk diskusi mengenai peluang kerja baru, proyek menarik, atau sekadar berbagi 
+          pengetahuan di bidang IT Support, System Analysis, dan QA Engineering. Jangan ragu untuk menghubungi!`,
+    en: `I'm open to discussing new job opportunities, interesting projects, or simply sharing 
+          knowledge in IT Support, System Analysis, and QA Engineering. Feel free to reach out!`
+  },
+  'contact-cv-value': { id: 'Unduh PDF', en: 'Download PDF' },
+
+  'brand-role': { id: 'Senior IT Support & System Analyst', en: 'Senior IT Support & System Analyst' },
+  'status-available': { id: 'Terbuka untuk peluang kerja', en: 'Available for hire' },
+  'back-to-top-label': { id: 'Kembali ke atas', en: 'Back to top' }
+};
+
+let currentLang = 'id';
+let currentMode = 'hr';
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const entry = translations[key];
+    if (entry) {
+      el.innerHTML = entry[currentLang];
+    }
+  });
+  // Sync dynamic labels that also depend on mode (brand role / status text)
+  updateBrandTexts();
+  document.documentElement.lang = currentLang;
+  document.getElementById('back-to-top').setAttribute('aria-label', translations['back-to-top-label'][currentLang]);
+  document.getElementById('back-to-top').setAttribute('title', translations['back-to-top-label'][currentLang]);
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  document.getElementById('lang-id-btn').classList.toggle('active', lang === 'id');
+  document.getElementById('lang-en-btn').classList.toggle('active', lang === 'en');
+  localStorage.setItem('pf-lang', lang);
+  applyTranslations();
+}
+
+function updateBrandTexts() {
+  if (currentMode === 'tech') {
+    document.getElementById('brand-init').textContent = '~/';
+    document.getElementById('brand-name').textContent = 'hendri@portfolio';
+    document.getElementById('brand-role').textContent = 'Senior IT Support | L2/L3 | QA Eng';
+    document.getElementById('status-text').textContent = 'status: available';
+  } else {
+    document.getElementById('brand-init').textContent = 'HS';
+    document.getElementById('brand-name').textContent = 'Hendriansyah Setiawan';
+    document.getElementById('brand-role').textContent = translations['brand-role'][currentLang];
+    document.getElementById('status-text').textContent = translations['status-available'][currentLang];
+  }
+}
+
 // ===== Mode Switching =====
 function setMode(mode) {
   const hrBtn = document.querySelector('.hr-btn');
   const techBtn = document.querySelector('.tech-btn');
+  currentMode = mode;
 
   if (mode === 'tech') {
     document.body.classList.add('tech-mode');
     hrBtn.classList.remove('active');
     techBtn.classList.add('active');
     localStorage.setItem('pf-mode', 'tech');
-    // Update brand
-    document.getElementById('brand-init').textContent = '~/';
-    document.getElementById('brand-name').textContent = 'hendri@portfolio';
-    document.getElementById('brand-role').textContent = 'Senior IT Support | L2/L3 | QA Eng';
-    document.getElementById('status-text').textContent = 'status: available';
   } else {
     document.body.classList.remove('tech-mode');
     hrBtn.classList.add('active');
     techBtn.classList.remove('active');
     localStorage.setItem('pf-mode', 'hr');
-    // Update brand
-    document.getElementById('brand-init').textContent = 'HS';
-    document.getElementById('brand-name').textContent = 'Hendriansyah Setiawan';
-    document.getElementById('brand-role').textContent = 'Senior IT Support & System Analyst';
-    document.getElementById('status-text').textContent = 'Available for hire';
   }
+  updateBrandTexts();
 }
 
 // ===== Section Navigation =====
@@ -2108,10 +2530,48 @@ function showSection(id, el) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// ===== Project Filter (grouping) =====
+// Setiap kartu proyek punya atribut data-category, contoh: data-category="web-developer"
+// Bisa diisi lebih dari satu kategori, pisahkan dengan koma, contoh: data-category="web-developer,qa"
+function filterProjects(category, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    const cardCategories = (card.getAttribute('data-category') || '')
+      .split(',')
+      .map(c => c.trim());
+
+    if (category === 'all' || cardCategories.includes(category)) {
+      card.classList.remove('is-hidden');
+    } else {
+      card.classList.add('is-hidden');
+    }
+  });
+}
+
+// ===== Back to Top =====
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('back-to-top');
+  if (window.scrollY > 300) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+});
+
 // ===== Init =====
-const saved = localStorage.getItem('pf-mode');
-if (saved === 'tech') setMode('tech');
-// default is HR — already rendered as HR mode
+const savedMode = localStorage.getItem('pf-mode');
+if (savedMode === 'tech') setMode('tech');
+else updateBrandTexts();
+
+const savedLang = localStorage.getItem('pf-lang');
+if (savedLang === 'en') setLanguage('en');
+else applyTranslations();
 </script>
 </body>
 </html>
