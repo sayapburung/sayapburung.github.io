@@ -818,7 +818,6 @@ body.tech-mode .cert-preview-wrapper { border-bottom-color: var(--tech-border); 
   transform: scale(1.05);
 }
 
-/* Fallback / Mock Certificate Canvas styling */
 .cert-mock-canvas {
   width: 100%;
   height: 100%;
@@ -864,7 +863,6 @@ body.tech-mode .cert-preview-wrapper { border-bottom-color: var(--tech-border); 
   font-weight: 600;
   margin-top: 10px;
   line-height: 1.3;
-
 }
 
 .cert-mock-footer {
@@ -1098,7 +1096,7 @@ body.tech-mode .tool-chip {
 .timeline-company a { color: inherit; text-decoration: none; }
 .timeline-company a:hover { text-decoration: underline; }
 
-.exp-category-block { margin-bottom: 14px; }
+.exp-category-block { margin-bottom: 16px; }
 
 .exp-category-title {
   font-size: 12px;
@@ -1670,11 +1668,11 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
   <div class="sidebar-brand">
     <div class="brand-initials" id="brand-init">HS</div>
     <div class="brand-name" id="brand-name">Hendriansyah Setiawan</div>
-    <div class="brand-role" id="brand-role">Senior Application Support & System Analyst</div>
+    <div class="brand-role" id="brand-role" data-i18n="brand-role">Senior Application Support & System Analyst</div>
   </div>
 
   <div class="nav-section-label">
-    <span class="hr-only">Navigasi</span>
+    <span class="hr-only" data-i18n="nav-section-title">Navigasi</span>
     <span class="tech-only" style="display:none;font-family:'JetBrains Mono',monospace;">// nav</span>
   </div>
 
@@ -1712,7 +1710,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
   <div class="sidebar-footer">
     <div class="status-pill">
       <div class="status-dot"></div>
-      <span id="status-text">Available for hire</span>
+      <span id="status-text" data-i18n="status-available">Terbuka Peluang Karier</span>
     </div>
   </div>
 </nav>
@@ -1848,7 +1846,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         </div>
         <div class="info-row">
           <span class="info-row-key" data-i18n="info-education">Pendidikan</span>
-          <span class="info-row-val">S1 Teknik Informatika (IPK 3.45)</span>
+          <span class="info-row-val" data-i18n="info-education-val">S1 Teknik Informatika (IPK 3.45)</span>
         </div>
         <div class="info-row">
           <span class="info-row-key" data-i18n="info-institution">Perguruan Tinggi</span>
@@ -1883,7 +1881,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
       </div>
 
       <div class="edu-item">
-        <div class="edu-degree">S1 Teknik Informatika</div>
+        <div class="edu-degree" data-i18n="edu-degree-1">S1 Teknik Informatika</div>
         <div class="edu-school">Sekolah Tinggi Teknologi Bandung (2019 - 2023)</div>
         <span class="edu-gpa">IPK: 3.45 / 4.00</span>
         <div class="edu-sub" data-i18n="edu-skripsi"><strong>Skripsi:</strong> Customer Service Priority Classification using Fuzzy C-Means (Web-Based System)</div>
@@ -1892,7 +1890,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
       <div style="height:12px;"></div>
 
       <div class="edu-item">
-        <div class="edu-degree">Rekayasa Perangkat Lunak (RPL)</div>
+        <div class="edu-degree" data-i18n="edu-degree-2">Rekayasa Perangkat Lunak (RPL)</div>
         <div class="edu-school">SMK Assalaam Bandung (2015 - 2018)</div>
         <div class="edu-sub" data-i18n="edu-smk-sub">Fokus Pemrograman Web, Pemrograman Seluler & Basis Data</div>
       </div>
@@ -1913,10 +1911,10 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <div class="skill-card-title">Technical & Application Support</div>
         </div>
         <ul class="skill-items">
-          <li class="skill-item"><span class="skill-bullet"></span>Application Support (L2/L3) & Incident Handling</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Problem Management & Root Cause Analysis (RCA)</li>
-          <li class="skill-item"><span class="skill-bullet"></span>User Training, Onboarding & Technical Manuals</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Production Support & SLA Commitment Management</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-1">Application Support (L2/L3) & Incident Handling</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-2">Problem Management & Root Cause Analysis (RCA)</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-3">User Training, Onboarding & Technical Manuals</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-1-4">Production Support & SLA Commitment Management</span></li>
         </ul>
       </div>
 
@@ -1927,10 +1925,10 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <div class="skill-card-title">Business & System Analysis</div>
         </div>
         <ul class="skill-items">
-          <li class="skill-item"><span class="skill-bullet"></span>Government Regulation Analysis (Perda/Perbup/Perwali/PP)</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Requirement Gathering & Business Process Analysis</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Functional Analysis & Flow Process Design</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Feature Enhancement Analysis & Data Structure Spec</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-2-1">Government Regulation Analysis (Perda/Perbup/Perwali/PP)</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-2-2">Requirement Gathering & Business Process Analysis</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-2-3">Functional Analysis & Flow Process Design</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-2-4">Feature Enhancement Analysis & Data Structure Spec</span></li>
         </ul>
       </div>
 
@@ -1941,10 +1939,10 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <div class="skill-card-title">Software Testing & Quality Assurance</div>
         </div>
         <ul class="skill-items">
-          <li class="skill-item"><span class="skill-bullet"></span>Test Scenario Design & Test Case Creation</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Manual Testing (Black Box, Functional, UAT)</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Regression Testing & Bug Fix Verification</li>
-          <li class="skill-item"><span class="skill-bullet"></span>STLC Understanding & Bug Tracking Documentation</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-3-1">Test Scenario Design & Test Case Creation</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-3-2">Manual Testing (Black Box, Functional, UAT)</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-3-3">Regression Testing & Bug Fix Verification</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-3-4">STLC Understanding & Bug Tracking Documentation</span></li>
         </ul>
       </div>
 
@@ -1955,10 +1953,10 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <div class="skill-card-title">Database Administration (Support)</div>
         </div>
         <ul class="skill-items">
-          <li class="skill-item"><span class="skill-bullet"></span>MySQL Query Writing & Data Investigation</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Database Backup, Restore & Data Synchronization</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Data Validation & Integrity Verification</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Navicat Premium Database Management</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-4-1">MySQL Query Writing & Data Investigation</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-4-2">Database Backup, Restore & Data Synchronization</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-4-3">Data Validation & Integrity Verification</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-4-4">Navicat Premium Database Management</span></li>
         </ul>
       </div>
 
@@ -1969,10 +1967,10 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <div class="skill-card-title">Linux & Infrastructure Management</div>
         </div>
         <ul class="skill-items">
-          <li class="skill-item"><span class="skill-bullet"></span>Linux Server Support (CentOS & Ubuntu)</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Cronjob Creation & Process Automation</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Service Resource Monitoring & Application Log Analysis</li>
-          <li class="skill-item"><span class="skill-bullet"></span>IAM Management (User, Role, Permission) & Network Troubleshooting</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-5-1">Linux Server Support (CentOS & Ubuntu)</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-5-2">Cronjob Creation & Process Automation</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-5-3">Service Resource Monitoring & Application Log Analysis</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-5-4">IAM Management (User, Role, Permission) & Network Troubleshooting</span></li>
         </ul>
       </div>
 
@@ -1983,10 +1981,10 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <div class="skill-card-title">API, Analytics & Development</div>
         </div>
         <ul class="skill-items">
-          <li class="skill-item"><span class="skill-bullet"></span>Postman API Testing, REST API & JSON Validation</li>
-          <li class="skill-item"><span class="skill-bullet"></span>PHP (Laravel & Native), HTML, CSS, JavaScript (MVC)</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Microsoft Power BI & Operational Reporting Dashboards</li>
-          <li class="skill-item"><span class="skill-bullet"></span>Local Tax System Expertise & Cross-Team Coordination</li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-6-1">Postman API Testing, REST API & JSON Validation</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-6-2">PHP (Laravel & Native), HTML, CSS, JavaScript (MVC)</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-6-3">Microsoft Power BI & Operational Reporting Dashboards</span></li>
+          <li class="skill-item"><span class="skill-bullet"></span><span data-i18n="skill-6-4">Local Tax System Expertise & Cross-Team Coordination</span></li>
         </ul>
       </div>
     </div>
@@ -2023,7 +2021,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-period" data-i18n="exp1-period">🗓️ Nov 2020 → 2026 (5+ Tahun)</div>
-          <h3 class="timeline-job-title">Application Support Engineer & Assistant Team Leader</h3>
+          <h3 class="timeline-job-title" data-i18n="exp1-title">Application Support Engineer & Assistant Team Leader</h3>
           <div class="timeline-company">
             <a href="https://v-tax.id/" target="_blank">PT Mutiara Bintang Abadi (PT Valuestream International Group) — Bandung</a>
           </div>
@@ -2034,8 +2032,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
 
           <!-- Categorized Experience Sub-Blocks -->
           <div class="exp-category-block">
-            <div class="exp-category-title">1. Application Support & Incident Management (L2/L3)</div>
-            <ul class="achievements">
+            <div class="exp-category-title" data-i18n="exp1-sub1-title">1. Application Support & Incident Management (L2/L3)</div>
+            <ul class="achievements" data-i18n="exp1-sub1-achievements">
               <li class="achievement-item">Menangani end-to-end Application Support (L2/L3) mulai dari incident handling, troubleshooting aplikasi, hingga root cause analysis (RCA).</li>
               <li class="achievement-item">Menjadi first response pengguna via WhatsApp & sistem ticketing (Redmine) untuk klasifikasi, analisis awal, dan eskalasi insiden.</li>
               <li class="achievement-item">Berkoordinasi aktif dengan tim developer dalam penyelesaian bug fix, enhancement, deployment, serta memenuhi komitmen SLA.</li>
@@ -2043,33 +2041,46 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           </div>
 
           <div class="exp-category-block">
-            <div class="exp-category-title">2. Business & System Analysis</div>
-            <ul class="achievements">
+            <div class="exp-category-title" data-i18n="exp1-sub2-title">2. Business & System Analysis</div>
+            <ul class="achievements" data-i18n="exp1-sub2-achievements">
               <li class="achievement-item">Menganalisis kebutuhan bisnis berdasarkan Perda, Perbup, Perwali, dan Peraturan Pemerintah (PP) untuk diterjemahkan menjadi kebutuhan sistem.</li>
               <li class="achievement-item">Melakukan requirement gathering, analisis proses bisnis, penyusunan usulan enhancement alur sistem, UI, serta struktur data.</li>
             </ul>
           </div>
 
           <div class="exp-category-block">
-            <div class="exp-category-title">3. Software Testing & Quality Assurance</div>
-            <ul class="achievements">
+            <div class="exp-category-title" data-i18n="exp1-sub3-title">3. Software Testing & Quality Assurance</div>
+            <ul class="achievements" data-i18n="exp1-sub3-achievements">
               <li class="achievement-item">Menyusun test scenario dan test case; melaksanakan Functional Testing, User Acceptance Testing (UAT), dan Regression Testing pada lingkungan staging & production.</li>
               <li class="achievement-item">Mendokumentasikan hasil pengujian dan memastikan seluruh perubahan sistem berjalan stabil tanpa merusak fitur existing (-60% error rate).</li>
             </ul>
           </div>
 
           <div class="exp-category-block">
-            <div class="exp-category-title">4. Database & Production Support (Linux CentOS)</div>
-            <ul class="achievements">
+            <div class="exp-category-title" data-i18n="exp1-sub4-title">4. Database & Production Support (Linux CentOS)</div>
+            <ul class="achievements" data-i18n="exp1-sub4-achievements">
               <li class="achievement-item">Menulis query MySQL untuk validasi data & investigasi; mengelola backup, restore, dan sinkronisasi database.</li>
               <li class="achievement-item">Troubleshooting Linux Server (CentOS), monitoring resource server, pengecekan log aplikasi, membuat cronjob otomatisasi, serta mengelola IAM (User, Role, Permission).</li>
             </ul>
           </div>
 
           <div class="exp-category-block">
-            <div class="exp-category-title">5. Implementation, Training & Leadership</div>
-            <ul class="achievements">
-              <li class="achievement-item">Bertindak sebagai <strong>Assistant Leader</strong>: mengoordinasikan distribusi tiket tim, kontrol kualitas hasil analisis, pelatihan operator/admin instansi pemerintah, serta menyusun panduan penggunaan sistem.</li>
+            <div class="exp-category-title" data-i18n="exp1-sub5-title">5. Application Implementation & User Training</div>
+            <ul class="achievements" data-i18n="exp1-sub5-achievements">
+              <li class="achievement-item">Melaksanakan implementasi aplikasi pada instansi pemerintah sesuai ruang lingkup proyek dan melakukan konfigurasi awal sistem.</li>
+              <li class="achievement-item">Memberikan pelatihan kepada operator dan administrator mengenai penggunaan aplikasi, menyusun panduan penggunaan sistem, serta membantu pemahaman alur bisnis.</li>
+            </ul>
+          </div>
+
+          <!-- Highlighted Leadership & Coordination Block -->
+          <div class="exp-category-block" style="border:1.5px solid var(--hr-accent);border-radius:12px;padding:14px;background:var(--hr-tag-bg);">
+            <div class="exp-category-title" style="color:var(--hr-accent);display:flex;align-items:center;gap:6px;" data-i18n="exp1-leadership-title">
+              <span>👑</span> 6. Leadership & Coordination (Assistant Leader)
+            </div>
+            <ul class="achievements" style="background:transparent;padding:0;" data-i18n="exp1-leadership-achievements">
+              <li class="achievement-item">Bertindak sebagai Assistant Leader dengan mengoordinasikan distribusi pekerjaan tim, melakukan quality control hasil analisis, memonitor penyelesaian tiket, serta memastikan eskalasi kepada developer dilakukan secara tepat.</li>
+              <li class="achievement-item">Membantu monitoring penyelesaian tiket berdasarkan prioritas dan tingkat urgensi.</li>
+              <li class="achievement-item">Menjadi penghubung antara pengguna, tim implementasi, dan tim pengembang.</li>
             </ul>
           </div>
         </div>
@@ -2080,14 +2091,14 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-period" data-i18n="exp2-period">🗓️ Apr 2019 → Okt 2020 (1.5 Tahun)</div>
-          <h3 class="timeline-job-title">Maintenance Service Appointment Coordinator</h3>
+          <h3 class="timeline-job-title" data-i18n="exp2-title">Maintenance Service Appointment Coordinator</h3>
           <div class="timeline-company">
             <a href="https://auto2000.co.id/" target="_blank">AUTO 2000 Bandung Asia Afrika — PT Astra International Group</a>
           </div>
           <p class="timeline-desc" data-i18n="exp2-desc">
             Mengelola dan menganalisis data layanan servis kendaraan pelanggan dari berbagai sumber untuk mendukung operasional tim MRA dan manajemen bengkel.
           </p>
-          <ul class="achievements">
+          <ul class="achievements" data-i18n="exp2-achievements">
             <li class="achievement-item">Menyusun laporan operasional berkala untuk kepala bengkel, termasuk analisis tren dan pola permintaan layanan.</li>
             <li class="achievement-item">Menggunakan Microsoft Power BI untuk visualisasi data interaktif dan penyajian insight operasional secara real-time.</li>
             <li class="achievement-item">Mendukung penerimaan pelanggan, koordinasi unit teknisi, serta pembaruan dan validasi database layanan servis.</li>
@@ -2100,14 +2111,14 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-period" data-i18n="exp3-period">🗓️ Mei 2018 → Apr 2019 (1 Tahun)</div>
-          <h3 class="timeline-job-title">Staff Warehouse & Inventory Control</h3>
+          <h3 class="timeline-job-title" data-i18n="exp3-title">Staff Warehouse & Inventory Control</h3>
           <div class="timeline-company">
             <a href="https://www.instagram.com/tokomitra.bandung/" target="_blank">Mitra Bahan Sepatu — Bandung</a>
           </div>
           <p class="timeline-desc" data-i18n="exp3-desc">
             Mengelola administrasi gudang dan pengendalian persediaan barang ritel menggunakan sistem manajemen stok terstruktur.
           </p>
-          <ul class="achievements">
+          <ul class="achievements" data-i18n="exp3-achievements">
             <li class="achievement-item">Mengelola persediaan barang menggunakan metode FIFO (First-In, First-Out) untuk akurasi dan mencegah expired/kerusakan.</li>
             <li class="achievement-item">Melakukan stock opname rutin, verifikasi penerimaan/pengiriman barang, pencatatan inventaris, serta packing dan distribusi sesuai pesanan.</li>
           </ul>
@@ -2138,8 +2149,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <iframe src="https://www.youtube.com/embed/v2l7tBbrVf0?start=17" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Sistem Manajemen Proyek - Dynamic Workflow</h3>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="proj1-title">Sistem Manajemen Proyek - Dynamic Workflow</h3>
+          <p class="project-desc" data-i18n="proj1-desc">
             Platform manajemen proyek berbasis web yang memungkinkan penyesuaian alur kerja secara dinamis sesuai kebutuhan tim. 
             Membantu meningkatkan fleksibilitas operasional dan efisiensi pengelolaan proyek.
           </p>
@@ -2161,8 +2172,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <iframe src="https://www.youtube.com/embed/qWD0llnbb-w" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Hybrid Project Management System</h3>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="proj2-title">Hybrid Project Management System</h3>
+          <p class="project-desc" data-i18n="proj2-desc">
             Sistem manajemen proyek yang menggabungkan metode linear dan agile dalam satu platform, 
             memungkinkan tim menggunakan pendekatan yang paling sesuai untuk berbagai jenis proyek.
           </p>
@@ -2184,8 +2195,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <iframe src="https://www.youtube.com/embed/kLAjj7k1Tic" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Kanban Task Management System</h3>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="proj3-title">Kanban Task Management System</h3>
+          <p class="project-desc" data-i18n="proj3-desc">
             Sistem manajemen tugas dengan konsep Kanban dan fitur drag-and-drop, membantu tim dalam memvisualisasikan progres pekerjaan 
             serta meningkatkan koordinasi antar anggota tim.
           </p>
@@ -2207,8 +2218,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <iframe src="https://www.youtube.com/embed/N5iy6Gc1Sg8" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Classification Priority System (Fuzzy C-Means)</h3>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="proj4-title">Classification Priority System (Fuzzy C-Means)</h3>
+          <p class="project-desc" data-i18n="proj4-desc">
             Sistem analisis data dan klasifikasi prioritas layanan berbasis Fuzzy C-Means (Project Akhir S1 Teknik Informatika STTB), 
             membantu pengelompokan tingkat urgensi layanan secara obyektif berbasis data.
           </p>
@@ -2230,8 +2241,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <iframe src="https://www.youtube.com/embed/7A2S70d85k4" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Sistem Tracking Berkas Kendaraan</h3>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="proj5-title">Sistem Tracking Berkas Kendaraan</h3>
+          <p class="project-desc" data-i18n="proj5-desc">
             Platform pelacakan status dokumen kendaraan secara real-time yang membantu pengguna memonitor progres pengurusan berkas, 
             meningkatkan transparansi layanan dan efisiensi komunikasi.
           </p>
@@ -2253,8 +2264,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <iframe src="https://www.youtube.com/embed/F7fo5zVRYHE" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Sistem Koperasi Simpan Pinjam</h3>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="proj6-title">Sistem Koperasi Simpan Pinjam</h3>
+          <p class="project-desc" data-i18n="proj6-desc">
             Aplikasi manajemen koperasi dengan fitur lengkap seperti simpanan, pinjaman, cicilan, dan laporan keuangan otomatis, 
             membantu meningkatkan efisiensi pengelolaan data keuangan.
           </p>
@@ -2272,7 +2283,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
     </div>
   </section>
 
-  <!-- ===== CERTIFICATES SECTION (DEDICATED MENU) ===== -->
+  <!-- ===== CERTIFICATES SECTION ===== -->
   <section class="section" id="certificates">
     <div class="section-eyebrow" data-i18n="cert-section-eyebrow">Sertifikasi & Lisensi Resmi</div>
     <h2 class="section-heading" data-i18n="cert-section-heading">Sertifikat Kualifikasi</h2>
@@ -2321,7 +2332,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="cert-body-content">
           <h3 class="cert-item-title">Project Management Associate (PMA)</h3>
           <div class="cert-item-org">Logical Operations</div>
-          <div class="cert-item-meta">No. Lisensi: 2023-C-018543 • 2023</div>
+          <div class="cert-item-meta"><span data-i18n="cert-license-label">No. Lisensi:</span> 2023-C-018543 • 2023</div>
           <a href="https://github.com/sayapburung" target="_blank" class="cert-action-btn">
             <span>🔗</span> <span data-i18n="cert-btn-text">Lihat Sertifikat (GitHub)</span>
           </a>
@@ -2350,7 +2361,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="cert-body-content">
           <h3 class="cert-item-title">Networking Security Certification</h3>
           <div class="cert-item-org">FORESEC</div>
-          <div class="cert-item-meta">No. Lisensi: 0822-008950 • 2022</div>
+          <div class="cert-item-meta"><span data-i18n="cert-license-label">No. Lisensi:</span> 0822-008950 • 2022</div>
           <a href="https://github.com/sayapburung" target="_blank" class="cert-action-btn">
             <span>🔗</span> <span data-i18n="cert-btn-text">Lihat Sertifikat (GitHub)</span>
           </a>
@@ -2379,7 +2390,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="cert-body-content">
           <h3 class="cert-item-title">TOEFL Certificate (Score 505)</h3>
           <div class="cert-item-org">Yayasan Bianglala Prima Edukasi</div>
-          <div class="cert-item-meta">No. Lisensi: 505/PETAL/St-TOEFL/2023 • 2023</div>
+          <div class="cert-item-meta"><span data-i18n="cert-license-label">No. Lisensi:</span> 505/PETAL/St-TOEFL/2023 • 2023</div>
           <a href="https://github.com/sayapburung" target="_blank" class="cert-action-btn">
             <span>🔗</span> <span data-i18n="cert-btn-text">Lihat Sertifikat (GitHub)</span>
           </a>
@@ -2408,7 +2419,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="cert-body-content">
           <h3 class="cert-item-title">Vocation Skills Laravel & Android</h3>
           <div class="cert-item-org">Be : Logix</div>
-          <div class="cert-item-meta">No. Lisensi: 024/BELOGIX/IV/2018 • 2018</div>
+          <div class="cert-item-meta"><span data-i18n="cert-license-label">No. Lisensi:</span> 024/BELOGIX/IV/2018 • 2018</div>
           <a href="https://github.com/sayapburung" target="_blank" class="cert-action-btn">
             <span>🔗</span> <span data-i18n="cert-btn-text">Lihat Sertifikat (GitHub)</span>
           </a>
@@ -2437,7 +2448,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
         <div class="cert-body-content">
           <h3 class="cert-item-title">Mobile & Web Training Intermediate</h3>
           <div class="cert-item-org">Be : Logix</div>
-          <div class="cert-item-meta">No. Lisensi: 036/Ass-PKL/VIII/2017 • 2017</div>
+          <div class="cert-item-meta"><span data-i18n="cert-license-label">No. Lisensi:</span> 036/Ass-PKL/VIII/2017 • 2017</div>
           <a href="https://github.com/sayapburung" target="_blank" class="cert-action-btn">
             <span>🔗</span> <span data-i18n="cert-btn-text">Lihat Sertifikat (GitHub)</span>
           </a>
@@ -2464,7 +2475,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
       <a href="mailto:hendriansyhs@gmail.com" class="contact-card">
         <div class="contact-card-icon">📧</div>
         <div>
-          <div class="contact-card-label">Email Utama</div>
+          <div class="contact-card-label" data-i18n="contact-email-label">Email Utama</div>
           <div class="contact-card-value">hendriansyhs@gmail.com</div>
         </div>
       </a>
@@ -2480,7 +2491,7 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
       <a href="tel:085717030051" class="contact-card">
         <div class="contact-card-icon">📞</div>
         <div>
-          <div class="contact-card-label">Telepon</div>
+          <div class="contact-card-label" data-i18n="contact-phone-label">Telepon</div>
           <div class="contact-card-value">0857-1703-0051</div>
         </div>
       </a>
@@ -2547,8 +2558,11 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
 <button class="back-to-top" id="back-to-top" onclick="scrollToTop()" aria-label="Kembali ke atas" title="Kembali ke atas">⬆</button>
 
 <script>
-// ===== Language Translations (ID / EN) =====
+// ===== Complete Language Translations (ID / EN) =====
 const translations = {
+  'brand-role': { id: 'Senior Application Support & System Analyst', en: 'Senior Application Support & System Analyst' },
+  'status-available': { id: 'Terbuka Peluang Karier', en: 'Available for hire' },
+  'nav-section-title': { id: 'Navigasi', en: 'Navigation' },
   'nav-profile': { id: 'Profil', en: 'Profile' },
   'nav-skills': { id: 'Keahlian', en: 'Skills & Tools' },
   'nav-experience': { id: 'Pengalaman', en: 'Experience' },
@@ -2573,6 +2587,7 @@ const translations = {
   'info-name': { id: 'Nama Lengkap', en: 'Full Name' },
   'info-location': { id: 'Lokasi', en: 'Location' },
   'info-education': { id: 'Pendidikan', en: 'Education' },
+  'info-education-val': { id: 'S1 Teknik Informatika (IPK 3.45)', en: 'B.Sc. Information Technology (GPA 3.45)' },
   'info-institution': { id: 'Perguruan Tinggi', en: 'University' },
   'info-contact': { id: 'Kontak Email', en: 'Email Contact' },
 
@@ -2597,12 +2612,43 @@ const translations = {
   },
 
   'edu-heading': { id: 'Pendidikan Resmi', en: 'Formal Education' },
+  'edu-degree-1': { id: 'S1 Teknik Informatika', en: "Bachelor's Degree in Information Technology" },
+  'edu-degree-2': { id: 'Rekayasa Perangkat Lunak (RPL)', en: 'Software Engineering Vocational Major' },
   'edu-skripsi': { id: '<strong>Skripsi:</strong> Customer Service Priority Classification using Fuzzy C-Means (Web-Based System)', en: '<strong>Final Thesis:</strong> Customer Service Priority Classification using Fuzzy C-Means (Web-Based System)' },
   'edu-smk-sub': { id: 'Fokus Pemrograman Web, Pemrograman Seluler & Basis Data', en: 'Focused on Web Development, Mobile Programming & Databases' },
 
   'skills-eyebrow': { id: 'Kompetensi Inti & Perangkat Kerja', en: 'Core Competencies & Tools' },
   'skills-heading': { id: 'Keahlian Teknis & Work Tools', en: 'Technical Skills & Work Tools' },
   'skills-sub': { id: 'Pemetaan keahlian teknis dan perangkat kerja yang dikuasai secara mendalam selama 6+ tahun karier.', en: 'Comprehensive mapping of technical expertise and tools mastered over 6+ years of career.' },
+  'skill-1-1': { id: 'Application Support (L2/L3) & Incident Handling', en: 'Application Support (L2/L3) & Incident Handling' },
+  'skill-1-2': { id: 'Problem Management & Root Cause Analysis (RCA)', en: 'Problem Management & Root Cause Analysis (RCA)' },
+  'skill-1-3': { id: 'User Training, Onboarding & Technical Manuals', en: 'User Training, Onboarding & Technical Manuals' },
+  'skill-1-4': { id: 'Production Support & SLA Commitment Management', en: 'Production Support & SLA Commitment Management' },
+
+  'skill-2-1': { id: 'Government Regulation Analysis (Perda/Perbup/Perwali/PP)', en: 'Government Regulation Analysis (Perda/Perbup/Perwali/PP)' },
+  'skill-2-2': { id: 'Requirement Gathering & Business Process Analysis', en: 'Requirement Gathering & Business Process Analysis' },
+  'skill-2-3': { id: 'Functional Analysis & Flow Process Design', en: 'Functional Analysis & Flow Process Design' },
+  'skill-2-4': { id: 'Feature Enhancement Analysis & Data Structure Spec', en: 'Feature Enhancement Analysis & Data Structure Spec' },
+
+  'skill-3-1': { id: 'Test Scenario Design & Test Case Creation', en: 'Test Scenario Design & Test Case Creation' },
+  'skill-3-2': { id: 'Manual Testing (Black Box, Functional, UAT)', en: 'Manual Testing (Black Box, Functional, UAT)' },
+  'skill-3-3': { id: 'Regression Testing & Bug Fix Verification', en: 'Regression Testing & Bug Fix Verification' },
+  'skill-3-4': { id: 'STLC Understanding & Bug Tracking Documentation', en: 'STLC Understanding & Bug Tracking Documentation' },
+
+  'skill-4-1': { id: 'MySQL Query Writing & Data Investigation', en: 'MySQL Query Writing & Data Investigation' },
+  'skill-4-2': { id: 'Database Backup, Restore & Data Synchronization', en: 'Database Backup, Restore & Data Synchronization' },
+  'skill-4-3': { id: 'Data Validation & Integrity Verification', en: 'Data Validation & Integrity Verification' },
+  'skill-4-4': { id: 'Navicat Premium Database Management', en: 'Navicat Premium Database Management' },
+
+  'skill-5-1': { id: 'Linux Server Support (CentOS & Ubuntu)', en: 'Linux Server Support (CentOS & Ubuntu)' },
+  'skill-5-2': { id: 'Cronjob Creation & Process Automation', en: 'Cronjob Creation & Process Automation' },
+  'skill-5-3': { id: 'Service Resource Monitoring & Application Log Analysis', en: 'Service Resource Monitoring & Application Log Analysis' },
+  'skill-5-4': { id: 'IAM Management (User, Role, Permission) & Network Troubleshooting', en: 'IAM Management (User, Role, Permission) & Network Troubleshooting' },
+
+  'skill-6-1': { id: 'Postman API Testing, REST API & JSON Validation', en: 'Postman API Testing, REST API & JSON Validation' },
+  'skill-6-2': { id: 'PHP (Laravel & Native), HTML, CSS, JavaScript (MVC)', en: 'PHP (Laravel & Native), HTML, CSS, JavaScript (MVC)' },
+  'skill-6-3': { id: 'Microsoft Power BI & Operational Reporting Dashboards', en: 'Microsoft Power BI & Operational Reporting Dashboards' },
+  'skill-6-4': { id: 'Local Tax System Expertise & Cross-Team Coordination', en: 'Local Tax System Expertise & Cross-Team Coordination' },
   'tools-title': { id: 'Perangkat Kerja & Peranti Lunak Operasional (Work Tools)', en: 'Operational Work Tools & Software' },
 
   'exp-eyebrow': { id: 'Riwayat Karier Profesional', en: 'Professional Career History' },
@@ -2610,22 +2656,84 @@ const translations = {
   'exp-sub': { id: 'Pengalaman 6+ tahun lintas 3 sektor industri: Government, Automotive, & Retail', en: '6+ years of experience across 3 industry sectors: Government, Automotive, & Retail' },
 
   'exp1-period': { id: '🗓️ Nov 2020 → 2026 (5+ Tahun)', en: '🗓️ Nov 2020 → 2026 (5+ Years)' },
+  'exp1-title': { id: 'Application Support Engineer & Assistant Team Leader', en: 'Application Support Engineer & Assistant Team Leader' },
   'exp1-desc': {
-    id: `Bertanggung jawab penuh atas dukungan teknis, analisis sistem, pengujian aplikasi, dan operasional produksi 
-            sistem perpajakan daerah (V-TAX) untuk instansi pemerintah daerah di seluruh Indonesia.`,
-    en: `Fully responsible for technical support, system analysis, software testing, and production operations of the regional taxation system (V-TAX) for local government agencies across Indonesia.`
+    id: `Bertanggung jawab penuh atas dukungan teknis, analisis sistem, pengujian aplikasi, dan operasional produksi sistem perpajakan daerah (V-TAX) untuk instansi pemerintah daerah di seluruh Indonesia.`,
+    en: `Fully responsible for technical support, system analysis, application testing, and production operations of the regional taxation system (V-TAX) for local government agencies across Indonesia.`
+  },
+  'exp1-sub1-title': { id: '1. Application Support & Incident Management (L2/L3)', en: '1. Application Support & Incident Management (L2/L3)' },
+  'exp1-sub1-achievements': {
+    id: `<li class="achievement-item">Menangani end-to-end Application Support (L2/L3) mulai dari incident handling, troubleshooting aplikasi, hingga root cause analysis (RCA).</li>
+        <li class="achievement-item">Menjadi first response pengguna via WhatsApp & sistem ticketing (Redmine) untuk klasifikasi, analisis awal, dan eskalasi insiden.</li>
+        <li class="achievement-item">Berkoordinasi aktif dengan tim developer dalam penyelesaian bug fix, enhancement, deployment, serta memenuhi komitmen SLA.</li>`,
+    en: `<li class="achievement-item">Managed end-to-end Application Support (L2/L3) ranging from incident handling, application troubleshooting, to root cause analysis (RCA).</li>
+        <li class="achievement-item">Served as first response for users via WhatsApp & Redmine ticketing system for initial analysis, classification, and incident escalation.</li>
+        <li class="achievement-item">Coordinated actively with the dev team for bug fixes, enhancements, application deployment, and meeting SLA targets.</li>`
+  },
+  'exp1-sub2-title': { id: '2. Business & System Analysis', en: '2. Business & System Analysis' },
+  'exp1-sub2-achievements': {
+    id: `<li class="achievement-item">Menganalisis kebutuhan bisnis berdasarkan Perda, Perbup, Perwali, dan Peraturan Pemerintah (PP) untuk diterjemahkan menjadi kebutuhan sistem.</li>
+        <li class="achievement-item">Melakukan requirement gathering, analisis proses bisnis, penyusunan usulan enhancement alur sistem, UI, serta struktur data.</li>`,
+    en: `<li class="achievement-item">Analyzed business requirements based on local regulations (Perda, Perbup, Perwali, PP) to translate them into technical system specifications.</li>
+        <li class="achievement-item">Conducted requirement gathering, business process analysis, and formulated proposals for system flow, UI, and data structure enhancements.</li>`
+  },
+  'exp1-sub3-title': { id: '3. Software Testing & Quality Assurance', en: '3. Software Testing & Quality Assurance' },
+  'exp1-sub3-achievements': {
+    id: `<li class="achievement-item">Menyusun test scenario dan test case; melaksanakan Functional Testing, User Acceptance Testing (UAT), dan Regression Testing pada lingkungan staging & production.</li>
+        <li class="achievement-item">Mendokumentasikan hasil pengujian dan memastikan seluruh perubahan sistem berjalan stabil tanpa merusak fitur existing (-60% error rate).</li>`,
+    en: `<li class="achievement-item">Designed test scenarios and test cases; executed Functional Testing, User Acceptance Testing (UAT), and Regression Testing across staging & production environments.</li>
+        <li class="achievement-item">Documented test results and ensured all system changes met user needs without introducing regression issues (-60% production error rate).</li>`
+  },
+  'exp1-sub4-title': { id: '4. Database & Production Support (Linux CentOS)', en: '4. Database & Production Support (Linux CentOS)' },
+  'exp1-sub4-achievements': {
+    id: `<li class="achievement-item">Menulis query MySQL untuk validasi data & investigasi; mengelola backup, restore, dan sinkronisasi database.</li>
+        <li class="achievement-item">Troubleshooting Linux Server (CentOS), monitoring resource server, pengecekan log aplikasi, membuat cronjob otomatisasi, serta mengelola IAM (User, Role, Permission).</li>`,
+    en: `<li class="achievement-item">Wrote MySQL queries for data validation & issue investigation; managed database backups, restores, and data synchronization.</li>
+        <li class="achievement-item">Executed Linux Server (CentOS) troubleshooting, monitored server resources, inspected app logs, configured automation cronjobs, and checked IAM permissions.</li>`
+  },
+  'exp1-sub5-title': { id: '5. Application Implementation & User Training', en: '5. Application Implementation & User Training' },
+  'exp1-sub5-achievements': {
+    id: `<li class="achievement-item">Melaksanakan implementasi aplikasi pada instansi pemerintah sesuai ruang lingkup proyek dan melakukan konfigurasi awal sistem.</li>
+        <li class="achievement-item">Memberikan pelatihan kepada operator dan administrator mengenai penggunaan aplikasi, menyusun panduan penggunaan sistem, serta membantu pemahaman alur bisnis.</li>`,
+    en: `<li class="achievement-item">Executed application implementation at local government agencies per project scope and completed initial system configurations.</li>
+        <li class="achievement-item">Conducted user training for operators and administrators, developed user manuals, and assisted users in understanding new business workflows.</li>`
+  },
+  'exp1-leadership-title': { id: '👑 6. Leadership & Coordination (Assistant Leader)', en: '👑 6. Leadership & Coordination (Assistant Leader)' },
+  'exp1-leadership-achievements': {
+    id: `<li class="achievement-item">Bertindak sebagai Assistant Leader dengan mengoordinasikan distribusi pekerjaan tim, melakukan quality control hasil analisis, memonitor penyelesaian tiket, serta memastikan eskalasi kepada developer dilakukan secara tepat.</li>
+        <li class="achievement-item">Membantu monitoring penyelesaian tiket berdasarkan prioritas dan tingkat urgensi.</li>
+        <li class="achievement-item">Menjadi penghubung antara pengguna, tim implementasi, dan tim pengembang.</li>`,
+    en: `<li class="achievement-item">Acted as Assistant Leader by coordinating team task distribution, conducting quality control on analysis results, monitoring ticket resolution, and ensuring proper escalation to developers.</li>
+        <li class="achievement-item">Monitored support ticket resolutions based on priority levels and urgency.</li>
+        <li class="achievement-item">Served as an essential liaison between end-users, the implementation team, and software developers.</li>`
   },
 
   'exp2-period': { id: '🗓️ Apr 2019 → Okt 2020 (1.5 Tahun)', en: '🗓️ Apr 2019 → Oct 2020 (1.5 Years)' },
+  'exp2-title': { id: 'Maintenance Service Appointment Coordinator', en: 'Maintenance Service Appointment Coordinator' },
   'exp2-desc': {
     id: `Mengelola dan menganalisis data layanan servis kendaraan pelanggan dari berbagai sumber untuk mendukung operasional tim MRA dan manajemen bengkel.`,
     en: `Managed and analyzed vehicle maintenance service data from multiple sources to support operational MRA teams and workshop management.`
   },
+  'exp2-achievements': {
+    id: `<li class="achievement-item">Menyusun laporan operasional berkala untuk kepala bengkel, termasuk analisis tren dan pola permintaan layanan.</li>
+        <li class="achievement-item">Menggunakan Microsoft Power BI untuk visualisasi data interaktif dan penyajian insight operasional secara real-time.</li>
+        <li class="achievement-item">Mendukung penerimaan pelanggan, koordinasi unit teknisi, serta pembaruan dan validasi database layanan servis.</li>`,
+    en: `<li class="achievement-item">Prepared regular operational reports for workshop heads, including service demand trends and patterns analysis.</li>
+        <li class="achievement-item">Utilized Microsoft Power BI for interactive data visualization and presenting real-time operational insights.</li>
+        <li class="achievement-item">Supported customer reception, technical unit coordination, and updated/validated service database records.</li>`
+  },
 
   'exp3-period': { id: '🗓️ Mei 2018 → Apr 2019 (1 Tahun)', en: '🗓️ May 2018 → Apr 2019 (1 Year)' },
+  'exp3-title': { id: 'Staff Warehouse & Inventory Control', en: 'Staff Warehouse & Inventory Control' },
   'exp3-desc': {
     id: `Mengelola administrasi gudang dan pengendalian persediaan barang ritel menggunakan sistem manajemen stok terstruktur.`,
     en: `Managed warehouse administration and retail inventory control using a structured stock management system.`
+  },
+  'exp3-achievements': {
+    id: `<li class="achievement-item">Mengelola persediaan barang menggunakan metode FIFO (First-In, First-Out) untuk akurasi dan mencegah expired/kerusakan.</li>
+        <li class="achievement-item">Melakukan stock opname rutin, verifikasi penerimaan/pengiriman barang, pencatatan inventaris, serta packing dan distribusi sesuai pesanan.</li>`,
+    en: `<li class="achievement-item">Managed inventory rotation using FIFO (First-In, First-Out) method to ensure stock accuracy and minimize damage/expiration.</li>
+        <li class="achievement-item">Conducted routine stock opnames, incoming/outgoing item verification, inventory record-keeping, and order packing/distribution.</li>`
   },
 
   'proj-eyebrow': { id: 'Portfolio Portofolio & Proyek', en: 'Portfolio & Projects' },
@@ -2633,9 +2741,46 @@ const translations = {
   'proj-sub': { id: 'Kumpulan proyek pengembangan sistem, analisis data, dan aplikasi berbasis kebutuhan bisnis.', en: 'A collection of system development, data analysis, and business-driven applications.' },
   'filter-all': { id: 'Semua Proyek', en: 'All Projects' },
 
+  'proj1-title': { id: 'Sistem Manajemen Proyek - Dynamic Workflow', en: 'Project Management System - Dynamic Workflow' },
+  'proj1-desc': {
+    id: `Platform manajemen proyek berbasis web yang memungkinkan penyesuaian alur kerja secara dinamis sesuai kebutuhan tim. Membantu meningkatkan fleksibilitas operasional dan efisiensi pengelolaan proyek.`,
+    en: `A web-based project management platform allowing dynamic workflow customization based on team requirements, improving operational flexibility and project efficiency.`
+  },
+
+  'proj2-title': { id: 'Hybrid Project Management System', en: 'Hybrid Project Management System' },
+  'proj2-desc': {
+    id: `Sistem manajemen proyek yang menggabungkan metode linear dan agile dalam satu platform, memungkinkan tim menggunakan pendekatan yang paling sesuai untuk berbagai jenis proyek.`,
+    en: `A project management system combining linear and agile methodologies in a single platform, enabling teams to utilize the optimal approach per project type.`
+  },
+
+  'proj3-title': { id: 'Kanban Task Management System', en: 'Kanban Task Management System' },
+  'proj3-desc': {
+    id: `Sistem manajemen tugas dengan konsep Kanban dan fitur drag-and-drop, membantu tim dalam memvisualisasikan progres pekerjaan serta meningkatkan koordinasi antar anggota tim.`,
+    en: `A task management system utilizing Kanban concepts and drag-and-drop features, helping teams visualize work progress and enhance team coordination.`
+  },
+
+  'proj4-title': { id: 'Classification Priority System (Fuzzy C-Means)', en: 'Classification Priority System (Fuzzy C-Means)' },
+  'proj4-desc': {
+    id: `Sistem analisis data dan klasifikasi prioritas layanan berbasis Fuzzy C-Means (Project Akhir S1 Teknik Informatika STTB), membantu pengelompokan tingkat urgensi layanan secara obyektif berbasis data.`,
+    en: `A data analysis and customer service priority classification system using Fuzzy C-Means (Bachelor Thesis Project at STTB), facilitating data-driven service urgency grouping.`
+  },
+
+  'proj5-title': { id: 'Sistem Tracking Berkas Kendaraan', en: 'Vehicle Document Tracking System' },
+  'proj5-desc': {
+    id: `Platform pelacakan status dokumen kendaraan secara real-time yang membantu pengguna memonitor progres pengurusan berkas, meningkatkan transparansi layanan dan efisiensi komunikasi.`,
+    en: `A real-time vehicle document tracking platform enabling users to monitor document processing progress, enhancing transparency and communication efficiency.`
+  },
+
+  'proj6-title': { id: 'Sistem Koperasi Simpan Pinjam', en: 'Savings & Loan Cooperative System' },
+  'proj6-desc': {
+    id: `Aplikasi manajemen koperasi dengan fitur lengkap seperti simpanan, pinjaman, cicilan, dan laporan keuangan otomatis, membantu meningkatkan efisiensi pengelolaan data keuangan.`,
+    en: `A comprehensive cooperative management application with savings, loans, installments, and automated financial reporting features for efficient data management.`
+  },
+
   'cert-section-eyebrow': { id: 'Sertifikasi & Lisensi Resmi', en: 'Certifications & Credentials' },
   'cert-section-heading': { id: 'Sertifikat Kualifikasi', en: 'Professional Certificates' },
   'cert-section-sub': { id: 'Daftar lisensi dan sertifikasi profesional di bidang Project Management, Networking, Bahasa, dan Software Engineering.', en: 'Professional licenses & certifications across Project Management, Networking, Language, and Software Engineering.' },
+  'cert-license-label': { id: 'No. Lisensi:', en: 'Credential ID:' },
   'cert-btn-text': { id: 'Lihat Sertifikat (GitHub)', en: 'View Certificate (GitHub)' },
 
   'contact-eyebrow': { id: 'Hubungi Saya', en: 'Get In Touch' },
@@ -2646,10 +2791,10 @@ const translations = {
     id: `Saya terbuka untuk berdiskusi mengenai posisi Application Support Engineer, System Analyst, maupun Quality Assurance Engineer. Hubungi saya melalui saluran kontak berikut:`,
     en: `I am open to discussing roles in Application Support Engineering, System Analysis, or Quality Assurance Engineering. Feel free to contact me:`
   },
+  'contact-email-label': { id: 'Email Utama', en: 'Primary Email' },
+  'contact-phone-label': { id: 'Telepon', en: 'Phone' },
   'contact-cv-value': { id: 'Unduh / Lihat PDF Terbaru', en: 'Download / View Latest PDF' },
 
-  'brand-role': { id: 'Senior Application Support & System Analyst', en: 'Senior Application Support & System Analyst' },
-  'status-available': { id: 'Terbuka Peluang Karier', en: 'Available for hire' },
   'back-to-top-label': { id: 'Kembali ke atas', en: 'Back to top' }
 };
 
