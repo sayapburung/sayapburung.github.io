@@ -2474,9 +2474,34 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           <h3 class="cert-item-title">Project Management Associate (PMA)</h3>
           <div class="cert-item-org">Logical Operations</div>
           <div class="cert-item-meta"><span data-i18n="cert-license-label">No. Lisensi:</span> 2023-C-018543 • 2023</div>
-          <a href="https://github.com/sayapburung" target="_blank" class="cert-action-btn">
-            <span>🔗</span> <span data-i18n="cert-btn-text">Lihat Sertifikat (GitHub)</span>
-          </a>
+          <button class="cert-action-btn" onclick="openPreview()">
+  <span>📄</span>
+  <span data-i18n="cert-btn-text">Lihat Sertifikat</span>
+</button>
+
+<!-- Popup Preview PDF -->
+<div id="previewModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePreview()">&times;</span>
+
+    <h3>Preview Sertifikat</h3>
+
+    <iframe
+      src="https://raw.githubusercontent.com/sayapburung/sayapburung.github.io/main/assets/Sertifikat%20PMA.pdf"
+      width="100%"
+      height="600"
+      style="border:none;border-radius:12px;">
+    </iframe>
+
+    <div style="margin-top:15px;text-align:right;">
+      <a href="https://raw.githubusercontent.com/sayapburung/sayapburung.github.io/main/assets/Sertifikat%20PMA.pdf"
+         target="_blank"
+         class="cert-action-btn">
+        Buka PDF
+      </a>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 
