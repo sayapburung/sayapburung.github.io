@@ -83,26 +83,10 @@ body {
   overflow-x: hidden;
 }
 
-<<<<<<< HEAD
-body.tech-mode {
-  background-color: var(--tech-bg);
-  background-image:
-    radial-gradient(circle at 12% -10%, rgba(0,255,135,0.07), transparent 42%),
-    radial-gradient(circle at 90% 110%, rgba(56,189,248,0.06), transparent 45%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.014) 0px, rgba(255,255,255,0.014) 1px, transparent 1px, transparent 4px);
-  background-attachment: fixed, fixed, fixed;
-}
-
-@keyframes blinkCursor { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 12px rgba(0,255,135,0.12), inset 0 0 10px rgba(0,255,135,0.04); }
-  50% { box-shadow: 0 0 22px rgba(0,255,135,0.22), inset 0 0 16px rgba(0,255,135,0.08); }
-}
-
 /* ===== CONTROLS BAR (Top Right) ===== */
 .controls-container {
   position: fixed;
-  top: 18px;
+  top: 16px;
   right: 20px;
   z-index: 9999;
   display: flex;
@@ -126,7 +110,7 @@ body.tech-mode .mode-toggle,
 body.tech-mode .lang-toggle {
   background: #111827;
   border-color: #1E293B;
-  box-shadow: 0 4px 20px rgba(0,255,135,0.08);
+  box-shadow: 0 4px 20px rgba(0,255,135,0.1);
 }
 
 .toggle-btn {
@@ -204,6 +188,10 @@ body.tech-mode .lang-btn.active { background: linear-gradient(135deg, #00FF87, #
   z-index: 500;
 }
 
+body.tech-mode .back-to-top {
+  bottom: 45px;
+}
+
 .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
 .back-to-top:hover { transform: translateY(-3px); background: var(--hr-accent-hover); }
 
@@ -216,7 +204,7 @@ body.tech-mode .back-to-top {
 
 body.tech-mode .back-to-top:hover { background: var(--tech-neon); color: #0B0F19; }
 
-/* ===== LAYOUT & SIDEBAR ===== */
+/* ===== LAYOUT & SIDEBAR (HR MODE) ===== */
 .app-container { display: flex; min-height: 100vh; }
 
 .sidebar {
@@ -233,35 +221,9 @@ body.tech-mode .back-to-top:hover { background: var(--tech-neon); color: #0B0F19
   transition: all 0.4s ease;
 }
 
+/* HIDE SIDEBAR IN DEV/TECH MODE */
 body.tech-mode .sidebar {
-<<<<<<< HEAD
-  background:
-    radial-gradient(circle at 100% 0%, rgba(0,255,135,0.05), transparent 55%),
-    var(--tech-panel);
-  border-right: 1px solid var(--tech-border);
-  box-shadow: inset -1px 0 0 rgba(0,255,135,0.1), 6px 0 40px rgba(0,255,135,0.05);
-}
-
-/* Terminal chrome bar — tech mode only */
-.sidebar-term-bar {
-  display: none;
-  align-items: center;
-  gap: 7px;
-  padding: 16px 24px 12px;
-}
-
-body.tech-mode .sidebar-term-bar { display: flex; }
-
-.sidebar-term-bar .t-dot { width: 8px; height: 8px; }
-
-.sidebar-term-bar .term-label {
-  margin-left: 4px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--tech-text3);
-=======
-  background: var(--tech-panel);
-  border-right: 1px solid var(--tech-border);
+  display: none !important;
 }
 
 .sidebar-brand {
@@ -269,8 +231,6 @@ body.tech-mode .sidebar-term-bar { display: flex; }
   border-bottom: 1px solid var(--hr-border);
   margin-bottom: 24px;
 }
-
-body.tech-mode .sidebar-brand { border-bottom-color: var(--tech-border); }
 
 .brand-initials {
   width: 46px; height: 46px;
@@ -283,38 +243,17 @@ body.tech-mode .sidebar-brand { border-bottom-color: var(--tech-border); }
   transition: all 0.3s ease;
 }
 
-body.tech-mode .brand-initials {
-  background: transparent;
-  border: 1.5px solid var(--tech-neon);
-  color: var(--tech-neon);
-  font-family: 'JetBrains Mono', monospace;
-  box-shadow: 0 0 10px rgba(0,255,135,0.2);
-}
-
 .brand-name {
   font-size: 14.5px;
   font-weight: 700;
   color: var(--hr-text);
   line-height: 1.25;
-  transition: color 0.3s;
-}
-
-body.tech-mode .brand-name {
-  color: var(--tech-text);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12.5px;
 }
 
 .brand-role {
   font-size: 11.5px;
   color: var(--hr-text3);
   margin-top: 3px;
-  transition: color 0.3s;
-}
-
-body.tech-mode .brand-role {
-  color: var(--tech-text2);
-  font-family: 'JetBrains Mono', monospace;
 }
 
 .nav-section-label {
@@ -325,11 +264,6 @@ body.tech-mode .brand-role {
   color: var(--hr-text3);
   padding: 0 24px;
   margin-bottom: 8px;
-}
-
-body.tech-mode .nav-section-label {
-  color: var(--tech-text3);
-  font-family: 'JetBrains Mono', monospace;
 }
 
 .nav-item {
@@ -358,76 +292,7 @@ body.tech-mode .nav-section-label {
   font-weight: 600;
 }
 
-body.tech-mode .nav-item {
-  color: var(--tech-text2);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-<<<<<<< HEAD
-  border-left: none;
-  margin: 3px 14px;
-  padding: 10px 14px;
-  border-radius: 6px;
-  border: 1px solid transparent;
-  position: relative;
-}
-
-body.tech-mode .nav-item:hover {
-  background: rgba(0,255,135,0.05);
-  color: var(--tech-neon);
-  transform: translateX(4px);
-}
-
-body.tech-mode .nav-item.active {
-  background: linear-gradient(90deg, rgba(0,255,135,0.16), rgba(0,255,135,0.02));
-  color: var(--tech-neon);
-  font-weight: 600;
-  border-color: rgba(0,255,135,0.4);
-  transform: translateX(8px);
-  animation: glowPulse 2.6s ease-in-out infinite;
-}
-
-body.tech-mode .nav-item.active::after {
-  content: '█';
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--tech-neon);
-  font-size: 10px;
-  animation: blinkCursor 1s steps(1) infinite;
-}
-
-body.tech-mode .nav-tech-prefix { transition: color 0.2s ease; }
-body.tech-mode .nav-item:hover .nav-tech-prefix,
-body.tech-mode .nav-item.active .nav-tech-prefix { color: var(--tech-neon); }
-
-body.tech-mode .nav-icon { opacity: 0.55; filter: grayscale(1); font-size: 13px; }
-body.tech-mode .nav-item.active .nav-icon,
-body.tech-mode .nav-item:hover .nav-icon { opacity: 1; filter: none; }
-
-=======
-}
-
-body.tech-mode .nav-item:hover {
-  background: rgba(0,255,135,0.04);
-  color: var(--tech-neon);
-  border-left-color: var(--tech-neon);
-}
-
-body.tech-mode .nav-item.active {
-  background: rgba(0,255,135,0.08);
-  color: var(--tech-neon);
-  border-left-color: var(--tech-neon);
-}
 .nav-icon { font-size: 15px; width: 20px; text-align: center; }
-
-.nav-tech-prefix {
-  display: none;
-  color: var(--tech-neon);
-  font-size: 10px;
-}
-
-body.tech-mode .nav-tech-prefix { display: inline; }
 
 .sidebar-footer {
   margin-top: auto;
@@ -435,20 +300,12 @@ body.tech-mode .nav-tech-prefix { display: inline; }
   border-top: 1px solid var(--hr-border);
 }
 
-body.tech-mode .sidebar-footer { border-top-color: var(--tech-border); }
-
 .status-pill {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 12px;
   color: var(--hr-text3);
-}
-
-body.tech-mode .status-pill {
-  color: var(--tech-text2);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
 }
 
 .status-dot {
@@ -464,12 +321,152 @@ body.tech-mode .status-pill {
   50% { transform: scale(1.2); opacity: 0.7; }
 }
 
-/* ===== MAIN CONTENT ===== */
+/* ===== DEV MODE TOP IDE HEADER & NAVBAR (ONLY IN DEV MODE) ===== */
+.dev-ide-navbar {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #090D16;
+  border-bottom: 1px solid var(--tech-border);
+  z-index: 9000;
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+}
+
+body.tech-mode .dev-ide-navbar {
+  display: block;
+}
+
+.dev-ide-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #0D1322;
+  border-bottom: 1px solid #1E293B;
+  font-size: 12px;
+}
+
+.dev-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.w-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+}
+.w-dot.red { background: #EF4444; }
+.w-dot.yellow { background: #F59E0B; }
+.w-dot.green { background: #10B981; }
+
+.dev-ide-title {
+  color: #94A3B8;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dev-ide-title .git-branch {
+  color: var(--tech-neon);
+  background: rgba(0,255,135,0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10.5px;
+}
+
+.dev-ide-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 12px;
+  overflow-x: auto;
+  background: #0B0F19;
+}
+
+.dev-tab-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 12px;
+  color: #64748B;
+  background: #0F172A;
+  border-right: 1px solid #1E293B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  white-space: nowrap;
+  border-top: 2px solid transparent;
+}
+
+.dev-tab-item:hover {
+  background: #1E293B;
+  color: #CBD5E1;
+}
+
+.dev-tab-item.active {
+  background: #0B0F19;
+  color: var(--tech-neon);
+  border-top-color: var(--tech-neon);
+  font-weight: 600;
+}
+
+.dev-tab-icon { font-size: 13px; }
+.dev-tab-close { font-size: 10px; opacity: 0.5; margin-left: 4px; }
+.dev-tab-item:hover .dev-tab-close { opacity: 1; }
+
+/* ===== DEV MODE BOTTOM STATUSBAR ===== */
+.dev-ide-statusbar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #0D1322;
+  border-top: 1px solid var(--tech-border);
+  padding: 6px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #64748B;
+  z-index: 9000;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body.tech-mode .dev-ide-statusbar {
+  display: flex;
+}
+
+.dev-status-left, .dev-status-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dev-status-badge {
+  color: var(--tech-neon);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===== MAIN CONTENT AREA ===== */
 .main {
   margin-left: 265px;
   flex: 1;
   min-height: 100vh;
   transition: margin 0.4s ease;
+}
+
+/* FULL WIDTH IN DEV MODE (NO SIDEBAR) */
+body.tech-mode .main {
+  margin-left: 0 !important;
+  padding-top: 84px;
+  padding-bottom: 45px;
+  max-width: 1400px;
+  margin-right: auto;
+  margin-left: auto !important;
 }
 
 .section {
@@ -1659,67 +1656,6 @@ body.tech-mode .contact-card-icon {
 body.tech-mode .contact-card-label { color: var(--tech-text3); font-family: 'JetBrains Mono', monospace; font-size: 9.5px; }
 body.tech-mode .contact-card-value { color: var(--tech-blue); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
 
-<<<<<<< HEAD
-/* ===== TECH MODE — DASHBOARD ACCENTS ===== */
-body.tech-mode .section-eyebrow::before {
-  content: '$ ';
-  color: var(--tech-text3);
-}
-
-body.tech-mode .section-heading::after {
-  content: '_';
-  color: var(--tech-neon);
-  margin-left: 5px;
-  animation: blinkCursor 1s steps(1) infinite;
-}
-
-body.tech-mode .profile-hero,
-body.tech-mode .info-card,
-body.tech-mode .stat-card,
-body.tech-mode .skill-card,
-body.tech-mode .edu-card,
-body.tech-mode .timeline-card,
-body.tech-mode .project-card,
-body.tech-mode .cert-card-item,
-body.tech-mode .contact-card {
-  position: relative;
-  overflow: hidden;
-}
-
-body.tech-mode .profile-hero::before,
-body.tech-mode .info-card::before,
-body.tech-mode .stat-card::before,
-body.tech-mode .skill-card::before,
-body.tech-mode .edu-card::before,
-body.tech-mode .timeline-card::before,
-body.tech-mode .project-card::before,
-body.tech-mode .cert-card-item::before,
-body.tech-mode .contact-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--tech-neon), var(--tech-blue), transparent);
-  opacity: 0.55;
-}
-
-body.tech-mode .info-card:hover,
-body.tech-mode .project-card:hover,
-body.tech-mode .cert-card-item:hover,
-body.tech-mode .contact-card:hover {
-  border-color: var(--tech-neon);
-  box-shadow: 0 10px 28px rgba(0,255,135,0.12);
-}
-
-body.tech-mode .edu-card:hover { box-shadow: 0 10px 28px rgba(0,255,135,0.1); }
-
-body.tech-mode .mobile-nav-item.active {
-  background: rgba(0,255,135,0.14);
-  box-shadow: 0 0 14px rgba(0,255,135,0.2);
-  border-radius: 8px;
-}
-
-=======
 /* ===== MOBILE NAV ===== */
 .mobile-nav {
   display: none;
@@ -1769,8 +1705,9 @@ body.tech-mode .mobile-nav-item.active { background: rgba(0,255,135,0.08); }
 body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neon); font-family: 'JetBrains Mono', monospace; }
 
 @media (max-width: 900px) {
-  .sidebar { display: none; }
-  .main { margin-left: 0; }
+  .sidebar { display: none !important; }
+  .main { margin-left: 0 !important; }
+  body.tech-mode .main { padding-top: 95px; padding-left: 16px; padding-right: 16px; }
   .mobile-nav { display: block; }
   .section { padding: 24px 18px 84px; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -1783,7 +1720,8 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
   .projects-grid { grid-template-columns: 1fr; }
   .sys-monitor { grid-template-columns: 1fr; }
   .section-heading { font-size: 1.7rem; }
-  .controls-container { top: 12px; right: 12px; }
+  .controls-container { top: 10px; right: 10px; }
+  .dev-ide-topbar { flex-direction: column; align-items: flex-start; gap: 4px; }
 }
 
 @media (max-width: 480px) {
@@ -1809,14 +1747,71 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
   </div>
 </div>
 
-<!-- Sidebar -->
-<nav class="sidebar">
-<<<<<<< HEAD
-  <div class="sidebar-term-bar">
-    <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
-    <span class="term-label">nav.sh</span>
+<!-- DEV MODE IDE HEADER / NAVBAR (VISIBLE IN DEV VIEW ONLY) -->
+<header class="dev-ide-navbar">
+  <div class="dev-ide-topbar">
+    <div class="dev-window-controls">
+      <span class="w-dot red"></span>
+      <span class="w-dot yellow"></span>
+      <span class="w-dot green"></span>
+      <span style="color:#64748B;font-size:11px;margin-left:6px;">hendriansyah@dev-workstation: ~/portfolio</span>
+    </div>
+    <div class="dev-ide-title">
+      <span>src/components</span>
+      <span class="git-branch">⎇ git:(main) ✓</span>
+    </div>
   </div>
-=======
+  <div class="dev-ide-tabs">
+    <div class="dev-tab-item active" data-section="profile" onclick="showSection('profile',this)">
+      <span class="dev-tab-icon">👤</span>
+      <span>profile.json</span>
+      <span class="dev-tab-close">×</span>
+    </div>
+    <div class="dev-tab-item" data-section="skills" onclick="showSection('skills',this)">
+      <span class="dev-tab-icon">⚡</span>
+      <span>skills.ts</span>
+      <span class="dev-tab-close">×</span>
+    </div>
+    <div class="dev-tab-item" data-section="experience" onclick="showSection('experience',this)">
+      <span class="dev-tab-icon">📋</span>
+      <span>experience.log</span>
+      <span class="dev-tab-close">×</span>
+    </div>
+    <div class="dev-tab-item" data-section="projects" onclick="showSection('projects',this)">
+      <span class="dev-tab-icon">🚀</span>
+      <span>projects.rs</span>
+      <span class="dev-tab-close">×</span>
+    </div>
+    <div class="dev-tab-item" data-section="certificates" onclick="showSection('certificates',this)">
+      <span class="dev-tab-icon">📜</span>
+      <span>certificates.md</span>
+      <span class="dev-tab-close">×</span>
+    </div>
+    <div class="dev-tab-item" data-section="contact" onclick="showSection('contact',this)">
+      <span class="dev-tab-icon">📧</span>
+      <span>contact.env</span>
+      <span class="dev-tab-close">×</span>
+    </div>
+  </div>
+</header>
+
+<!-- DEV MODE IDE BOTTOM STATUSBAR -->
+<footer class="dev-ide-statusbar">
+  <div class="dev-status-left">
+    <span class="dev-status-badge">⎇ main*</span>
+    <span>● 0 Errors, 0 Warnings</span>
+    <span>SLA: 95%+</span>
+  </div>
+  <div class="dev-status-right">
+    <span>Ln 42, Col 18</span>
+    <span>UTF-8</span>
+    <span>TypeScript / JSON</span>
+    <span style="color:var(--tech-neon);">● Prettier OK</span>
+  </div>
+</footer>
+
+<!-- Sidebar (HR MODE ONLY) -->
+<nav class="sidebar">
   <div class="sidebar-brand">
     <div class="brand-initials" id="brand-init">HS</div>
     <div class="brand-name" id="brand-name">Hendriansyah Setiawan</div>
@@ -1825,37 +1820,30 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
 
   <div class="nav-section-label">
     <span class="hr-only" data-i18n="nav-section-title">Navigasi</span>
-    <span class="tech-only" style="display:none;font-family:'JetBrains Mono',monospace;">// nav</span>
   </div>
 
   <div class="nav-item active" data-section="profile" onclick="showSection('profile',this)">
     <span class="nav-icon">👤</span>
-    <span class="nav-tech-prefix">01_</span>
     <span data-i18n="nav-profile">Profile</span>
   </div>
   <div class="nav-item" data-section="skills" onclick="showSection('skills',this)">
     <span class="nav-icon">⚡</span>
-    <span class="nav-tech-prefix">02_</span>
     <span data-i18n="nav-skills">Skills & Tools</span>
   </div>
   <div class="nav-item" data-section="experience" onclick="showSection('experience',this)">
     <span class="nav-icon">📋</span>
-    <span class="nav-tech-prefix">03_</span>
     <span data-i18n="nav-experience">Experience</span>
   </div>
   <div class="nav-item" data-section="projects" onclick="showSection('projects',this)">
     <span class="nav-icon">🚀</span>
-    <span class="nav-tech-prefix">04_</span>
     <span data-i18n="nav-projects">Projects</span>
   </div>
   <div class="nav-item" data-section="certificates" onclick="showSection('certificates',this)">
     <span class="nav-icon">📜</span>
-    <span class="nav-tech-prefix">05_</span>
     <span data-i18n="nav-certificates">Certificates</span>
   </div>
   <div class="nav-item" data-section="contact" onclick="showSection('contact',this)">
     <span class="nav-icon">📧</span>
-    <span class="nav-tech-prefix">06_</span>
     <span data-i18n="nav-contact">Contact</span>
   </div>
 
@@ -1943,15 +1931,14 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
 
     <!-- Hero Card -->
     <div class="profile-hero">
-<div class="avatar-wrap">
-    <img
+        <div class="avatar-wrap">
+          <img
         class="avatar"
         src="https://raw.githubusercontent.com/sayapburung/sayapburung.github.io/main/assets/Foto.png"
-        alt="Foto Profil"
-    >
-    <div class="avatar-badge">✓</div>
-</div>
-      <div>
+        alt="Foto Profil">
+          <div class="avatar-badge">✓</div>
+        </div>
+        <div>
         <div class="hero-name">Hendriansyah Setiawan</div>
         <div class="hero-title" data-i18n="hero-title">Senior Application Support & System Analyst dengan 6+ tahun pengalaman menangani operasional, pengujian, dan implementasi sistem enterprise pada sektor Government, Automotive, & Retail.</div>
         <div class="hero-tags">
@@ -2991,8 +2978,10 @@ function updateBrandTexts() {
   } else {
     document.getElementById('brand-init').textContent = 'HS';
     document.getElementById('brand-name').textContent = 'Hendriansyah Setiawan';
-    document.getElementById('brand-role').textContent = translations['brand-role'][currentLang];
-    document.getElementById('status-text').textContent = translations['status-available'][currentLang];
+    const roleElem = document.getElementById('brand-role');
+    if (roleElem && translations['brand-role']) roleElem.textContent = translations['brand-role'][currentLang];
+    const statusElem = document.getElementById('status-text');
+    if (statusElem && translations['status-available']) statusElem.textContent = translations['status-available'][currentLang];
   }
 }
 
@@ -3020,10 +3009,17 @@ function showSection(id, el) {
   const targetSection = document.getElementById(id);
   if (targetSection) targetSection.classList.add('active');
 
+  // HR Sidebar active state
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const sidebarItem = document.querySelector(`.nav-item[data-section="${id}"]`);
   if (sidebarItem) sidebarItem.classList.add('active');
 
+  // Dev IDE Topbar active tab state
+  document.querySelectorAll('.dev-tab-item').forEach(n => n.classList.remove('active'));
+  const devTabItem = document.querySelector(`.dev-tab-item[data-section="${id}"]`);
+  if (devTabItem) devTabItem.classList.add('active');
+
+  // Mobile nav active state
   document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
   const mobileItem = document.querySelector(`.mobile-nav-item[data-section="${id}"]`);
   if (mobileItem) mobileItem.classList.add('active');
@@ -3070,7 +3066,4 @@ if (savedLang === 'en') setLanguage('en');
 else applyTranslations();
 </script>
 </body>
-<<<<<<< HEAD
-</html>
-=======
 </html>
