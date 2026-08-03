@@ -417,6 +417,11 @@ body.tech-mode .dev-ide-navbar {
 .dev-tab-close { font-size: 10px; opacity: 0.5; margin-left: 4px; }
 .dev-tab-item:hover .dev-tab-close { opacity: 1; }
 
+/* ===== DEV MODE TAB BAR (MOBILE, MOVED TO BOTTOM, SWIPEABLE) ===== */
+.dev-ide-tabs-mobile {
+  display: none; /* only shown in tech-mode + mobile via media query below */
+}
+
 /* ===== DEV MODE BOTTOM STATUSBAR ===== */
 .dev-ide-statusbar {
   display: none;
@@ -1303,6 +1308,32 @@ body.tech-mode .filter-btn.active {
   border: none;
 }
 
+/* Document (non-video) preview inside project-video-wrap, e.g. Excel test cases */
+.project-doc-preview {
+  background: #1a1a1a;
+}
+.doc-content {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ccc;
+}
+.doc-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+.doc-label {
+  font-size: 14px;
+  color: #aaa;
+  text-align: center;
+  padding: 0 12px;
+}
+
 .project-body { padding: 20px; }
 
 .project-title {
@@ -1721,6 +1752,38 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
   .section-heading { font-size: 1.7rem; }
   .controls-container { top: 10px; right: 10px; }
   .dev-ide-topbar { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+  /* --- Dev mode: move swipeable file-tab bar to bottom on mobile --- */
+  body.tech-mode .dev-ide-tabs {
+    display: none; /* hide the cramped top tab row on mobile */
+  }
+
+  body.tech-mode .dev-ide-tabs-mobile {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    position: fixed;
+    left: 0; right: 0;
+    bottom: 32px; /* sits just above the statusbar */
+    background: #0B0F19;
+    border-top: 1px solid var(--tech-border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    z-index: 9500;
+    padding: 0 4px;
+  }
+  body.tech-mode .dev-ide-tabs-mobile::-webkit-scrollbar { display: none; }
+
+  body.tech-mode .main {
+    padding-top: 58px !important;
+    padding-bottom: 96px !important;
+  }
+
+  /* Hide the old icon bottom-nav in dev mode so it doesn't stack with the new tab bar */
+  body.tech-mode .mobile-nav {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2421,6 +2484,33 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           </div>
         </div>
       </div>
+
+      <!-- Project 7 (QA - Test Case) -->
+      <div class="project-card" data-category="qa">
+        <div class="project-video-wrap project-doc-preview">
+          <div class="doc-content">
+            <div class="doc-icon">📊</div>
+            <span class="doc-label">Excel Test Case Document</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj7-title">Test Case Migrasi Data (V3)</h3>
+          <p class="project-desc" data-i18n="proj7-desc">
+            Dokumen test case untuk proses migrasi data, disusun secara terstruktur mencakup skenario pengujian, 
+            langkah eksekusi, hasil yang diharapkan, dan status hasil uji. Digunakan sebagai acuan QA dalam 
+            memastikan integritas data pasca migrasi.
+          </p>
+          <div class="tag-row">
+            <span class="tech-tag">Test Case</span>
+            <span class="tech-tag">Data Migration</span>
+            <span class="tech-tag">Excel</span>
+          </div>
+          <div class="project-links-row">
+            <a href="https://github.com/sayapburung/sayapburung.github.io/blob/main/assets/QA/Test%20Case%20Migrasi%20V3.xlsx" target="_blank" class="proj-link">🔗 GitHub</a>
+            <a href="https://github.com/sayapburung/sayapburung.github.io/raw/refs/heads/main/assets/QA/Test%20Case%20Migrasi%20V3.xlsx" target="_blank" class="proj-link">⬇️ Download</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2664,6 +2754,28 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
   </section>
 
 </main>
+
+<!-- Dev Mode Bottom Tab Bar (mobile only, swipeable) -->
+<div class="dev-ide-tabs-mobile">
+  <div class="dev-tab-item active" data-section="profile" onclick="showSection('profile',this)">
+    <span class="dev-tab-icon">👤</span><span>profile.json</span>
+  </div>
+  <div class="dev-tab-item" data-section="skills" onclick="showSection('skills',this)">
+    <span class="dev-tab-icon">⚡</span><span>skills.ts</span>
+  </div>
+  <div class="dev-tab-item" data-section="experience" onclick="showSection('experience',this)">
+    <span class="dev-tab-icon">📋</span><span>experience.log</span>
+  </div>
+  <div class="dev-tab-item" data-section="projects" onclick="showSection('projects',this)">
+    <span class="dev-tab-icon">🚀</span><span>projects.rs</span>
+  </div>
+  <div class="dev-tab-item" data-section="certificates" onclick="showSection('certificates',this)">
+    <span class="dev-tab-icon">📜</span><span>certificates.md</span>
+  </div>
+  <div class="dev-tab-item" data-section="contact" onclick="showSection('contact',this)">
+    <span class="dev-tab-icon">📧</span><span>contact.env</span>
+  </div>
+</div>
 
 <!-- Mobile Navigation -->
 <nav class="mobile-nav">
@@ -2918,6 +3030,12 @@ const translations = {
     en: `A comprehensive cooperative management application with savings, loans, installments, and automated financial reporting features for efficient data management.`
   },
 
+  'proj7-title': { id: 'Test Case Migrasi Data (V3)', en: 'Data Migration Test Case (V3)' },
+  'proj7-desc': {
+    id: `Dokumen test case untuk proses migrasi data, disusun secara terstruktur mencakup skenario pengujian, langkah eksekusi, hasil yang diharapkan, dan status hasil uji. Digunakan sebagai acuan QA dalam memastikan integritas data pasca migrasi.`,
+    en: `Structured test case document for a data migration process, covering test scenarios, execution steps, expected results, and test status. Used as a QA reference to ensure data integrity after migration.`
+  },
+
   'cert-section-eyebrow': { id: 'Sertifikasi & Lisensi Resmi', en: 'Certifications & Credentials' },
   'cert-section-heading': { id: 'Sertifikat Kualifikasi', en: 'Professional Certificates' },
   'cert-section-sub': { id: 'Daftar lisensi dan sertifikasi profesional di bidang Project Management, Networking, Bahasa, dan Software Engineering.', en: 'Professional licenses & certifications across Project Management, Networking, Language, and Software Engineering.' },
@@ -2969,17 +3087,19 @@ function setLanguage(lang) {
 
 function updateBrandTexts() {
   if (currentMode === 'tech') {
-    document.getElementById('brand-init').textContent = '~/';
-    document.getElementById('brand-name').textContent = 'hendri@portfolio';
-    document.getElementById('brand-role').textContent = 'Senior App Support | System Analyst | QA';
-    document.getElementById('status-text').textContent = 'status: available';
+    const brandNameEl = document.getElementById('brand-name');
+    const brandRoleEl = document.getElementById('brand-role');
+    const statusEl = document.getElementById('status-text');
+    if (brandNameEl) brandNameEl.textContent = 'hendri@portfolio';
+    if (brandRoleEl) brandRoleEl.textContent = 'Senior App Support | System Analyst | QA';
+    if (statusEl) statusEl.textContent = 'status: available';
   } else {
-    document.getElementById('brand-init').textContent = 'HS';
-    document.getElementById('brand-name').textContent = 'Hendriansyah Setiawan';
-    const roleElem = document.getElementById('brand-role');
-    if (roleElem && translations['brand-role']) roleElem.textContent = translations['brand-role'][currentLang];
-    const statusElem = document.getElementById('status-text');
-    if (statusElem && translations['status-available']) statusElem.textContent = translations['status-available'][currentLang];
+    const brandNameEl = document.getElementById('brand-name');
+    const brandRoleEl = document.getElementById('brand-role');
+    const statusEl = document.getElementById('status-text');
+    if (brandNameEl) brandNameEl.textContent = 'Hendriansyah Setiawan';
+    if (brandRoleEl && translations['brand-role']) brandRoleEl.textContent = translations['brand-role'][currentLang];
+    if (statusEl && translations['status-available']) statusEl.textContent = translations['status-available'][currentLang];
   }
 }
 
@@ -3012,10 +3132,10 @@ function showSection(id, el) {
   const sidebarItem = document.querySelector(`.nav-item[data-section="${id}"]`);
   if (sidebarItem) sidebarItem.classList.add('active');
 
-  // Dev IDE Topbar active tab state
+  // Dev IDE tab active state (covers BOTH the top bar and the mobile bottom bar,
+  // since both share the .dev-tab-item class)
   document.querySelectorAll('.dev-tab-item').forEach(n => n.classList.remove('active'));
-  const devTabItem = document.querySelector(`.dev-tab-item[data-section="${id}"]`);
-  if (devTabItem) devTabItem.classList.add('active');
+  document.querySelectorAll(`.dev-tab-item[data-section="${id}"]`).forEach(n => n.classList.add('active'));
 
   // Mobile nav active state
   document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
