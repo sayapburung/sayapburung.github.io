@@ -3192,13 +3192,20 @@ if (savedLang === 'en') setLanguage('en');
 else applyTranslations();
 </script>
 
-<script data-goatcounter="https://hendriansyhs.goatcounter.com/count"
-        async src="https://gc.zgo.at/count.js"></script>
-  <div style="text-align:center; margin:30px 0;">
-  <a href="https://hendriansyhs.goatcounter.com" target="_blank">
-    Lihat statistik pengunjung
-  </a>
+<div style="text-align:center; margin:30px 0;">
+  👁️ Pengunjung: <span id="gc-count">Memuat...</span>
 </div>
+
+<script>
+fetch('https://hendriansyhs.goatcounter.com/counter/TOTAL.json')
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('gc-count').textContent = d.count || 0;
+  })
+  .catch(() => {
+    document.getElementById('gc-count').textContent = '0';
+  });
+</script>
   
 </body>
 </html>
