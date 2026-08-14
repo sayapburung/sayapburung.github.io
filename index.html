@@ -2755,14 +2755,14 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           </div>
         </div>
         <div class="project-body">
-          <h3 class="project-title" data-i18n="proj16-title">Test Pelayanan Berkas SSPD</h3>
-          <p class="project-desc" data-i18n="proj16-desc">
-            Dokumen test case untuk Pelayanan Berkas SSPD, mencakup pengujian validasi format file, ukuran maksimal unggahan, 
-            serta penanganan error saat proses upload gagal.
+          <h3 class="project-title" data-i18n="proj17-title">Test Case Pelayanan Berkas Cetak SSPD</h3>
+          <p class="project-desc" data-i18n="proj17-desc">
+            Dokumen test case untuk modul Pelayanan Berkas Cetak SSPD, mencakup skenario pengujian alur pencetakan dokumen 
+            SSPD serta validasi kelengkapan data sebelum berkas diterbitkan.
           </p>
           <div class="tag-row">
             <span class="tech-tag">Test Case</span>
-            <span class="tech-tag">Enhancement</span>
+            <span class="tech-tag">SSPD</span>
             <span class="tech-tag">Excel</span>
           </div>
           <div class="project-links-row">
@@ -2782,14 +2782,14 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
           </div>
         </div>
         <div class="project-body">
-          <h3 class="project-title" data-i18n="proj16-title">Test Modul Validasi Ukuran Berkas</h3>
-          <p class="project-desc" data-i18n="proj16-desc">
-            Dokumen test case untuk Pelayanan Berkas SSPD, mencakup pengujian validasi format file, ukuran maksimal unggahan, 
-            serta penanganan error saat proses upload gagal.
+          <h3 class="project-title" data-i18n="proj18-title">Test Case Modul Validasi Ukuran Berkas</h3>
+          <p class="project-desc" data-i18n="proj18-desc">
+            Dokumen test case untuk modul validasi ukuran berkas, mencakup pengujian batas maksimal ukuran file yang 
+            diperbolehkan serta penanganan pesan error saat file melebihi batas.
           </p>
           <div class="tag-row">
             <span class="tech-tag">Test Case</span>
-            <span class="tech-tag">Enhancement</span>
+            <span class="tech-tag">Validasi Berkas</span>
             <span class="tech-tag">Excel</span>
           </div>
           <div class="project-links-row">
@@ -2803,23 +2803,23 @@ body.tech-mode .mobile-nav-item.active .mobile-nav-label { color: var(--tech-neo
       <div class="project-card" data-category="qa">
         <div class="project-video-wrap project-doc-preview">
           <div class="doc-content">
-            <div class="doc-icon">📊</div>
+            <div class="doc-icon">📄</div>
             <span class="doc-label">Word Test Case Document</span>
           </div>
         </div>
         <div class="project-body">
-          <h3 class="project-title" data-i18n="proj16-title">Test Test_Document_QA_Pajak_Daerah_Lengkap</h3>
-          <p class="project-desc" data-i18n="proj16-desc">
+          <h3 class="project-title" data-i18n="proj19-title">Test Document QA Pajak Daerah Lengkap</h3>
+          <p class="project-desc" data-i18n="proj19-desc">
             WP Lapor → Upload Berkas Pendukung → Cetak Kode Bayar → Pembayaran → Upload Bukti Bayar → Validasi Dinas → Cetak SPTPD & SSPD → SKPDKB jika ada ketidaksesuaian.
           </p>
           <div class="tag-row">
             <span class="tech-tag">Test Case</span>
-            <span class="tech-tag">Enhancement</span>
+            <span class="tech-tag">Pajak Daerah</span>
             <span class="tech-tag">Word</span>
           </div>
           <div class="project-links-row">
             <a href="https://github.com/sayapburung/sayapburung.github.io/blob/main/assets/QA/Test_Document_QA_Pajak_Daerah_Lengkap.docx" target="_blank" class="proj-link">🔗 GitHub</a>
-            <a href="https://github.com/sayapburung/sayapburung.github.io/raw/refs/heads/main/assets/QA/Test_Document_QA_Pajak_Daerah_Lengkap.docx.xlsx" target="_blank" class="proj-link">⬇️ Download</a>
+            <a href="https://github.com/sayapburung/sayapburung.github.io/raw/refs/heads/main/assets/QA/Test_Document_QA_Pajak_Daerah_Lengkap.docx" target="_blank" class="proj-link">⬇️ Download</a>
           </div>
         </div>
       </div>
@@ -3409,6 +3409,24 @@ const translations = {
   'proj16-desc': {
     id: `Kumpulan dokumen test case umum untuk berbagai fitur enhancement sistem, disusun secara terstruktur sebagai acuan QA dalam memastikan setiap perubahan fitur berjalan sesuai kebutuhan bisnis.`,
     en: `A collection of general test case documents for various system enhancement features, structured as a QA reference to ensure every feature change meets business requirements.`
+  },
+
+  'proj17-title': { id: 'Test Case Pelayanan Berkas Cetak SSPD', en: 'Test Case - SSPD Document Printing Service' },
+  'proj17-desc': {
+    id: `Dokumen test case untuk modul Pelayanan Berkas Cetak SSPD, mencakup skenario pengujian alur pencetakan dokumen SSPD serta validasi kelengkapan data sebelum berkas diterbitkan.`,
+    en: `Test case document for the SSPD Document Printing Service module, covering the SSPD document printing flow test scenarios and data completeness validation before the document is issued.`
+  },
+
+  'proj18-title': { id: 'Test Case Modul Validasi Ukuran Berkas', en: 'Test Case - File Size Validation Module' },
+  'proj18-desc': {
+    id: `Dokumen test case untuk modul validasi ukuran berkas, mencakup pengujian batas maksimal ukuran file yang diperbolehkan serta penanganan pesan error saat file melebihi batas.`,
+    en: `Test case document for the file size validation module, covering maximum allowed file size testing and error message handling when a file exceeds the limit.`
+  },
+
+  'proj19-title': { id: 'Test Document QA Pajak Daerah Lengkap', en: 'Full Regional Tax QA Test Document' },
+  'proj19-desc': {
+    id: `WP Lapor → Upload Berkas Pendukung → Cetak Kode Bayar → Pembayaran → Upload Bukti Bayar → Validasi Dinas → Cetak SPTPD & SSPD → SKPDKB jika ada ketidaksesuaian.`,
+    en: `Taxpayer Reports → Upload Supporting Files → Print Payment Code → Payment → Upload Proof of Payment → Agency Validation → Print SPTPD & SSPD → SKPDKB issued if discrepancies are found.`
   },
 
   'cert-section-eyebrow': { id: 'Sertifikasi & Lisensi Resmi', en: 'Certifications & Credentials' },
