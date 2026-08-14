@@ -3577,20 +3577,12 @@ if (savedLang === 'en') setLanguage('en');
 else applyTranslations();
 </script>
 
-<div style="text-align:center; margin:30px 0;">
-  👁️ Pengunjung: <span id="gc-count">Memuat...</span>
+<div style="text-align:center;padding:24px;color:#666;font-family:Arial,sans-serif;">
+  <p style="margin-bottom:10px;font-size:14px;">Total Pengunjung</p>
+  <img
+    src="https://visitor-badge.laobi.icu/badge?page_id=sayapburung.sayapburung.github.io&left_text=Visitors"
+    alt="Total Pengunjung"
+  />
 </div>
-
-<script>
-fetch('https://hendriansyhs.goatcounter.com/counter/TOTAL.json')
-  .then(r => r.json())
-  .then(d => {
-    document.getElementById('gc-count').textContent = d.count || 0;
-  })
-  .catch(() => {
-    document.getElementById('gc-count').textContent = '0';
-  });
-</script>
-  
 </body>
 </html>
